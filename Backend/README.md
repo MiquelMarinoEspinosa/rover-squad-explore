@@ -4,9 +4,14 @@
 
 ## Learning Competencies
 - Challenge understanding.
-- Implement Object Oriented Design, DDD, patterns and best practices.
+- Robust and correct implementation of Object Oriented Programming
+- Correct use of true Domain Driven Design
+- Correct use of Patterns
+- Clean code and other best practices
 - Implementing robust testing is important.
 - Manipulate Input/Output correctly.
+
+Please note that OOP and DDD are important to us while scoring the exercise. We would like to see your ability to engineer well rather than provide a "correct answer".
 
 
 ## The challenge
