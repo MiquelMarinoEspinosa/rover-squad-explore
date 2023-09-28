@@ -10,13 +10,18 @@ use PHPUnit\Framework\TestCase;
 
 final class RectangularAreaTest extends TestCase
 {
+    private const LOWER_LEFT_ABSCISSA = 0;
+    private const LOWER_LEFT_ORDINATE = self::LOWER_LEFT_ABSCISSA;
+    private const UPER_RIGHT_ABSCISSA = 5;
+    private const UPER_RIGHT_ORDINATE = self::LOWER_LEFT_ABSCISSA;
+
     public function testShouldCreateTheArea(): void
     {
         $map = RectangularArea::create(
-            0,
-            0,
-            5,
-            5
+            self::LOWER_LEFT_ABSCISSA,
+            self::LOWER_LEFT_ORDINATE,
+            self::UPER_RIGHT_ABSCISSA,
+            self::UPER_RIGHT_ORDINATE
         );
 
         self::assertInstanceOf(RectangularArea::class, $map);
