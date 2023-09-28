@@ -12,8 +12,11 @@ final class RectangularAreaTest extends TestCase
 {
     public function testShouldCreateTheArea(): void
     {
-        $map = new RectangularArea(
-
+        $map = RectangularArea::create(
+            0,
+            0,
+            5,
+            5
         );
 
         self::assertInstanceOf(RectangularArea::class, $map);
