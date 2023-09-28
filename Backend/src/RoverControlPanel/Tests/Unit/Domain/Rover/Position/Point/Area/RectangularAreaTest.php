@@ -23,16 +23,28 @@ final class RectangularAreaTest extends TestCase
         self::assertInstanceOf(Area::class, $rectangularArea);
     }
 
-    public function testShouldThrowAnExceptionWhenThePointIsBeyondTheAreaLeft(): void
+    public function testCheckPointShouldThrowAnExceptionWhenThePointIsBeyondTheAreaRight(): void
     {
         $rectangularArea = $this->givenRectangularArea();
 
         self::expectException(\Exception::class);
 
         $rectangularArea->checkPoint(
+            self::LOWER_LEFT_ABSCISSA - 1,
+            self::LOWER_LEFT_ORDINATE
+        );
+    }
+
+    public function testCheckPointShouldConsiderThePointValid(): void
+    {
+        $rectangularArea = $this->givenRectangularArea();
+
+        $rectangularArea->checkPoint(
             self::LOWER_LEFT_ABSCISSA + 1,
             self::LOWER_LEFT_ORDINATE
         );
+
+        self::assertTrue(true);
     }
 
     private function givenRectangularArea(): RectangularArea
