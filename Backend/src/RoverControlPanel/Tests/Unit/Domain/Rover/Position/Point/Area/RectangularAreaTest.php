@@ -17,31 +17,31 @@ final class RectangularAreaTest extends TestCase
 
     public function testShouldCreateTheArea(): void
     {
-        $map = RectangularArea::create(
-            self::LOWER_LEFT_ABSCISSA,
-            self::LOWER_LEFT_ORDINATE,
-            self::UPER_RIGHT_ABSCISSA,
-            self::UPER_RIGHT_ORDINATE
-        );
+        $rectangularArea = $this->givenRectangularArea();
 
-        self::assertInstanceOf(RectangularArea::class, $map);
-        self::assertInstanceOf(Area::class, $map);
+        self::assertInstanceOf(RectangularArea::class, $rectangularArea);
+        self::assertInstanceOf(Area::class, $rectangularArea);
     }
 
     public function testShouldThrowAnExceptionWhenThePointIsBeyondTheAreaLeft(): void
     {
-        $map = RectangularArea::create(
+        $rectangularArea = $this->givenRectangularArea();
+
+        self::expectException(\Exception::class);
+
+        $rectangularArea->checkPoint(
+            self::LOWER_LEFT_ABSCISSA + 1,
+            self::LOWER_LEFT_ORDINATE
+        );
+    }
+
+    private function givenRectangularArea(): RectangularArea
+    {
+        return RectangularArea::create(
             self::LOWER_LEFT_ABSCISSA,
             self::LOWER_LEFT_ORDINATE,
             self::UPER_RIGHT_ABSCISSA,
             self::UPER_RIGHT_ORDINATE
-        );
-
-        self::expectException(\Exception::class);
-
-        $map->checkPoint(
-            self::LOWER_LEFT_ABSCISSA + 1,
-            self::LOWER_LEFT_ORDINATE
         );
     }
 }
