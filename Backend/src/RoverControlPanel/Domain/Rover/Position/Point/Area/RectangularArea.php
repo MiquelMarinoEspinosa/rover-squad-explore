@@ -14,4 +14,9 @@ final readonly class RectangularArea implements Area
     ): self {
         return new self();
     }
+
+    public function checkPoint(int $abscissa, int $ordenada): void
+    {
+        throw new \Exception();
+    }
 }
