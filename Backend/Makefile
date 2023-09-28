@@ -1,6 +1,6 @@
 up:
 	docker buildx build -t php/php8 etc/devel/docker/php
-	docker run -d -it --rm --name app.php php/php8
+	docker run -v .:/app -w='/app' -d -it --rm --name app.php php/php8
 
 down:
 	docker stop app.php
