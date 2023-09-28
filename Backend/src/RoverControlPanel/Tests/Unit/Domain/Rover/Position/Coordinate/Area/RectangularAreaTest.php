@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\Tests\Unit\Domain\Rover\Position\Coordinates\Area;
+namespace Core\Tests\Unit\Domain\Rover\Position\Coordinate\Area;
 
-use Core\RoverControlPanel\Domain\Rover\Position\Coordinates\Area\Area;
-use Core\RoverControlPanel\Domain\Rover\Position\Coordinates\Area\RectangularArea;
+use Core\RoverControlPanel\Domain\Rover\Position\Coordinate\Area\Area;
+use Core\RoverControlPanel\Domain\Rover\Position\Coordinate\Area\RectangularArea;
 use PHPUnit\Framework\TestCase;
 
 final class RectangularAreaTest extends TestCase
