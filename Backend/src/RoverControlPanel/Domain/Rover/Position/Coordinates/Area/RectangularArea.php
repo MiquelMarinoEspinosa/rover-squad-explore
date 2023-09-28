@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\Rover\Domain\Position\Area;
+namespace Core\RoverControlPanel\Domain\Rover\Position\Coordinates\Area;
 
 final readonly class RectangularArea implements Area
 {
