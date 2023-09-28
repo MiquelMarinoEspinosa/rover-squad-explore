@@ -4,6 +4,6 @@ declare(strict_types=1);
 
 namespace Core\Rover\Domain\Position\Area;
 
-interface Area
+final readonly class RectangularArea implements Area
 {
 }
