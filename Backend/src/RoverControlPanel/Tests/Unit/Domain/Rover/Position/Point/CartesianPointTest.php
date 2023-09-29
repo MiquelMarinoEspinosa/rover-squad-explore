@@ -12,8 +12,11 @@ use function PHPUnit\Framework\assertSame;
 
 final class CartesianPointTest extends TestCase
 {
-    private const ABSCISSA = 1;
-    private const ORDINATE = 2;
+    private const ABSCISSA             = 1;
+    private const ORDINATE             = 2;
+    private const ABSCISSA_VALUE_INDEX = 0;
+    private const ORDINATE_VALUE_INDEX = 1;
+
 
     public function testShouldCreateCartesianPoint(): void
     {
@@ -42,8 +45,8 @@ final class CartesianPointTest extends TestCase
 
         self::assertSame(
             [
-                self::ABSCISSA,
-                self::ORDINATE
+                self::ABSCISSA_VALUE_INDEX => self::ABSCISSA,
+                self::ORDINATE_VALUE_INDEX => self::ORDINATE
             ],
             $cartesianPoint->value()
         );
