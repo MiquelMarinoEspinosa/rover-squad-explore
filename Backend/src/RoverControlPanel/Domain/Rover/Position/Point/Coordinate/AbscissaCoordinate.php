@@ -8,6 +8,6 @@ final readonly class AbscissaCoordinate implements Coordinate
 {
     public function moveUp(): self
     {
-        throw new \Exception();
+        throw new NotAllowedMovement();
     }
 }

@@ -6,6 +6,7 @@ namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point\Coordina
 
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\AbscissaCoordinate;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Coordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\NotAllowedMovement;
 use PHPUnit\Framework\TestCase;
 
 final class AbscissaCoordinateTest extends TestCase
@@ -22,7 +23,7 @@ final class AbscissaCoordinateTest extends TestCase
     {
         $abscissaCoordinate = $this->givenAbscissaCoordinate();
 
-        self::expectException(\Exception::class);
+        self::expectException(NotAllowedMovement::class);
 
         $abscissaCoordinate->moveUp();
     }
