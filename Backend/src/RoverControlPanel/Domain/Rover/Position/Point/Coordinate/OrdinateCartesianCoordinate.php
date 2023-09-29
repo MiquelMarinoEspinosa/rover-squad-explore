@@ -2,7 +2,7 @@
 
 namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
 
-final class OrdinateCoordinate extends CartesianCoordinate
+final class OrdinateCartesianCoordinate extends CartesianCoordinate
 {
     public function moveUp(): self
     {
