@@ -62,6 +62,14 @@ final class CartesianPointTest extends TestCase
         );
     }
 
+    public function testShouldReturnTheOrdinateCoordinateValue(): void
+    {
+        self::assertSame(
+            self::ORDINATE,
+            $this->cartesianPoint->coordinateValue(self::ORDINATE_NAME)
+        );
+    }
+
     public function testShouldNotMoveAbscissaWhenMoveUp(): void
     {
         $movedCartesianPoint = $this->cartesianPoint->moveUp();
