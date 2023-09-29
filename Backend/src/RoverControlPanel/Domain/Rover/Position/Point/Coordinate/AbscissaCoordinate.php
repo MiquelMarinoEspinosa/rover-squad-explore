@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
 
-final readonly class AbscissaCoordinate implements Coordinate
+final class AbscissaCoordinate extends CartesianCoordinate
 {
     private const MOVEMENT_STEP = 1;
     private const ERROR_MESSAGE = 'AbscissaCoordinate operation not allowed: ';

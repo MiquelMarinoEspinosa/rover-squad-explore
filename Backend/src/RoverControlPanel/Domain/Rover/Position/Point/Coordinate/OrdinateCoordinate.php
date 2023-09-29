@@ -2,7 +2,7 @@
 
 namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
 
-final readonly class OrdinateCoordinate implements Coordinate
+final class OrdinateCoordinate extends CartesianCoordinate
 {
     private const MOVEMENT_STEP = 1;
     private const ERROR_MESSAGE = 'OrdinateCoordinate operation not allowed: ';
