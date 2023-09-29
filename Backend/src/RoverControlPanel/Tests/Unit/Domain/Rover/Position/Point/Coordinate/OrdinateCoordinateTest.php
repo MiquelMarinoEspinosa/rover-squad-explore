@@ -3,6 +3,7 @@
 namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point\Coordinate;
 
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Coordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\NotAllowedMovement;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\OrdinateCoordinate;
 use PHPUnit\Framework\TestCase;
 
@@ -21,5 +22,14 @@ final class OrdinateCoordinateTest extends TestCase
             Coordinate::class,
             $oordinateCoordinate
         );
+    }
+
+    public function testShouldThrowAnExceptionWhenMoveRight(): void
+    {
+        $oordinateCoordinate = new OrdinateCoordinate();
+
+        self::expectException(NotAllowedMovement::class);
+        
+        $oordinateCoordinate->moveRight();
     }
 }
