@@ -12,11 +12,14 @@ use function PHPUnit\Framework\assertSame;
 
 final class CartesianPointTest extends TestCase
 {
+    private const ABSCISSA = 1;
+    private const ORDINATE = 2;
+
     public function testShouldCreateCartesianPoint(): void
     {
         $cartesianPoint = CartesianPoint::create(
-            0,
-            0
+            self::ABSCISSA,
+            self::ORDINATE
         );
 
         self::assertInstanceOf(
@@ -33,14 +36,14 @@ final class CartesianPointTest extends TestCase
     public function testShouldReturnTheValue(): void
     {
         $cartesianPoint = CartesianPoint::create(
-            1,
-            2
+            self::ABSCISSA,
+            self::ORDINATE
         );
 
         self::assertSame(
             [
-                1,
-                2
+                self::ABSCISSA,
+                self::ORDINATE
             ],
             $cartesianPoint->value()
         );
@@ -49,8 +52,8 @@ final class CartesianPointTest extends TestCase
     public function testShouldNotMoveAbscissaWhenMoveUp(): void
     {
         $cartesianPoint = CartesianPoint::create(
-            0,
-            0
+            self::ABSCISSA,
+            self::ORDINATE
         );
 
         $movedCartesianPoint = $cartesianPoint->moveUp();
@@ -64,8 +67,8 @@ final class CartesianPointTest extends TestCase
     public function testShouldMoveOrdinateWhenMoveUp(): void
     {
         $cartesianPoint = CartesianPoint::create(
-            0,
-            0
+            self::ABSCISSA,
+            self::ORDINATE
         );
 
         $movedCartesianPoint = $cartesianPoint->moveUp();
