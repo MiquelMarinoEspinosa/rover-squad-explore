@@ -35,14 +35,14 @@ final class OrdinateCoordinateTest extends TestCase
 
     public function testShouldThrowAnExceptionWhenMoveRight(): void
     {
-        self::expectException(NotAllowedMovement::class);
+        $this->shouldThrowAnException();
 
         $this->ordinateCoordinate->moveRight();
     }
 
     public function testShouldThrowAnExceptionWhenMoveLeft(): void
     {
-        self::expectException(NotAllowedMovement::class);
+        $this->shouldThrowAnException();
 
         $this->ordinateCoordinate->moveRight();
     }
@@ -50,5 +50,10 @@ final class OrdinateCoordinateTest extends TestCase
     private function givenOrdinateCoordinate(int $value): OrdinateCoordinate
     {
         return new OrdinateCoordinate($value);
+    }
+
+    private function shouldThrowAnException(): void
+    {
+        self::expectException(NotAllowedMovement::class);
     }
 }
