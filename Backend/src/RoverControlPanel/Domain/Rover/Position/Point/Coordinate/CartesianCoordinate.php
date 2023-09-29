@@ -5,6 +5,7 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
 abstract class CartesianCoordinate implements Coordinate
 {
     private const ERROR_MESSAGE = 'CartesianCoordinate operation not allowed: ';
+    private const MOVEMENT_STEP = 1;
 
     public function __construct(
         protected int $value
@@ -34,6 +35,16 @@ abstract class CartesianCoordinate implements Coordinate
     public function value(): int
     {
         return $this->value;
+    }
+
+    protected function increment(): int
+    {
+        return $this->value + self::MOVEMENT_STEP;
+    }
+
+    protected function decrement(): int
+    {
+        return $this->value - self::MOVEMENT_STEP;
     }
 
     private function buildBadMovementException(
