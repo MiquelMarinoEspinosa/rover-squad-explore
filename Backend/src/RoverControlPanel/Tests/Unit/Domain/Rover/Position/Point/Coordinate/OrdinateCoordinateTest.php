@@ -22,10 +22,7 @@ final class OrdinateCoordinateTest extends TestCase
     {
         $oordinateCoordinate = $this->givenOrdinateCoordinate(self::VALUE);
 
-        self::assertInstanceOf(
-            OrdinateCoordinate::class,
-            $oordinateCoordinate
-        );
+        $this->thenShouldBeOrdinateCoordinate($oordinateCoordinate);
 
         self::assertInstanceOf(
             Coordinate::class,
@@ -51,10 +48,7 @@ final class OrdinateCoordinateTest extends TestCase
     {
         $movedOrdinateCoordinate = $this->ordinateCoordinate->moveUp();
 
-        self::assertInstanceOf(
-            OrdinateCoordinate::class,
-            $movedOrdinateCoordinate
-        );
+        $this->thenShouldBeOrdinateCoordinate($movedOrdinateCoordinate);
 
         self::assertSame(
             $movedOrdinateCoordinate->value(),
@@ -65,6 +59,8 @@ final class OrdinateCoordinateTest extends TestCase
     public function testShouldMoveDown(): void
     {
         $movedOrdinateCoordinate = $this->ordinateCoordinate->moveDown();
+
+        $this->thenShouldBeOrdinateCoordinate($movedOrdinateCoordinate);
 
         self::assertInstanceOf(
             OrdinateCoordinate::class,
@@ -85,5 +81,14 @@ final class OrdinateCoordinateTest extends TestCase
     private function shouldThrowAnException(): void
     {
         self::expectException(NotAllowedMovement::class);
+    }
+
+    private function thenShouldBeOrdinateCoordinate(
+        $ordinateCoordinate
+    ): void {
+        self::assertInstanceOf(
+            OrdinateCoordinate::class,
+            $ordinateCoordinate
+        );
     }
 }
