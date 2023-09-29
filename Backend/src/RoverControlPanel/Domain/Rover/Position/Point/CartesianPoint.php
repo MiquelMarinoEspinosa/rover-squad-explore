@@ -10,9 +10,12 @@ use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\OrdinateCartes
 
 final readonly class CartesianPoint implements Point
 {
+    private const ABSCISSA = 'abscissa';
+    private const ORDINATE = 'ordinate';
+
     private const COORDINATE_NAMES =  [
-        'abscissa',
-        'ordinate'
+        self::ABSCISSA,
+        self::ORDINATE
     ];
 
     private array $coordinates;
