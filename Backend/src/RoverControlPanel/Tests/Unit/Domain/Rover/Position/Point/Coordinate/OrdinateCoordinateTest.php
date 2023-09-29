@@ -51,6 +51,11 @@ final class OrdinateCoordinateTest extends TestCase
     {
         $movedOrdinateCoordinate = $this->ordinateCoordinate->moveUp();
 
+        self::assertInstanceOf(
+            OrdinateCoordinate::class,
+            $movedOrdinateCoordinate
+        );
+
         self::assertSame(
             $movedOrdinateCoordinate->value(),
             $this->ordinateCoordinate->value() + 1
@@ -60,6 +65,11 @@ final class OrdinateCoordinateTest extends TestCase
     public function testShouldMoveDown(): void
     {
         $movedOrdinateCoordinate = $this->ordinateCoordinate->moveDown();
+
+        self::assertInstanceOf(
+            OrdinateCoordinate::class,
+            $movedOrdinateCoordinate
+        );
 
         self::assertSame(
             $movedOrdinateCoordinate->value(),

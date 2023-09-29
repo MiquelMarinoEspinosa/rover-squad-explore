@@ -53,6 +53,11 @@ final class AbscissaCoordinateTest extends TestCase
     {
         $movedAbscissaCoordinate = $this->abscissaCoordinate->moveRight();
 
+        self::assertInstanceOf(
+            AbscissaCoordinate::class,
+            $movedAbscissaCoordinate
+        );
+
         self::assertSame(
             $movedAbscissaCoordinate->value(),
             $this->abscissaCoordinate->value() + 1
@@ -62,6 +67,11 @@ final class AbscissaCoordinateTest extends TestCase
     public function testShouldMoveLeft(): void
     {
         $movedAbscissaCoordinate = $this->abscissaCoordinate->moveLeft();
+
+        self::assertInstanceOf(
+            AbscissaCoordinate::class,
+            $movedAbscissaCoordinate
+        );
 
         self::assertSame(
             $movedAbscissaCoordinate->value(),
