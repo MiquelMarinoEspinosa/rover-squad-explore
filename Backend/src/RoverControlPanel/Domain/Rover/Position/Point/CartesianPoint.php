@@ -10,13 +10,13 @@ use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\OrdinateCartes
 
 final readonly class CartesianPoint implements Point
 {
-    private const ABSCISSA = 'abscissa';
-    private const ORDINATE = 'ordinate';
-
+    private const ABSCISSA      = 'abscissa';
+    private const ORDINATE      = 'ordinate';
     private const COORDINATE_NAMES =  [
         self::ABSCISSA,
         self::ORDINATE
     ];
+    private const ERROR_MESSAGE = 'Coordinate point not found: ';
 
     private array $coordinates;
 
@@ -58,7 +58,7 @@ final readonly class CartesianPoint implements Point
     {
         if (!isset($this->coordinates[$coordinateName])) {
             throw new CoordinatePointNotFound(
-                'Coordinate point not found: ' . $coordinateName
+                self::ERROR_MESSAGE . $coordinateName
             );
         }
 
