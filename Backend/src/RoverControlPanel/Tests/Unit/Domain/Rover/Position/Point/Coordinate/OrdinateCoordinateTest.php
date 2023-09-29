@@ -29,7 +29,16 @@ final class OrdinateCoordinateTest extends TestCase
         $oordinateCoordinate = new OrdinateCoordinate();
 
         self::expectException(NotAllowedMovement::class);
-        
+
         $oordinateCoordinate->moveRight();
+    }
+
+    public function testShouldThrowAnExceptionWhenMoveLeft(): void
+    {
+        $oordinateCoordinate = new OrdinateCoordinate();
+
+        self::expectException(NotAllowedMovement::class);
+
+        $oordinateCoordinate->moveLeft();
     }
 }

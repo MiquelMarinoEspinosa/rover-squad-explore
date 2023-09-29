@@ -19,6 +19,7 @@ final readonly class OrdinateCoordinate implements Coordinate
 
     public function moveLeft(): self
     {
+        throw new NotAllowedMovement();
     }
 
     public function value(): int
