@@ -25,20 +25,26 @@ final readonly class AbscissaCoordinate implements Coordinate
 
     public function moveRight(): self
     {
-        return new self(
-            $this->value + self::MOVEMENT_VALUE
-        );
+        return new self($this->increment());
     }
 
     public function moveLeft(): self
     {
-        return new self(
-            $this->value - self::MOVEMENT_VALUE
-        );
+        return new self($this->decrement());
     }
 
     public function value(): int
     {
         return $this->value;
+    }
+
+    private function increment(): int
+    {
+        return $this->value + self::MOVEMENT_VALUE;
+    }
+
+    private function decrement(): int
+    {
+        return $this->value - self::MOVEMENT_VALUE;
     }
 }
