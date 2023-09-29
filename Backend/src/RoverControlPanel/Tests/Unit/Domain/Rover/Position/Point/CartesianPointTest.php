@@ -14,7 +14,10 @@ final class CartesianPointTest extends TestCase
 {
     public function testShouldCreateCartesianPoint(): void
     {
-        $cartesianPoint = new CartesianPoint();
+        $cartesianPoint = CartesianPoint::create(
+            0,
+            0
+        );
 
         self::assertInstanceOf(
             CartesianPoint::class,
@@ -39,6 +42,21 @@ final class CartesianPointTest extends TestCase
         assertSame(
             $movedCartesianPoint->coordinate('abscissa'),
             $cartesianPoint->coordinate('abscissa')
+        );
+    }
+
+    public function testShouldMoveOrdinateWhenMoveUp(): void
+    {
+        $cartesianPoint = CartesianPoint::create(
+            0,
+            0
+        );
+
+        $movedCartesianPoint = $cartesianPoint->moveUp();
+
+        assertSame(
+            $movedCartesianPoint->coordinate('ordinate'),
+            $cartesianPoint->coordinate('ordinate') + 1
         );
     }
 }
