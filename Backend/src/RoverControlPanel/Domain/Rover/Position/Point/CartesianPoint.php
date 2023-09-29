@@ -25,8 +25,8 @@ final readonly class CartesianPoint implements Point
         private Coordinate $ordinate
     ) {
         $this->coordinates = [
-            'abscissa' => $this->abscissa,
-            'ordinate' => $this->ordinate
+            self::ABSCISSA => $this->abscissa,
+            self::ORDINATE => $this->ordinate
         ];
     }
 
