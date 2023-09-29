@@ -6,7 +6,8 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
 
 final readonly class AbscissaCoordinate implements Coordinate
 {
-    private const MOVEMENT_VALUE = 1; 
+    private const MOVEMENT_VALUE = 1;
+    private const ERROR_MESSAGE  = 'AbscissaCoordinate operation not allowed: ';
 
     public function __construct(
         private int $value
@@ -15,12 +16,16 @@ final readonly class AbscissaCoordinate implements Coordinate
 
     public function moveUp(): self
     {
-        throw new NotAllowedMovement();
+        throw new NotAllowedMovement(
+            self::ERROR_MESSAGE . 'moveUp'
+        );
     }
 
     public function moveDown(): self
     {
-        throw new NotAllowedMovement();
+        throw new NotAllowedMovement(
+            self::ERROR_MESSAGE . 'moveDow'
+        );
     }
 
     public function moveRight(): self
