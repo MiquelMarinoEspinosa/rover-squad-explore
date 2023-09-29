@@ -13,3 +13,6 @@ bash:
 
 unit:
 	$(EXEC_PHP) vendor/bin/phpunit
+
+coverage:
+	$(EXEC_PHP) vendor/bin/phpunit --coverage-html coverage
