@@ -11,16 +11,18 @@ use PHPUnit\Framework\TestCase;
 
 final class AbscissaCoordinateTest extends TestCase
 {
+    private const VALUE = 0;
+
     private AbscissaCoordinate $abscissaCoordinate;
 
     protected function setUp(): void
     {
-        $this->abscissaCoordinate = $this->givenAbscissaCoordinate();
+        $this->abscissaCoordinate = $this->givenAbscissaCoordinate(self::VALUE);
     }
 
     public function testShouldCreateAbscissaCoordinate(): void
     {
-        $abscissaCoordinate = $this->givenAbscissaCoordinate();
+        $abscissaCoordinate = $this->givenAbscissaCoordinate(self::VALUE);
 
         self::assertInstanceOf(
             AbscissaCoordinate::class,
@@ -47,9 +49,19 @@ final class AbscissaCoordinateTest extends TestCase
         $this->abscissaCoordinate->moveDown();
     }
 
-    private function givenAbscissaCoordinate(): AbscissaCoordinate
+    public function testShouldMoveRight(): void
     {
-        return new AbscissaCoordinate();
+        $movedAbscissaCoordinate = $this->abscissaCoordinate->moveRight();
+
+        self::assertEquals(
+            $movedAbscissaCoordinate->value(),
+            $this->abscissaCoordinate->value() + 1
+        );
+    }
+
+    private function givenAbscissaCoordinate(int $value): AbscissaCoordinate
+    {
+        return new AbscissaCoordinate($value);
     }
 
     private function shouldThrowAnException(): void
