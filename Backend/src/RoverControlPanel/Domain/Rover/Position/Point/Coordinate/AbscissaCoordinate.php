@@ -10,4 +10,9 @@ final readonly class AbscissaCoordinate implements Coordinate
     {
         throw new NotAllowedMovement();
     }
+
+    public function moveDown(): self
+    {
+        throw new NotAllowedMovement();
+    }
 }
