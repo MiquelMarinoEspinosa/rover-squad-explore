@@ -7,17 +7,6 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
 final class AbscissaCoordinate extends CartesianCoordinate
 {
     private const MOVEMENT_STEP = 1;
-    private const ERROR_MESSAGE = 'AbscissaCoordinate operation not allowed: ';
-
-    public function moveUp(): self
-    {
-        throw $this->buildBadMovementException('moveUp');
-    }
-
-    public function moveDown(): self
-    {
-        throw $this->buildBadMovementException('moveDown');
-    }
 
     public function moveRight(): self
     {
@@ -29,11 +18,6 @@ final class AbscissaCoordinate extends CartesianCoordinate
         return new self($this->decrement());
     }
 
-    public function value(): int
-    {
-        return $this->value;
-    }
-
     private function increment(): int
     {
         return $this->value + self::MOVEMENT_STEP;
@@ -42,14 +26,5 @@ final class AbscissaCoordinate extends CartesianCoordinate
     private function decrement(): int
     {
         return $this->value - self::MOVEMENT_STEP;
-    }
-
-    private function buildBadMovementException(
-        string $movement
-    ): NotAllowedMovement {
-
-        return new NotAllowedMovement(
-            self::ERROR_MESSAGE . $movement
-        );
     }
 }

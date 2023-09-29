@@ -1,3 +1,5 @@
+.PHONY: coverage
+
 EXEC_PHP=docker exec -i -t app.php
 
 up:

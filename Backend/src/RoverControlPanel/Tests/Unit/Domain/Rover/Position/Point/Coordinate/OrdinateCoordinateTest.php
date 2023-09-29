@@ -44,7 +44,7 @@ final class OrdinateCoordinateTest extends TestCase
     {
         $this->shouldThrowAnException();
 
-        $this->ordinateCoordinate->moveRight();
+        $this->ordinateCoordinate->moveLeft();
     }
 
     public function testShouldMoveUp(): void
