@@ -16,16 +16,12 @@ final readonly class AbscissaCoordinate implements Coordinate
 
     public function moveUp(): self
     {
-        throw new NotAllowedMovement(
-            self::ERROR_MESSAGE . 'moveUp'
-        );
+        throw $this->buildBadMovementException('moveUp');
     }
 
     public function moveDown(): self
     {
-        throw new NotAllowedMovement(
-            self::ERROR_MESSAGE . 'moveDow'
-        );
+        throw $this->buildBadMovementException('moveDown');
     }
 
     public function moveRight(): self
@@ -51,5 +47,14 @@ final readonly class AbscissaCoordinate implements Coordinate
     private function decrement(): int
     {
         return $this->value - self::MOVEMENT_VALUE;
+    }
+
+    private function buildBadMovementException(
+        string $movement
+    ): NotAllowedMovement {
+
+        return new NotAllowedMovement(
+            self::ERROR_MESSAGE . $movement
+        );
     }
 }
