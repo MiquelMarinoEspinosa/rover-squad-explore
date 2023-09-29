@@ -18,6 +18,9 @@ final readonly class OrdinateCoordinate implements Coordinate
 
     public function moveDown(): self
     {
+        return new self(
+            $this->value - 1
+        );
     }
 
     public function moveRight(): self

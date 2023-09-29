@@ -57,6 +57,16 @@ final class OrdinateCoordinateTest extends TestCase
         );
     }
 
+    public function testShouldMoveDown(): void
+    {
+        $movedOrdinateCoordinate = $this->ordinateCoordinate->moveDown();
+
+        self::assertSame(
+            $movedOrdinateCoordinate->value(),
+            $this->ordinateCoordinate->value() - 1
+        );
+    }
+
     private function givenOrdinateCoordinate(int $value): OrdinateCoordinate
     {
         return new OrdinateCoordinate($value);
