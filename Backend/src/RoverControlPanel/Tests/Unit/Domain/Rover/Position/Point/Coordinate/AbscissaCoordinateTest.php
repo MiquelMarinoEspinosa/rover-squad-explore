@@ -11,6 +11,13 @@ use PHPUnit\Framework\TestCase;
 
 final class AbscissaCoordinateTest extends TestCase
 {
+    private AbscissaCoordinate $abscissaCoordinate;
+
+    protected function setUp(): void
+    {
+        $this->abscissaCoordinate = $this->givenAbscissaCoordinate();
+    }
+
     public function testShouldCreateAbscissaCoordinate(): void
     {
         $abscissaCoordinate = $this->givenAbscissaCoordinate();
@@ -28,20 +35,16 @@ final class AbscissaCoordinateTest extends TestCase
 
     public function testShouldThrowAnExceptionWhenMoveUp(): void
     {
-        $abscissaCoordinate = $this->givenAbscissaCoordinate();
-
         $this->shouldThrowAnException();
 
-        $abscissaCoordinate->moveUp();
+        $this->abscissaCoordinate->moveUp();
     }
 
     public function testShouldThrowAnExceptionWhenMoveDown(): void
     {
-        $abscissaCoordinate = $this->givenAbscissaCoordinate();
-
         $this->shouldThrowAnException();
 
-        $abscissaCoordinate->moveDown();
+        $this->abscissaCoordinate->moveDown();
     }
 
     private function givenAbscissaCoordinate(): AbscissaCoordinate
