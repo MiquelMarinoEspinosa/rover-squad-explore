@@ -7,11 +7,6 @@ final class OrdinateCoordinate extends CartesianCoordinate
     private const MOVEMENT_STEP = 1;
     private const ERROR_MESSAGE = 'OrdinateCoordinate operation not allowed: ';
 
-    public function __construct(
-        private int $value
-    ) {
-    }
-
     public function moveUp(): self
     {
         return new self(

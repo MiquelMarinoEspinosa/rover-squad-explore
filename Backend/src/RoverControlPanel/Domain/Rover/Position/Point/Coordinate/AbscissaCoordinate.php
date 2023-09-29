@@ -9,11 +9,6 @@ final class AbscissaCoordinate extends CartesianCoordinate
     private const MOVEMENT_STEP = 1;
     private const ERROR_MESSAGE = 'AbscissaCoordinate operation not allowed: ';
 
-    public function __construct(
-        private int $value
-    ) {
-    }
-
     public function moveUp(): self
     {
         throw $this->buildBadMovementException('moveUp');
