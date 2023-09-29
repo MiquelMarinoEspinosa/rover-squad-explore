@@ -4,6 +4,8 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
 
 final readonly class OrdinateCoordinate implements Coordinate
 {
+    private const MOVEMENT_STEP = 1;
+
     public function __construct(
         private int $value
     ) {
@@ -12,14 +14,14 @@ final readonly class OrdinateCoordinate implements Coordinate
     public function moveUp(): self
     {
         return new self(
-            $this->value + 1
+            $this->value + self::MOVEMENT_STEP
         );
     }
 
     public function moveDown(): self
     {
         return new self(
-            $this->value - 1
+            $this->value - self::MOVEMENT_STEP
         );
     }
 
