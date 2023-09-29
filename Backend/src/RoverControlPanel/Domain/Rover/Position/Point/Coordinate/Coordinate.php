@@ -6,5 +6,5 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
 
 interface Coordinate
 {
-    
+    public function moveUp(): self;
 }

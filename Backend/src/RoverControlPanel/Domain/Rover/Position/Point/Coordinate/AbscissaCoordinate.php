@@ -6,4 +6,8 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
 
 final readonly class AbscissaCoordinate implements Coordinate
 {
+    public function moveUp(): self
+    {
+        throw new \Exception();
+    }
 }

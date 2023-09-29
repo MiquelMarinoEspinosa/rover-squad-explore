@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point\Coordinate;
 
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\AbscissaCoordinate;
@@ -14,5 +16,14 @@ final class AbscissaCoordinateTest extends TestCase
 
         self::assertInstanceOf(AbscissaCoordinate::class, $abscissaCoordinate);
         self::assertInstanceOf(Coordinate::class, $abscissaCoordinate);
+    }
+
+    public function testShouldThrowAnExceptionWhenMoveUp(): void
+    {
+        $abscissaCoordinate = new AbscissaCoordinate();
+
+        self::expectException(\Exception::class);
+
+        $abscissaCoordinate->moveUp();
     }
 }
