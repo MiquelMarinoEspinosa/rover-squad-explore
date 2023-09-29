@@ -17,6 +17,15 @@ final class CartesianPointTest extends TestCase
     private const ABSCISSA_VALUE_INDEX = 0;
     private const ORDINATE_VALUE_INDEX = 1;
 
+    private CartesianPoint $cartesianPoint;
+
+    protected function setUp(): void
+    {
+        $this->cartesianPoint = CartesianPoint::create(
+            self::ABSCISSA,
+            self::ORDINATE
+        );
+    }
 
     public function testShouldCreateCartesianPoint(): void
     {
@@ -38,47 +47,32 @@ final class CartesianPointTest extends TestCase
 
     public function testShouldReturnTheValue(): void
     {
-        $cartesianPoint = CartesianPoint::create(
-            self::ABSCISSA,
-            self::ORDINATE
-        );
-
         self::assertSame(
             [
                 self::ABSCISSA_VALUE_INDEX => self::ABSCISSA,
                 self::ORDINATE_VALUE_INDEX => self::ORDINATE
             ],
-            $cartesianPoint->value()
+            $this->cartesianPoint->value()
         );
     }
 
     public function testShouldNotMoveAbscissaWhenMoveUp(): void
     {
-        $cartesianPoint = CartesianPoint::create(
-            self::ABSCISSA,
-            self::ORDINATE
-        );
+        $movedCartesianPoint = $this->cartesianPoint->moveUp();
 
-        $movedCartesianPoint = $cartesianPoint->moveUp();
-
-        assertSame(
+        self::assertSame(
             $movedCartesianPoint->horizontal(),
-            $cartesianPoint->horizontal()
+            $this->cartesianPoint->horizontal()
         );
     }
 
     public function testShouldMoveOrdinateWhenMoveUp(): void
     {
-        $cartesianPoint = CartesianPoint::create(
-            self::ABSCISSA,
-            self::ORDINATE
-        );
-
-        $movedCartesianPoint = $cartesianPoint->moveUp();
+        $movedCartesianPoint = $this->cartesianPoint->moveUp();
 
         assertSame(
             $movedCartesianPoint->coordinate('ordinate'),
-            $cartesianPoint->coordinate('ordinate') + 1
+            $this->cartesianPoint->coordinate('ordinate') + 1
         );
     }
 }
