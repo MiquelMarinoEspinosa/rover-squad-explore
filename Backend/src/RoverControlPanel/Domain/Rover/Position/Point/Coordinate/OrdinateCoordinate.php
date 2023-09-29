@@ -5,6 +5,7 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
 final readonly class OrdinateCoordinate implements Coordinate
 {
     private const MOVEMENT_STEP = 1;
+    private const ERROR_MESSAGE = 'OrdinateCoordinate operation not allowed: ';
 
     public function __construct(
         private int $value
@@ -27,12 +28,12 @@ final readonly class OrdinateCoordinate implements Coordinate
 
     public function moveRight(): self
     {
-        throw new NotAllowedMovement();
+        throw $this->buildBadMovementException('moveRight');
     }
 
     public function moveLeft(): self
     {
-        throw new NotAllowedMovement();
+        throw $this->buildBadMovementException('moveLeft');
     }
 
     public function value(): int
@@ -48,5 +49,14 @@ final readonly class OrdinateCoordinate implements Coordinate
     private function decrement(): int
     {
         return $this->value - self::MOVEMENT_STEP;
+    }
+
+    private function buildBadMovementException(
+        string $movement
+    ): NotAllowedMovement {
+
+        return new NotAllowedMovement(
+            self::ERROR_MESSAGE . $movement
+        );
     }
 }
