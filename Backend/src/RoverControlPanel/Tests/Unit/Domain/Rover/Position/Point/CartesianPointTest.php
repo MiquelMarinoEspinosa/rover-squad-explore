@@ -30,6 +30,22 @@ final class CartesianPointTest extends TestCase
         );
     }
 
+    public function testShouldReturnTheValue(): void
+    {
+        $cartesianPoint = CartesianPoint::create(
+            1,
+            2
+        );
+
+        self::assertSame(
+            [
+                1,
+                2
+            ],
+            $cartesianPoint->value()
+        );
+    }
+
     public function testShouldNotMoveAbscissaWhenMoveUp(): void
     {
         $cartesianPoint = CartesianPoint::create(

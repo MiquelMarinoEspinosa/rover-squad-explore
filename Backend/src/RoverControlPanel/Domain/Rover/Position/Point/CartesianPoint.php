@@ -48,4 +48,12 @@ final readonly class CartesianPoint implements Point
     {
         return $this->abscissa->value();
     }
+
+    public function value(): array
+    {
+        return [
+            $this->abscissa->value(),
+            $this->ordinate->value()
+        ];
+    }
 }

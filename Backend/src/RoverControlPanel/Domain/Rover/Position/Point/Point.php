@@ -11,4 +11,6 @@ interface Point
     public function coordinate(string $name): int;
 
     public function horizontal(): int;
+
+    public function value(): array;
 }
