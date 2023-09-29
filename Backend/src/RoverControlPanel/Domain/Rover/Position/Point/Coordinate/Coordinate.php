@@ -12,5 +12,7 @@ interface Coordinate
 
     public function moveRight(): self;
 
+    public function moveLeft(): self;
+
     public function value(): int;
 }

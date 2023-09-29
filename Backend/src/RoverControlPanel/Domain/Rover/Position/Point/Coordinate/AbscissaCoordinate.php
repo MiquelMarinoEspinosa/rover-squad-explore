@@ -28,6 +28,13 @@ final readonly class AbscissaCoordinate implements Coordinate
         );
     }
 
+    public function moveLeft(): self
+    {
+        return new self(
+            $this->value - 1
+        );
+    }
+
     public function value(): int
     {
         return $this->value;
