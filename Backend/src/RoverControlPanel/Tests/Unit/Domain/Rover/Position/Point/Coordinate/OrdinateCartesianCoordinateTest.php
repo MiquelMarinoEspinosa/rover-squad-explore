@@ -33,6 +33,14 @@ final class OrdinateCartesianCoordinateTest extends TestCase
         );
     }
 
+    public function testShouldReturnTheValue(): void
+    {
+        self::assertSame(
+            self::VALUE,
+            $this->ordinateCartesianCoordinate->value()
+        );
+    }
+
     public function testShouldThrowAnExceptionWhenMoveRight(): void
     {
         $this->shouldThrowAnException();
@@ -79,8 +87,8 @@ final class OrdinateCartesianCoordinateTest extends TestCase
 
     private function givenOrdinateCartesianCoordinate(
         int $value
-    ): OrdinateCartesianCoordinate{
-        
+    ): OrdinateCartesianCoordinate {
+
         return new OrdinateCartesianCoordinate($value);
     }
 
