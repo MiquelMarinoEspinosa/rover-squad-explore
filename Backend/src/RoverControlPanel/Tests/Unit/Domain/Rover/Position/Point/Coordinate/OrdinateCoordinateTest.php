@@ -20,7 +20,7 @@ final class OrdinateCoordinateTest extends TestCase
 
     public function testShouldCreateOrdinateCoordinate(): void
     {
-        $oordinateCoordinate = new OrdinateCoordinate();
+        $oordinateCoordinate = $this->givenOrdinateCoordinate(self::VALUE);
 
         self::assertInstanceOf(
             OrdinateCoordinate::class,
@@ -45,6 +45,16 @@ final class OrdinateCoordinateTest extends TestCase
         $this->shouldThrowAnException();
 
         $this->ordinateCoordinate->moveRight();
+    }
+
+    public function testShouldMoveUp(): void
+    {
+        $movedOrdinateCoordinate = $this->ordinateCoordinate->moveUp();
+
+        self::assertSame(
+            $movedOrdinateCoordinate->value(),
+            $this->ordinateCoordinate->value() + 1
+        );
     }
 
     private function givenOrdinateCoordinate(int $value): OrdinateCoordinate
