@@ -8,7 +8,7 @@ abstract class CartesianCoordinate implements Coordinate
     private const MOVEMENT_STEP = 1;
 
     public function __construct(
-        protected int $value
+        private int $value
     ) {
     }
 
