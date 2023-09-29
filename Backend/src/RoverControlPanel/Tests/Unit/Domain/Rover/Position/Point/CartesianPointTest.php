@@ -8,8 +8,6 @@ use Core\RoverControlPanel\Domain\Rover\Position\Point\CartesianPoint;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Point;
 use PHPUnit\Framework\TestCase;
 
-use function PHPUnit\Framework\assertSame;
-
 final class CartesianPointTest extends TestCase
 {
     private const ABSCISSA             = 1;
@@ -61,8 +59,8 @@ final class CartesianPointTest extends TestCase
         $movedCartesianPoint = $this->cartesianPoint->moveUp();
 
         self::assertSame(
-            $movedCartesianPoint->horizontal(),
-            $this->cartesianPoint->horizontal()
+            $movedCartesianPoint->value()[self::ABSCISSA_VALUE_INDEX],
+            $this->cartesianPoint->value()[self::ABSCISSA_VALUE_INDEX]
         );
     }
 
@@ -70,9 +68,9 @@ final class CartesianPointTest extends TestCase
     {
         $movedCartesianPoint = $this->cartesianPoint->moveUp();
 
-        assertSame(
-            $movedCartesianPoint->coordinate('ordinate'),
-            $this->cartesianPoint->coordinate('ordinate') + 1
+        self::assertSame(
+            $movedCartesianPoint->value()[self::ORDINATE_VALUE_INDEX],
+            $this->cartesianPoint->value()[self::ORDINATE_VALUE_INDEX] + 1
         );
     }
 }
