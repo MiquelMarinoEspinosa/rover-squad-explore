@@ -14,7 +14,6 @@ final readonly class CartesianPoint implements Point
         private Coordinate $abscissa,
         private Coordinate $ordinate
     ) {
-
     }
 
     public static function create(
@@ -38,11 +37,15 @@ final readonly class CartesianPoint implements Point
 
     public function coordinate(string $name): int
     {
-        if ('abscissa' === $name)
-        {
+        if ('abscissa' === $name) {
             return $this->abscissa->value();
         }
 
         return $this->ordinate->value();
+    }
+
+    public function horizontal(): int
+    {
+        return $this->abscissa->value();
     }
 }

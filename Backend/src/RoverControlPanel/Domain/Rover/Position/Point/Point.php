@@ -9,4 +9,6 @@ interface Point
     public function moveUp(): self;
 
     public function coordinate(string $name): int;
+
+    public function horizontal(): int;
 }

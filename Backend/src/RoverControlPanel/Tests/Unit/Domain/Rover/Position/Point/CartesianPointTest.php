@@ -40,8 +40,8 @@ final class CartesianPointTest extends TestCase
         $movedCartesianPoint = $cartesianPoint->moveUp();
 
         assertSame(
-            $movedCartesianPoint->coordinate('abscissa'),
-            $cartesianPoint->coordinate('abscissa')
+            $movedCartesianPoint->horizontal(),
+            $cartesianPoint->horizontal()
         );
     }
 
