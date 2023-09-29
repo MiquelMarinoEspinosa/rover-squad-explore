@@ -9,7 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 final class OrdinateCoordinateTest extends TestCase
 {
-    private const VALUE = 0;
+    private const VALUE         = 0;
+    private const MOVEMENT_STEP = 1;
 
     private OrdinateCoordinate $ordinateCoordinate;
 
@@ -52,7 +53,7 @@ final class OrdinateCoordinateTest extends TestCase
 
         self::assertSame(
             $movedOrdinateCoordinate->value(),
-            $this->ordinateCoordinate->value() + 1
+            $this->ordinateCoordinate->value() + self::MOVEMENT_STEP
         );
     }
 
@@ -62,14 +63,9 @@ final class OrdinateCoordinateTest extends TestCase
 
         $this->thenShouldBeOrdinateCoordinate($movedOrdinateCoordinate);
 
-        self::assertInstanceOf(
-            OrdinateCoordinate::class,
-            $movedOrdinateCoordinate
-        );
-
         self::assertSame(
             $movedOrdinateCoordinate->value(),
-            $this->ordinateCoordinate->value() - 1
+            $this->ordinateCoordinate->value() - self::MOVEMENT_STEP
         );
     }
 

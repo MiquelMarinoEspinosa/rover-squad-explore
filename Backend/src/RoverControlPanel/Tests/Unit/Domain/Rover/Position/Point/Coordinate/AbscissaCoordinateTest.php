@@ -11,7 +11,8 @@ use PHPUnit\Framework\TestCase;
 
 final class AbscissaCoordinateTest extends TestCase
 {
-    private const VALUE = 0;
+    private const VALUE         = 0;
+    private const MOVEMENT_STEP = 1;
 
     private AbscissaCoordinate $abscissaCoordinate;
 
@@ -54,7 +55,7 @@ final class AbscissaCoordinateTest extends TestCase
 
         self::assertSame(
             $movedAbscissaCoordinate->value(),
-            $this->abscissaCoordinate->value() + 1
+            $this->abscissaCoordinate->value() + self::MOVEMENT_STEP
         );
     }
 
@@ -66,7 +67,7 @@ final class AbscissaCoordinateTest extends TestCase
 
         self::assertSame(
             $movedAbscissaCoordinate->value(),
-            $this->abscissaCoordinate->value() - 1
+            $this->abscissaCoordinate->value() - self::MOVEMENT_STEP
         );
     }
 
