@@ -8,11 +8,7 @@ interface Point
 {
     public function moveUp(): self;
 
-    public function coordinate(string $name): int;
-
-    public function horizontal(): int;
-
-    public function value(): array;
-
     public function coordinateNames(): array;
+
+    public function coordinateValue(string $coordinateName): int;
 }

@@ -10,10 +10,16 @@ use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\OrdinateCartes
 
 final readonly class CartesianPoint implements Point
 {
+    private array $coordinates;
+
     private function __construct(
         private Coordinate $abscissa,
         private Coordinate $ordinate
     ) {
+        $this->coordinates = [
+            'abscissa' => $this->abscissa,
+            'ordinate' => $this->ordinate
+        ];
     }
 
     public static function create(
@@ -35,33 +41,16 @@ final readonly class CartesianPoint implements Point
         );
     }
 
-    public function coordinate(string $name): int
-    {
-        if ('abscissa' === $name) {
-            return $this->abscissa->value();
-        }
-
-        return $this->ordinate->value();
-    }
-
-    public function horizontal(): int
-    {
-        return $this->abscissa->value();
-    }
-
-    public function value(): array
-    {
-        return [
-            $this->abscissa->value(),
-            $this->ordinate->value()
-        ];
-    }
-
     public function coordinateNames(): array
     {
         return [
             'abscissa',
             'ordinate'
         ];
+    }
+
+    public function coordinateValue(string $coordinateName): int
+    {
+        return $this->coordinates[$coordinateName]->value();
     }
 }

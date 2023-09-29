@@ -54,14 +54,11 @@ final class CartesianPointTest extends TestCase
         );
     }
 
-    public function testShouldReturnTheValue(): void
+    public function testShouldReturnTheAbscissaCoordinateValue(): void
     {
         self::assertSame(
-            [
-                self::ABSCISSA_VALUE_INDEX => self::ABSCISSA,
-                self::ORDINATE_VALUE_INDEX => self::ORDINATE
-            ],
-            $this->cartesianPoint->value()
+            self::ABSCISSA,
+            $this->cartesianPoint->coordinateValue('abscissa')
         );
     }
 
@@ -70,8 +67,8 @@ final class CartesianPointTest extends TestCase
         $movedCartesianPoint = $this->cartesianPoint->moveUp();
 
         self::assertSame(
-            $movedCartesianPoint->value()[self::ABSCISSA_VALUE_INDEX],
-            $this->cartesianPoint->value()[self::ABSCISSA_VALUE_INDEX]
+            $movedCartesianPoint->coordinateValue('abscissa'),
+            $this->cartesianPoint->coordinateValue('abscissa')
         );
     }
 
@@ -80,8 +77,8 @@ final class CartesianPointTest extends TestCase
         $movedCartesianPoint = $this->cartesianPoint->moveUp();
 
         self::assertSame(
-            $movedCartesianPoint->value()[self::ORDINATE_VALUE_INDEX],
-            $this->cartesianPoint->value()[self::ORDINATE_VALUE_INDEX] + 1
+            $movedCartesianPoint->coordinateValue('ordinate'),
+            $this->cartesianPoint->coordinateValue('ordinate') + 1
         );
     }
 }
