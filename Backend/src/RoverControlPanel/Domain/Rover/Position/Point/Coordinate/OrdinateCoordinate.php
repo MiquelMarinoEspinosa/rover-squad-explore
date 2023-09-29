@@ -14,14 +14,14 @@ final readonly class OrdinateCoordinate implements Coordinate
     public function moveUp(): self
     {
         return new self(
-            $this->value + self::MOVEMENT_STEP
+            $this->increment()
         );
     }
 
     public function moveDown(): self
     {
         return new self(
-            $this->value - self::MOVEMENT_STEP
+            $this->decrement()
         );
     }
 
@@ -38,5 +38,15 @@ final readonly class OrdinateCoordinate implements Coordinate
     public function value(): int
     {
         return $this->value;
+    }
+
+    private function increment(): int
+    {
+        return $this->value + self::MOVEMENT_STEP;
+    }
+
+    private function decrement(): int
+    {
+        return $this->value - self::MOVEMENT_STEP;
     }
 }
