@@ -56,6 +56,12 @@ final readonly class CartesianPoint implements Point
 
     public function coordinateValue(string $coordinateName): int
     {
+        if (!isset($this->coordinates[$coordinateName])) {
+            throw new CoordinatePointNotFound(
+                'Coordinate point not found: ' . $coordinateName
+            );
+        }
+
         return $this->coordinates[$coordinateName]->value();
     }
 }
