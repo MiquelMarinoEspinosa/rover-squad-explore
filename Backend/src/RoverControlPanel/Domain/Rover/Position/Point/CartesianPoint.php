@@ -56,4 +56,12 @@ final readonly class CartesianPoint implements Point
             $this->ordinate->value()
         ];
     }
+
+    public function coordinateNames(): array
+    {
+        return [
+            'abscissa',
+            'ordinate'
+        ];
+    }
 }

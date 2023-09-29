@@ -43,6 +43,17 @@ final class CartesianPointTest extends TestCase
         );
     }
 
+    public function testShouldReturnTheCoordinateNames(): void
+    {
+        self::assertSame(
+            [
+                'abscissa',
+                'ordinate'
+            ],
+            $this->cartesianPoint->coordinateNames()
+        );
+    }
+
     public function testShouldReturnTheValue(): void
     {
         self::assertSame(

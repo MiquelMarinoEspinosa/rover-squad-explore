@@ -13,4 +13,6 @@ interface Point
     public function horizontal(): int;
 
     public function value(): array;
+
+    public function coordinateNames(): array;
 }
