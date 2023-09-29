@@ -10,10 +10,10 @@ use PHPUnit\Framework\TestCase;
 
 final class CartesianPointTest extends TestCase
 {
-    private const ABSCISSA             = 1;
-    private const ORDINATE             = 2;
-    private const ABSCISSA_VALUE_INDEX = 0;
-    private const ORDINATE_VALUE_INDEX = 1;
+    private const ABSCISSA      = 1;
+    private const ORDINATE      = 2;
+    private const ABSCISSA_NAME = 'abscissa';
+    private const ORDINATE_NAME = 'ordinate';
 
     private CartesianPoint $cartesianPoint;
 
@@ -47,8 +47,8 @@ final class CartesianPointTest extends TestCase
     {
         self::assertSame(
             [
-                'abscissa',
-                'ordinate'
+                self::ABSCISSA_NAME,
+                self::ORDINATE_NAME
             ],
             $this->cartesianPoint->coordinateNames()
         );
@@ -58,7 +58,7 @@ final class CartesianPointTest extends TestCase
     {
         self::assertSame(
             self::ABSCISSA,
-            $this->cartesianPoint->coordinateValue('abscissa')
+            $this->cartesianPoint->coordinateValue(self::ABSCISSA_NAME)
         );
     }
 
@@ -67,8 +67,8 @@ final class CartesianPointTest extends TestCase
         $movedCartesianPoint = $this->cartesianPoint->moveUp();
 
         self::assertSame(
-            $movedCartesianPoint->coordinateValue('abscissa'),
-            $this->cartesianPoint->coordinateValue('abscissa')
+            $movedCartesianPoint->coordinateValue(self::ABSCISSA_NAME),
+            $this->cartesianPoint->coordinateValue(self::ABSCISSA_NAME)
         );
     }
 
@@ -77,8 +77,8 @@ final class CartesianPointTest extends TestCase
         $movedCartesianPoint = $this->cartesianPoint->moveUp();
 
         self::assertSame(
-            $movedCartesianPoint->coordinateValue('ordinate'),
-            $this->cartesianPoint->coordinateValue('ordinate') + 1
+            $movedCartesianPoint->coordinateValue(self::ORDINATE_NAME),
+            $this->cartesianPoint->coordinateValue(self::ORDINATE_NAME) + 1
         );
     }
 }
