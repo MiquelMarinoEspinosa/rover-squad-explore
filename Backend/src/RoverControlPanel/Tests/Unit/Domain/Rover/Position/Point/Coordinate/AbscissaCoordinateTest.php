@@ -30,7 +30,7 @@ final class AbscissaCoordinateTest extends TestCase
     {
         $abscissaCoordinate = $this->givenAbscissaCoordinate();
 
-        self::expectException(NotAllowedMovement::class);
+        $this->shouldThrowAnException();
 
         $abscissaCoordinate->moveUp();
     }
@@ -39,7 +39,7 @@ final class AbscissaCoordinateTest extends TestCase
     {
         $abscissaCoordinate = $this->givenAbscissaCoordinate();
 
-        self::expectException(NotAllowedMovement::class);
+        $this->shouldThrowAnException();
 
         $abscissaCoordinate->moveDown();
     }
@@ -47,5 +47,10 @@ final class AbscissaCoordinateTest extends TestCase
     private function givenAbscissaCoordinate(): AbscissaCoordinate
     {
         return new AbscissaCoordinate();
+    }
+
+    private function shouldThrowAnException(): void
+    {
+        self::expectException(NotAllowedMovement::class);
     }
 }
