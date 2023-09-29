@@ -9,6 +9,15 @@ use PHPUnit\Framework\TestCase;
 
 final class OrdinateCoordinateTest extends TestCase
 {
+    private const VALUE = 0;
+
+    private OrdinateCoordinate $ordinateCoordinate;
+
+    protected function setUp(): void
+    {
+        $this->ordinateCoordinate = $this->givenOrdinateCoordinate(self::VALUE);
+    }
+
     public function testShouldCreateOrdinateCoordinate(): void
     {
         $oordinateCoordinate = new OrdinateCoordinate();
@@ -26,19 +35,20 @@ final class OrdinateCoordinateTest extends TestCase
 
     public function testShouldThrowAnExceptionWhenMoveRight(): void
     {
-        $oordinateCoordinate = new OrdinateCoordinate();
-
         self::expectException(NotAllowedMovement::class);
 
-        $oordinateCoordinate->moveRight();
+        $this->ordinateCoordinate->moveRight();
     }
 
     public function testShouldThrowAnExceptionWhenMoveLeft(): void
     {
-        $oordinateCoordinate = new OrdinateCoordinate();
-
         self::expectException(NotAllowedMovement::class);
 
-        $oordinateCoordinate->moveLeft();
+        $this->ordinateCoordinate->moveRight();
+    }
+
+    private function givenOrdinateCoordinate(int $value): OrdinateCoordinate
+    {
+        return new OrdinateCoordinate($value);
     }
 }
