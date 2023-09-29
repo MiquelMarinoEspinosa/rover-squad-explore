@@ -10,6 +10,11 @@ use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\OrdinateCartes
 
 final readonly class CartesianPoint implements Point
 {
+    private const COORDINATE_NAMES =  [
+        'abscissa',
+        'ordinate'
+    ];
+
     private array $coordinates;
 
     private function __construct(
@@ -43,10 +48,7 @@ final readonly class CartesianPoint implements Point
 
     public function coordinateNames(): array
     {
-        return [
-            'abscissa',
-            'ordinate'
-        ];
+        return self::COORDINATE_NAMES;
     }
 
     public function coordinateValue(string $coordinateName): int
