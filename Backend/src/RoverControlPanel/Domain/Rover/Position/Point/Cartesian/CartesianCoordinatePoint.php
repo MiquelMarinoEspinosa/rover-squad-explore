@@ -76,10 +76,8 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
     public function isGreatherThan(
         CartesianPoint $cartesianPoint
     ): bool {
-        $abscissaValue = $cartesianPoint->coordinateValue(self::ABSCISSA);
-
-        if ($this->abscissa->greaterThan(
-            new AbscissaCartesianCoordinate($abscissaValue)
+        if ($this->isAbscissaCoordinateGreatherThan(
+            $cartesianPoint
         )) {
             return true;
         }
@@ -110,5 +108,15 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
     private function coordinateExists($coordinateName): bool
     {
         return isset($this->coordinates[$coordinateName]);
+    }
+
+    private function isAbscissaCoordinateGreatherThan(
+        CartesianPoint $cartesianPoint
+    ): bool {
+        $abscissaValue = $cartesianPoint->coordinateValue(self::ABSCISSA);
+
+        return $this->abscissa->greaterThan(
+            new AbscissaCartesianCoordinate($abscissaValue)
+        );
     }
 }
