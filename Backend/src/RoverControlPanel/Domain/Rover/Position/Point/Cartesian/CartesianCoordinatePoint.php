@@ -73,6 +73,12 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
         );
     }
 
+    public function greatherThan(
+        CartesianPoint $cartesianPoint
+    ): bool {
+        return false;
+    }
+
     public function coordinateNames(): array
     {
         return self::COORDINATE_NAMES;
