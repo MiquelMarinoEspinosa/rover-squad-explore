@@ -27,7 +27,7 @@ final class CartesianCoordinatePointTest extends TestCase
         );
     }
 
-    public function testShouldCreateCartesianPoint(): void
+    public function testShouldCreateCartesianCoordinatePoint(): void
     {
         $cartesianCoordinatePoint = CartesianCoordinatePoint::create(
             self::ABSCISSA_VALUE,

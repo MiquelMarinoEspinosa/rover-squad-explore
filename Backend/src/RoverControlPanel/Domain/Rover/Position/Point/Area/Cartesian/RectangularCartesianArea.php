@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Area;
+namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Area\Cartesian;
 
-final readonly class RectangularArea implements Area
+final readonly class RectangularCartesianArea implements CartesianArea
 {
     private function __construct(
         private int $lowerLeftAbscissa,
