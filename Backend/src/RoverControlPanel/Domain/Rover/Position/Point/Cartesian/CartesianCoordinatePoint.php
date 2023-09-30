@@ -73,7 +73,7 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
         );
     }
 
-    public function greatherThan(
+    public function isGreatherThan(
         CartesianPoint $cartesianPoint
     ): bool {
         $abscissaValue = $cartesianPoint->coordinateValue(self::ABSCISSA);

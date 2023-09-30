@@ -251,7 +251,7 @@ final class CartesianCoordinatePointTest extends TestCase
         );
 
         self::assertFalse(
-            $cartesianPointNotGreatherThan->greatherThan(
+            $cartesianPointNotGreatherThan->isGreatherThan(
                 $this->cartesianCoordinatePoint
             )
         );
@@ -267,7 +267,7 @@ final class CartesianCoordinatePointTest extends TestCase
         );
 
         self::assertTrue(
-            $cartesianPointNotGreatherThan->greatherThan(
+            $cartesianPointNotGreatherThan->isGreatherThan(
                 $this->cartesianCoordinatePoint
             )
         );

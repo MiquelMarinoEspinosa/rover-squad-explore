@@ -14,7 +14,7 @@ interface CartesianPoint extends Point
 
     public function moveLeft(): self;
 
-    public function greatherThan(
+    public function isGreatherThan(
         CartesianPoint $cartesianPoint
     ): bool;
 }
