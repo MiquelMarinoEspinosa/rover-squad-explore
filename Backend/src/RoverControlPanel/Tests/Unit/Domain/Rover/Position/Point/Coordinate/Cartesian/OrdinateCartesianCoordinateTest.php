@@ -85,24 +85,12 @@ final class OrdinateCartesianCoordinateTest extends TestCase
 
     public function testShouldNotBeGreaterThanWhenValueIsEqual(): void
     {
-        $notGreaterThanOrdinate = $this->givenOrdinateCartesianCoordinate(
-            self::VALUE
-        );
-
-        self::assertFalse($notGreaterThanOrdinate->greaterThan(
-            $this->ordinateCartesianCoordinate
-        ));
+        $this->thenShouldNotBeGreaterThan(self::VALUE);
     }
 
     public function testShouldNotBeGreaterThanWhenValueIsLess(): void
     {
-        $notGreaterThanOrdinate = $this->givenOrdinateCartesianCoordinate(
-            self::VALUE - 1
-        );
-
-        self::assertFalse($notGreaterThanOrdinate->greaterThan(
-            $this->ordinateCartesianCoordinate
-        ));
+        $this->thenShouldNotBeGreaterThan(self::VALUE - 1);
     }
 
     public function testShouldReturnTheValue(): void
@@ -132,5 +120,16 @@ final class OrdinateCartesianCoordinateTest extends TestCase
             OrdinateCartesianCoordinate::class,
             $ordinateCartesianCoordinate
         );
+    }
+
+    private function thenShouldNotBeGreaterThan(int $value): void
+    {
+        $notGreaterThanOrdinate = $this->givenOrdinateCartesianCoordinate(
+            $value - 1
+        );
+
+        self::assertFalse($notGreaterThanOrdinate->greaterThan(
+            $this->ordinateCartesianCoordinate
+        ));
     }
 }
