@@ -8,7 +8,7 @@ up:
 	$(EXEC_PHP) composer install
 
 down:
-	docker stop app.php
+	docker stop app.php.rover-discovery-squad
 
 bash:
 	$(EXEC_PHP) bash
