@@ -39,14 +39,6 @@ final class OrdinateCartesianCoordinateTest extends TestCase
         );
     }
 
-    public function testShouldReturnTheValue(): void
-    {
-        self::assertSame(
-            self::VALUE,
-            $this->ordinateCartesianCoordinate->value()
-        );
-    }
-
     public function testShouldThrowAnExceptionWhenMoveRight(): void
     {
         $this->shouldThrowAnException();
@@ -88,6 +80,25 @@ final class OrdinateCartesianCoordinateTest extends TestCase
         self::assertSame(
             $movedOrdinateCartesianCoordinate->value(),
             $this->ordinateCartesianCoordinate->value() - self::MOVEMENT_STEP
+        );
+    }
+
+    public function testShouldNotBeGreaterThan(): void
+    {
+        $notGreaterThanOrdinate = $this->givenOrdinateCartesianCoordinate(
+            self::VALUE - 1
+        );
+
+        self::assertFalse($notGreaterThanOrdinate->greaterThan(
+            $this->ordinateCartesianCoordinate
+        ));
+    }
+
+    public function testShouldReturnTheValue(): void
+    {
+        self::assertSame(
+            self::VALUE,
+            $this->ordinateCartesianCoordinate->value()
         );
     }
 

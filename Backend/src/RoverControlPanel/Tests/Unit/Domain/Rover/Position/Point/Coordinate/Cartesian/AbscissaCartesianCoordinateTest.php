@@ -45,14 +45,6 @@ final class AbscissaCartesianCoordinateTest extends TestCase
         );
     }
 
-    public function testShouldReturnTheValue(): void
-    {
-        self::assertSame(
-            self::VALUE,
-            $this->abscissaCartesianCoordinate->value()
-        );
-    }
-
     public function testShouldThrowAnExceptionWhenMoveUp(): void
     {
         $this->shouldThrowAnException();
@@ -94,6 +86,25 @@ final class AbscissaCartesianCoordinateTest extends TestCase
         self::assertSame(
             $movedAbscissaCartesianCoordinate->value(),
             $this->abscissaCartesianCoordinate->value() - self::MOVEMENT_STEP
+        );
+    }
+
+    public function testShouldNotBeGreaterThan(): void
+    {
+        $notGreaterThanAbscissa = $this->givenAbscissaCartesianCoordinate(
+            self::VALUE - 1
+        );
+
+        self::assertFalse($notGreaterThanAbscissa->greaterThan(
+            $this->abscissaCartesianCoordinate
+        ));
+    }
+
+    public function testShouldReturnTheValue(): void
+    {
+        self::assertSame(
+            self::VALUE,
+            $this->abscissaCartesianCoordinate->value()
         );
     }
 
