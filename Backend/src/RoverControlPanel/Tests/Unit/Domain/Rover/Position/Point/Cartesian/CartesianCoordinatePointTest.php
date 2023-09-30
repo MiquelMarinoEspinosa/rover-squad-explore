@@ -8,6 +8,7 @@ use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordi
 use PHPUnit\Framework\TestCase;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Point;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinatePoint;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianPoint;
 
 final class CartesianCoordinatePointTest extends TestCase
 {
@@ -35,6 +36,11 @@ final class CartesianCoordinatePointTest extends TestCase
 
         self::assertInstanceOf(
             CartesianCoordinatePoint::class,
+            $cartesianPoint
+        );
+
+        self::assertInstanceOf(
+            CartesianPoint::class,
             $cartesianPoint
         );
 
