@@ -78,8 +78,16 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
     ): bool {
         $abscissaValue = $cartesianPoint->coordinateValue(self::ABSCISSA);
 
-        return $this->abscissa->greaterThan(
+        if ($this->abscissa->greaterThan(
             new AbscissaCartesianCoordinate($abscissaValue)
+        )) {
+            return true;
+        }
+
+        $ordinateValue = $cartesianPoint->coordinateValue(self::ORDINATE);
+
+        return $this->ordinate->greaterThan(
+            new OrdinateCartesianCoordinate($ordinateValue)
         );
     }
 
