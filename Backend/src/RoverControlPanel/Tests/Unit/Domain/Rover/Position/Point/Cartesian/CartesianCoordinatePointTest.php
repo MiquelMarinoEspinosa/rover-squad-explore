@@ -21,7 +21,7 @@ final class CartesianCoordinatePointTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->cartesianCoordinatePoint = CartesianCoordinatePoint::create(
+        $this->cartesianCoordinatePoint = $this->giveCartesianCoordinatePoint(
             self::ABSCISSA_VALUE,
             self::ORDINATE_VALUE
         );
@@ -29,7 +29,7 @@ final class CartesianCoordinatePointTest extends TestCase
 
     public function testShouldCreateCartesianCoordinatePoint(): void
     {
-        $cartesianCoordinatePoint = CartesianCoordinatePoint::create(
+        $cartesianCoordinatePoint = $this->giveCartesianCoordinatePoint(
             self::ABSCISSA_VALUE,
             self::ORDINATE_VALUE
         );
@@ -191,5 +191,16 @@ final class CartesianCoordinatePointTest extends TestCase
 
         return $cartesianCoordinatePoint
             ->coordinateValue($coordinateName);
+    }
+
+    private function giveCartesianCoordinatePoint(
+        int $abscissaValue,
+        int $ordinateValue
+    ): CartesianCoordinatePoint {
+
+        return CartesianCoordinatePoint::create(
+            $abscissaValue,
+            $ordinateValue
+        );
     }
 }
