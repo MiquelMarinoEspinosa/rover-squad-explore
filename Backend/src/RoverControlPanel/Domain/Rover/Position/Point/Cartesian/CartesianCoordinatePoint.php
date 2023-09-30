@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Core\RoverControlPanel\Domain\Rover\Position\Point;
+namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian;
 
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinate;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\AbscissaCartesianCoordinate;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\OrdinateCartesianCoordinate;
 
-final readonly class CartesianPoint implements Point
+final readonly class CartesianCoordinatePoint implements CartesianPoint
 {
-    private const ABSCISSA      = 'abscissa';
-    private const ORDINATE      = 'ordinate';
+    private const ABSCISSA         = 'abscissa';
+    private const ORDINATE         = 'ordinate';
     private const COORDINATE_NAMES =  [
         self::ABSCISSA,
         self::ORDINATE
@@ -57,7 +57,7 @@ final readonly class CartesianPoint implements Point
     public function coordinateValue(string $coordinateName): int
     {
         if (!isset($this->coordinates[$coordinateName])) {
-            throw new CoordinatePointNotFound(
+            throw new CartesianCoordinateNotFound(
                 self::ERROR_MESSAGE . $coordinateName
             );
         }

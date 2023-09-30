@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point;
+namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point\Cartesian;
 
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinateNotFound;
 use PHPUnit\Framework\TestCase;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Point;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\CartesianPoint;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\CoordinatePointNotFound;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinatePoint;
 
-final class CartesianPointTest extends TestCase
+final class CartesianCoordinatePointTest extends TestCase
 {
     private const ABSCISSA      = 1;
     private const ORDINATE      = 2;
     private const ABSCISSA_NAME = 'abscissa';
     private const ORDINATE_NAME = 'ordinate';
 
-    private CartesianPoint $cartesianPoint;
+    private CartesianCoordinatePoint $cartesianPoint;
 
     protected function setUp(): void
     {
-        $this->cartesianPoint = CartesianPoint::create(
+        $this->cartesianPoint = CartesianCoordinatePoint::create(
             self::ABSCISSA,
             self::ORDINATE
         );
@@ -28,13 +28,13 @@ final class CartesianPointTest extends TestCase
 
     public function testShouldCreateCartesianPoint(): void
     {
-        $cartesianPoint = CartesianPoint::create(
+        $cartesianPoint = CartesianCoordinatePoint::create(
             self::ABSCISSA,
             self::ORDINATE
         );
 
         self::assertInstanceOf(
-            CartesianPoint::class,
+            CartesianCoordinatePoint::class,
             $cartesianPoint
         );
 
@@ -57,7 +57,7 @@ final class CartesianPointTest extends TestCase
 
     public function testShouldThrowAnExceptionWhenCoordinateNotFound(): void
     {
-        self::expectException(CoordinatePointNotFound::class);
+        self::expectException(CartesianCoordinateNotFound::class);
 
         $this->cartesianPoint->coordinateValue('');
     }
