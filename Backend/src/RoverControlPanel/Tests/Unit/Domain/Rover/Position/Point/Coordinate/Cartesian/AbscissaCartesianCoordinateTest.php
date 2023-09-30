@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point\Coordinate\Cartesian;
 
+use PHPUnit\Framework\TestCase;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Coordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinate;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\AbscissaCartesianCoordinate;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinateNotAllowedMovement;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Coordinate;
-use PHPUnit\Framework\TestCase;
 
 final class AbscissaCartesianCoordinateTest extends TestCase
 {
@@ -30,6 +31,11 @@ final class AbscissaCartesianCoordinateTest extends TestCase
         );
 
         $this->thenShouldBeAbscissaCartesianCoordinate(
+            $abscissaCartesianCoordinate
+        );
+
+        self::assertInstanceOf(
+            CartesianCoordinate::class,
             $abscissaCartesianCoordinate
         );
 

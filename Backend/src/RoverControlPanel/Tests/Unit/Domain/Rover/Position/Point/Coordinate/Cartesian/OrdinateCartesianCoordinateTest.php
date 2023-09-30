@@ -2,11 +2,11 @@
 
 namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point\Coordinate;
 
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinateNotAllowedMovement;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesinaCoordinateNotAllowedMovement;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\OrdinateCartesianCoordinate;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Coordinate;
 use PHPUnit\Framework\TestCase;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Coordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\OrdinateCartesianCoordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinateNotAllowedMovement;
 
 final class OrdinateCartesianCoordinateTest extends TestCase
 {
@@ -22,15 +22,20 @@ final class OrdinateCartesianCoordinateTest extends TestCase
 
     public function testShouldCreateOrdinateCartesianCoordinate(): void
     {
-        $oordinateCartesianCoordinate = $this->givenOrdinateCartesianCoordinate(self::VALUE);
+        $ordinateCartesianCoordinate = $this->givenOrdinateCartesianCoordinate(self::VALUE);
 
         $this->thenShouldBeOrdinateCartesianCoordinate(
-            $oordinateCartesianCoordinate
+            $ordinateCartesianCoordinate
+        );
+
+        self::assertInstanceOf(
+            CartesianCoordinate::class,
+            $ordinateCartesianCoordinate
         );
 
         self::assertInstanceOf(
             Coordinate::class,
-            $oordinateCartesianCoordinate
+            $ordinateCartesianCoordinate
         );
     }
 
