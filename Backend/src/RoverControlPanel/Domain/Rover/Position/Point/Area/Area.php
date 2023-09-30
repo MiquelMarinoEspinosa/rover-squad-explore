@@ -6,8 +6,4 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Area;
 
 interface Area
 {
-    public function checkPoint(
-        int $abscissa,
-        int $ordenada
-    );
 }

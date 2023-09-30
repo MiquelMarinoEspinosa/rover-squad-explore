@@ -8,13 +8,14 @@ use PHPUnit\Framework\TestCase;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Area\Area;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Area\Cartesian\CartesianArea;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Area\Cartesian\RectangularCartesianArea;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinatePoint;
 
 final class RectangularCartesianAreaTest extends TestCase
 {
     private const LOWER_LEFT_ABSCISSA = 0;
     private const LOWER_LEFT_ORDINATE = self::LOWER_LEFT_ABSCISSA;
-    private const UPER_RIGHT_ABSCISSA = 5;
-    private const UPER_RIGHT_ORDINATE = self::LOWER_LEFT_ABSCISSA;
+    private const UPPER_RIGHT_ABSCISSA = 5;
+    private const UPPER_RIGHT_ORDINATE = self::LOWER_LEFT_ABSCISSA;
 
     public function testShouldCreateTheRectangularCartesianArea(): void
     {
@@ -43,8 +44,10 @@ final class RectangularCartesianAreaTest extends TestCase
         self::expectException(\Exception::class);
 
         $rectangularCartesianArea->checkPoint(
-            self::LOWER_LEFT_ABSCISSA - 1,
-            self::LOWER_LEFT_ORDINATE
+            CartesianCoordinatePoint::create(
+                self::UPPER_RIGHT_ABSCISSA + 1,
+                self::UPPER_RIGHT_ORDINATE
+            )
         );
     }
 
@@ -53,8 +56,10 @@ final class RectangularCartesianAreaTest extends TestCase
         $rectangularCartesianArea = $this->givenRectangularCartesianArea();
 
         $rectangularCartesianArea->checkPoint(
-            self::LOWER_LEFT_ABSCISSA + 1,
-            self::LOWER_LEFT_ORDINATE
+            CartesianCoordinatePoint::create(
+                self::UPPER_RIGHT_ABSCISSA,
+                self::UPPER_RIGHT_ORDINATE
+            )
         );
 
         self::assertTrue(true);
@@ -65,8 +70,8 @@ final class RectangularCartesianAreaTest extends TestCase
         return RectangularCartesianArea::create(
             self::LOWER_LEFT_ABSCISSA,
             self::LOWER_LEFT_ORDINATE,
-            self::UPER_RIGHT_ABSCISSA,
-            self::UPER_RIGHT_ORDINATE
+            self::UPPER_RIGHT_ABSCISSA,
+            self::UPPER_RIGHT_ORDINATE
         );
     }
 }

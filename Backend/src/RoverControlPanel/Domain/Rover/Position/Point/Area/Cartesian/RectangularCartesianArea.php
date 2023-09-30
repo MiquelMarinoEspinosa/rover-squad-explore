@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Area\Cartesian;
 
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinatePoint;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianPoint;
 
 final readonly class RectangularCartesianArea implements CartesianArea
 {
@@ -26,15 +27,17 @@ final readonly class RectangularCartesianArea implements CartesianArea
                 $lowerLeftOrdinate
             ),
             CartesianCoordinatePoint::create(
-                $upperRightAbscissa, 
+                $upperRightAbscissa,
                 $upperRightOrdinate
             )
         );
     }
 
-    public function checkPoint(int $abscissa, int $ordenada): void
+    public function checkPoint(CartesianPoint $cartesianPoint): void
     {
-        if ($abscissa < $this->lowerLeft->coordinateValue('abscissa')) {
+        if ($cartesianPoint->isGreatherThan(
+            $this->upperRight
+        )) {
             throw new \Exception();
         }
     }
