@@ -11,4 +11,6 @@ interface CartesianPoint extends Point
     public function moveDown(): self;
 
     public function moveRight(): self;
+
+    public function moveLeft(): self;
 }

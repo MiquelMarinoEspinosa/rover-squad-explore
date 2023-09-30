@@ -65,6 +65,14 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
         );
     }
 
+    public function moveLeft(): self
+    {
+        return new self(
+            $this->abscissa->moveLeft(),
+            $this->ordinate
+        );
+    }
+
     public function coordinateNames(): array
     {
         return self::COORDINATE_NAMES;
