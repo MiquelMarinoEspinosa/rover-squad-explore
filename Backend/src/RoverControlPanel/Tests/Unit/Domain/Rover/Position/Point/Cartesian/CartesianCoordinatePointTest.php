@@ -114,6 +114,16 @@ final class CartesianCoordinatePointTest extends TestCase
         );
     }
 
+    public function testShouldMoveOrdinateWhenMoveDown(): void
+    {
+        $movedCartesianPoint = $this->cartesianCoordinatePoint->moveDown();
+
+        self::assertSame(
+            $this->ordinateValue($movedCartesianPoint),
+            $this->ordinateValue($this->cartesianCoordinatePoint) - 1
+        );
+    }
+
     private function abscissaValue(
         CartesianCoordinatePoint $cartesianCoordinatePoint
     ): int {

@@ -64,12 +64,17 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
 
     public function coordinateValue(string $coordinateName): int
     {
-        if (!isset($this->coordinates[$coordinateName])) {
+        if (!$this->coordinateExists($coordinateName)) {
             throw new CartesianCoordinateNotFound(
                 self::ERROR_MESSAGE . $coordinateName
             );
         }
 
         return $this->coordinates[$coordinateName]->value();
+    }
+
+    private function coordinateExists($coordinateName): bool
+    {
+        return isset($this->coordinates[$coordinateName]);
     }
 }
