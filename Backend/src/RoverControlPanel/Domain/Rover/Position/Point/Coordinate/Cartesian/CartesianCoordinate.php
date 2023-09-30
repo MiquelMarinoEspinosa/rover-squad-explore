@@ -17,4 +17,8 @@ interface CartesianCoordinate extends Coordinate
     public function greaterThan(
         CartesianCoordinate $cartesianCoordinate
     ): bool;
+
+    public function lesserThan(
+        CartesianCoordinate $cartesianCoordinate
+    ): bool;
 }

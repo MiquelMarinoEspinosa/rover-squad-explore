@@ -104,6 +104,17 @@ final class OrdinateCartesianCoordinateTest extends TestCase
         ));
     }
 
+    public function testShouldNotBeLesserThanWhenValueIsEqual(): void
+    {
+        $ordinateNotLesserThan = $this->givenOrdinateCartesianCoordinate(
+            self::VALUE
+        );
+
+        self::assertFalse($ordinateNotLesserThan->lesserThan(
+            $this->ordinateCartesianCoordinate
+        ));
+    }
+
     public function testShouldReturnTheValue(): void
     {
         self::assertSame(
