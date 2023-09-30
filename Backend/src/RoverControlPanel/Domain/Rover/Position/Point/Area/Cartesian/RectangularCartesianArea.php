@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Area\Cartesian;
 
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinatePoint;
+
 final readonly class RectangularCartesianArea implements CartesianArea
 {
     private function __construct(
-        private int $lowerLeftAbscissa,
-        private int $lowerLeftOrdinate,
-        private int $upperRightAbscissa,
-        private int $upperRightOrdinate
+        private CartesianCoordinatePoint $lowerLeft,
+        private CartesianCoordinatePoint $upperRight,
     ) {
     }
 
@@ -21,16 +21,20 @@ final readonly class RectangularCartesianArea implements CartesianArea
         int $upperRightOrdinate
     ): self {
         return new self(
-            $lowerLeftAbscissa,
-            $lowerLeftOrdinate,
-            $upperRightAbscissa,
-            $upperRightOrdinate
+            CartesianCoordinatePoint::create(
+                $lowerLeftAbscissa,
+                $lowerLeftOrdinate
+            ),
+            CartesianCoordinatePoint::create(
+                $upperRightAbscissa, 
+                $upperRightOrdinate
+            )
         );
     }
 
     public function checkPoint(int $abscissa, int $ordenada): void
     {
-        if ($abscissa < $this->lowerLeftAbscissa) {
+        if ($abscissa < $this->lowerLeft->coordinateValue('abscissa')) {
             throw new \Exception();
         }
     }
