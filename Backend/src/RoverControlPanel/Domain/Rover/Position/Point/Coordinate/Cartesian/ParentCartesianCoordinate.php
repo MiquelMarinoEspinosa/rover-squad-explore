@@ -45,7 +45,7 @@ abstract class ParentCartesianCoordinate implements CartesianCoordinate
         CartesianCoordinate $cartesianCoordinate
     ): bool {
 
-        return false;
+        return $this->value < $cartesianCoordinate->value();
     }
 
     public function value(): int
