@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point\Cartesian;
 
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinateNotFound;
 use PHPUnit\Framework\TestCase;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Point;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinatePoint;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianPoint;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinatePoint;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinateNotFound;
 
 final class CartesianCoordinatePointTest extends TestCase
 {
@@ -72,7 +72,7 @@ final class CartesianCoordinatePointTest extends TestCase
     {
         self::assertSame(
             self::ABSCISSA,
-            $this->cartesianPoint->coordinateValue(self::ABSCISSA_NAME)
+            $this->abscissa($this->cartesianPoint)
         );
     }
 
@@ -89,8 +89,8 @@ final class CartesianCoordinatePointTest extends TestCase
         $movedCartesianPoint = $this->cartesianPoint->moveUp();
 
         self::assertSame(
-            $movedCartesianPoint->coordinateValue(self::ABSCISSA_NAME),
-            $this->cartesianPoint->coordinateValue(self::ABSCISSA_NAME)
+            $this->abscissa($movedCartesianPoint),
+            $this->abscissa($this->cartesianPoint)
         );
     }
 
@@ -102,5 +102,10 @@ final class CartesianCoordinatePointTest extends TestCase
             $movedCartesianPoint->coordinateValue(self::ORDINATE_NAME),
             $this->cartesianPoint->coordinateValue(self::ORDINATE_NAME) + 1
         );
+    }
+
+    private function abscissa(Point $point): int
+    {
+        return $point->coordinateValue(self::ABSCISSA_NAME);
     }
 }
