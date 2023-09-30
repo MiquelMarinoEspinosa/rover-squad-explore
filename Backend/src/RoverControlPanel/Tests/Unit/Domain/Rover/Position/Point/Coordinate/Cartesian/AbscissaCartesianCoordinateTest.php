@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point\Coordinate;
+namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point\Coordinate\Cartesian;
 
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\AbscissaCartesianCoordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\AbscissaCartesianCoordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinateNotAllowedMovement;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Coordinate;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\NotAllowedMovement;
 use PHPUnit\Framework\TestCase;
 
 final class AbscissaCartesianCoordinateTest extends TestCase
@@ -100,7 +100,7 @@ final class AbscissaCartesianCoordinateTest extends TestCase
 
     private function shouldThrowAnException(): void
     {
-        self::expectException(NotAllowedMovement::class);
+        self::expectException(CartesianCoordinateNotAllowedMovement::class);
     }
 
     private function thenShouldBeAbscissaCartesianCoordinate(

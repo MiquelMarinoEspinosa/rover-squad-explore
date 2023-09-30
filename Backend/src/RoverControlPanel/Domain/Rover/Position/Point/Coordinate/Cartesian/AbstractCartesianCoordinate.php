@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
+namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian;
 
-abstract class CartesianCoordinate implements Coordinate
+abstract class AbstractCartesianCoordinate implements CartesianCoordinate
 {
     private const ERROR_MESSAGE = 'CartesianCoordinate operation not allowed: ';
     private const MOVEMENT_STEP = 1;
@@ -51,9 +51,9 @@ abstract class CartesianCoordinate implements Coordinate
 
     private function buildBadMovementException(
         string $movement
-    ): NotAllowedMovement {
+    ): CartesianCoordinateNotAllowedMovement {
 
-        return new NotAllowedMovement(
+        return new CartesianCoordinateNotAllowedMovement(
             self::ERROR_MESSAGE . $movement
         );
     }

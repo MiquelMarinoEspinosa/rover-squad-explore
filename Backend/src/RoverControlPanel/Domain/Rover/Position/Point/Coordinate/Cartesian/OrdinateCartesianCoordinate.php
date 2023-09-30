@@ -1,8 +1,8 @@
 <?php
 
-namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
+namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian;
 
-final class OrdinateCartesianCoordinate extends CartesianCoordinate
+final class OrdinateCartesianCoordinate extends AbstractCartesianCoordinate
 {
     public function moveUp(): self
     {

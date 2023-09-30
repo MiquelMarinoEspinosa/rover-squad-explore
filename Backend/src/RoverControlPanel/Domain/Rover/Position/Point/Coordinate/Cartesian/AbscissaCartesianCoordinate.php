@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate;
+namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian;
 
-final class AbscissaCartesianCoordinate extends CartesianCoordinate
+final class AbscissaCartesianCoordinate extends AbstractCartesianCoordinate
 {
     public function moveRight(): self
     {
@@ -14,5 +14,5 @@ final class AbscissaCartesianCoordinate extends CartesianCoordinate
     public function moveLeft(): self
     {
         return new self($this->decrement());
-    } 
+    }
 }

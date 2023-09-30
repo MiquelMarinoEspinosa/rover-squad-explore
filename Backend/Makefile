@@ -1,10 +1,10 @@
 .PHONY: coverage
 
-EXEC_PHP=docker exec -i -t app.php
+EXEC_PHP=docker exec -i -t app.php.rover-discovery-squad
 
 up:
 	docker buildx build -t php/php8 etc/devel/docker/php
-	docker run -v .:/app -w='/app' -d -it --rm --name app.php php/php8
+	docker run -v .:/app -w='/app' -d -it --rm --name app.php.rover-discovery-squad php/php8
 	$(EXEC_PHP) composer install
 
 down:

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Core\RoverControlPanel\Domain\Rover\Position\Point;
 
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\AbscissaCartesianCoordinate;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Coordinate;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\OrdinateCartesianCoordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\AbscissaCartesianCoordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\OrdinateCartesianCoordinate;
 
 final readonly class CartesianPoint implements Point
 {
@@ -21,8 +21,8 @@ final readonly class CartesianPoint implements Point
     private array $coordinates;
 
     private function __construct(
-        private Coordinate $abscissa,
-        private Coordinate $ordinate
+        private CartesianCoordinate $abscissa,
+        private CartesianCoordinate $ordinate
     ) {
         $this->coordinates = [
             self::ABSCISSA => $this->abscissa,

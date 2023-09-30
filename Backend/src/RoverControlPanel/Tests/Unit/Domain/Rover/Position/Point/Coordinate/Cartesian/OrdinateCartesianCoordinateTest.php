@@ -2,9 +2,10 @@
 
 namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point\Coordinate;
 
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinateNotAllowedMovement;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesinaCoordinateNotAllowedMovement;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\OrdinateCartesianCoordinate;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Coordinate;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\NotAllowedMovement;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\OrdinateCartesianCoordinate;
 use PHPUnit\Framework\TestCase;
 
 final class OrdinateCartesianCoordinateTest extends TestCase
@@ -94,7 +95,7 @@ final class OrdinateCartesianCoordinateTest extends TestCase
 
     private function shouldThrowAnException(): void
     {
-        self::expectException(NotAllowedMovement::class);
+        self::expectException(CartesianCoordinateNotAllowedMovement::class);
     }
 
     private function thenShouldBeOrdinateCartesianCoordinate(
