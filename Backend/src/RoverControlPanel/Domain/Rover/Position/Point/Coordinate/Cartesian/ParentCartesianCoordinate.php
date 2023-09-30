@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian;
 
-abstract class AbstractCartesianCoordinate implements CartesianCoordinate
+abstract class ParentCartesianCoordinate implements CartesianCoordinate
 {
     private const ERROR_MESSAGE = 'CartesianCoordinate operation not allowed: ';
     private const MOVEMENT_STEP = 1;

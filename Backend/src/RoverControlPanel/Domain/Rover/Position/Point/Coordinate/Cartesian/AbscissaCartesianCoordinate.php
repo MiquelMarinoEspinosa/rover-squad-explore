@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian;
 
-final class AbscissaCartesianCoordinate extends AbstractCartesianCoordinate
+final class AbscissaCartesianCoordinate extends ParentCartesianCoordinate
 {
     public function moveRight(): self
     {
