@@ -180,6 +180,20 @@ final class CartesianCoordinatePointTest extends TestCase
         );
     }
 
+    public function testShouldNotBeGreatherThanWhenGreaterAbscissa(): void
+    {
+        $cartesianPointGreatherThan = $this->giveCartesianCoordinatePoint(
+            self::ABSCISSA_VALUE + 1,
+            self::ORDINATE_VALUE
+        );
+
+        self::assertTrue(
+            $cartesianPointGreatherThan->greatherThan(
+                $this->cartesianCoordinatePoint
+            )
+        );
+    }
+
     private function abscissaValue(
         CartesianCoordinatePoint $cartesianCoordinatePoint
     ): int {
@@ -213,14 +227,14 @@ final class CartesianCoordinatePointTest extends TestCase
         int $abscissaValue,
         int $ordinateValue
     ): void {
-        $pointNotGreatherThan = $this->giveCartesianCoordinatePoint(
+        $cartesianPointNotGreatherThan = $this->giveCartesianCoordinatePoint(
             $abscissaValue,
             $ordinateValue
         );
 
         self::assertFalse(
-            $this->cartesianCoordinatePoint->greatherThan(
-                $pointNotGreatherThan
+            $cartesianPointNotGreatherThan->greatherThan(
+                $this->cartesianCoordinatePoint
             )
         );
     }
