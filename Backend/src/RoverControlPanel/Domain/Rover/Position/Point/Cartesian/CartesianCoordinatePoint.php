@@ -49,6 +49,14 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
         );
     }
 
+    public function moveDown(): self
+    {
+        return new self(
+            $this->abscissa,
+            $this->ordinate->moveDown()
+        );
+    }
+
     public function coordinateNames(): array
     {
         return self::COORDINATE_NAMES;

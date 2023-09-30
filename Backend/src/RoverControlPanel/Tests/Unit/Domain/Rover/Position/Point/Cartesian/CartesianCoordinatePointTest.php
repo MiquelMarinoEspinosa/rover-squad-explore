@@ -104,6 +104,16 @@ final class CartesianCoordinatePointTest extends TestCase
         );
     }
 
+    public function testShouldNotMoveAbscissaWhenMoveDown(): void
+    {
+        $movedCartesianPoint = $this->cartesianCoordinatePoint->moveDown();
+
+        self::assertSame(
+            $this->abscissaValue($movedCartesianPoint),
+            $this->abscissaValue($this->cartesianCoordinatePoint)
+        );
+    }
+
     private function abscissaValue(
         CartesianCoordinatePoint $cartesianCoordinatePoint
     ): int {
