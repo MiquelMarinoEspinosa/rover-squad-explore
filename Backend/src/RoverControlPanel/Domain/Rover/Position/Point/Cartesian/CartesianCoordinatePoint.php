@@ -82,10 +82,8 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
             return true;
         }
 
-        $ordinateValue = $cartesianPoint->coordinateValue(self::ORDINATE);
-
-        return $this->ordinate->greaterThan(
-            new OrdinateCartesianCoordinate($ordinateValue)
+        return $this->isOrdinateCoordinateGreatherThan(
+            $cartesianPoint
         );
     }
 
@@ -117,6 +115,16 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
 
         return $this->abscissa->greaterThan(
             new AbscissaCartesianCoordinate($abscissaValue)
+        );
+    }
+
+    private function isOrdinateCoordinateGreatherThan(
+        CartesianPoint $cartesianPoint
+    ): bool {
+        $ordinateValue = $cartesianPoint->coordinateValue(self::ORDINATE);
+
+        return $this->ordinate->greaterThan(
+            new OrdinateCartesianCoordinate($ordinateValue)
         );
     }
 }
