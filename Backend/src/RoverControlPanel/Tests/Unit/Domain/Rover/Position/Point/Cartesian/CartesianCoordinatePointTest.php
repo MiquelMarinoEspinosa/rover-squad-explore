@@ -72,7 +72,7 @@ final class CartesianCoordinatePointTest extends TestCase
     {
         self::assertSame(
             self::ABSCISSA_VALUE,
-            $this->abscissa($this->cartesianCoordinatePoint)
+            $this->abscissaValue($this->cartesianCoordinatePoint)
         );
     }
 
@@ -80,7 +80,7 @@ final class CartesianCoordinatePointTest extends TestCase
     {
         self::assertSame(
             self::ORDINATE_VALUE,
-            $this->ordinate($this->cartesianCoordinatePoint)
+            $this->ordinateValue($this->cartesianCoordinatePoint)
         );
     }
 
@@ -89,8 +89,8 @@ final class CartesianCoordinatePointTest extends TestCase
         $movedCartesianPoint = $this->cartesianCoordinatePoint->moveUp();
 
         self::assertSame(
-            $this->abscissa($movedCartesianPoint),
-            $this->abscissa($this->cartesianCoordinatePoint)
+            $this->abscissaValue($movedCartesianPoint),
+            $this->abscissaValue($this->cartesianCoordinatePoint)
         );
     }
 
@@ -99,18 +99,37 @@ final class CartesianCoordinatePointTest extends TestCase
         $movedCartesianPoint = $this->cartesianCoordinatePoint->moveUp();
 
         self::assertSame(
-            $this->ordinate($movedCartesianPoint),
-            $this->ordinate($this->cartesianCoordinatePoint) + 1
+            $this->ordinateValue($movedCartesianPoint),
+            $this->ordinateValue($this->cartesianCoordinatePoint) + 1
         );
     }
 
-    private function abscissa(CartesianCoordinatePoint $cartesianCoordinatePoint): int
-    {
-        return $cartesianCoordinatePoint->coordinateValue(self::ABSCISSA_NAME);
+    private function abscissaValue(
+        CartesianCoordinatePoint $cartesianCoordinatePoint
+    ): int {
+
+        return $this->coordinateValue(
+            $cartesianCoordinatePoint,
+            self::ABSCISSA_NAME
+        );
     }
 
-    private function ordinate(CartesianCoordinatePoint $cartesianCoordinatePoint): int
-    {
-        return $cartesianCoordinatePoint->coordinateValue(self::ORDINATE_NAME);
+    private function ordinateValue(
+        CartesianCoordinatePoint $cartesianCoordinatePoint
+    ): int {
+
+        return $this->coordinateValue(
+            $cartesianCoordinatePoint,
+            self::ORDINATE_NAME
+        );
+    }
+
+    private function coordinateValue(
+        CartesianCoordinatePoint $cartesianCoordinatePoint,
+        string $coordinateName
+    ) {
+
+        return $cartesianCoordinatePoint
+            ->coordinateValue($coordinateName);
     }
 }
