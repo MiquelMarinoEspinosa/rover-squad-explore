@@ -99,6 +99,17 @@ final class AbscissaCartesianCoordinateTest extends TestCase
         $this->thenShouldNotBeGreaterThan(self::VALUE - 1);
     }
 
+    public function testShouldBeGreatherThan(): void
+    {
+        $abscissaGreaterThan = $this->givenAbscissaCartesianCoordinate(
+            self::VALUE + 1
+        );
+
+        self::assertTrue($abscissaGreaterThan->greaterThan(
+            $this->abscissaCartesianCoordinate
+        ));
+    }
+
     public function testShouldReturnTheValue(): void
     {
         self::assertSame(
@@ -116,7 +127,9 @@ final class AbscissaCartesianCoordinateTest extends TestCase
 
     private function shouldThrowAnException(): void
     {
-        self::expectException(CartesianCoordinateNotAllowedMovement::class);
+        self::expectException(
+            CartesianCoordinateNotAllowedMovement::class
+        );
     }
 
     private function thenShouldBeAbscissaCartesianCoordinate(
@@ -130,11 +143,11 @@ final class AbscissaCartesianCoordinateTest extends TestCase
 
     private function thenShouldNotBeGreaterThan(int $value): void
     {
-        $notGreaterThanAbscissa = $this->givenAbscissaCartesianCoordinate(
+        $bscissaNotGreaterThan = $this->givenAbscissaCartesianCoordinate(
             $value
         );
 
-        self::assertFalse($notGreaterThanAbscissa->greaterThan(
+        self::assertFalse($bscissaNotGreaterThan->greaterThan(
             $this->abscissaCartesianCoordinate
         ));
     }

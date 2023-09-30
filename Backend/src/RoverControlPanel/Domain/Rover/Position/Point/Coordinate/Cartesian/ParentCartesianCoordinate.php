@@ -37,7 +37,8 @@ abstract class ParentCartesianCoordinate implements CartesianCoordinate
     public function greaterThan(
         CartesianCoordinate $cartesianCoordinate
     ): bool {
-        return false;
+        
+        return $this->value > $cartesianCoordinate->value();
     }
 
     public function value(): int
