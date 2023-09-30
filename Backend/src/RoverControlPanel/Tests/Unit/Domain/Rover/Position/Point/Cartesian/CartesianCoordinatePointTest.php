@@ -12,26 +12,26 @@ use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordi
 
 final class CartesianCoordinatePointTest extends TestCase
 {
-    private const ABSCISSA      = 1;
-    private const ORDINATE      = 2;
-    private const ABSCISSA_NAME = 'abscissa';
-    private const ORDINATE_NAME = 'ordinate';
+    private const ABSCISSA_VALUE = 1;
+    private const ORDINATE_VALUE = 2;
+    private const ABSCISSA_NAME  = 'abscissa';
+    private const ORDINATE_NAME  = 'ordinate';
 
     private CartesianCoordinatePoint $cartesianCoordinatePoint;
 
     protected function setUp(): void
     {
         $this->cartesianCoordinatePoint = CartesianCoordinatePoint::create(
-            self::ABSCISSA,
-            self::ORDINATE
+            self::ABSCISSA_VALUE,
+            self::ORDINATE_VALUE
         );
     }
 
     public function testShouldCreateCartesianPoint(): void
     {
         $cartesianCoordinatePoint = CartesianCoordinatePoint::create(
-            self::ABSCISSA,
-            self::ORDINATE
+            self::ABSCISSA_VALUE,
+            self::ORDINATE_VALUE
         );
 
         self::assertInstanceOf(
@@ -71,7 +71,7 @@ final class CartesianCoordinatePointTest extends TestCase
     public function testShouldReturnTheAbscissaCoordinateValue(): void
     {
         self::assertSame(
-            self::ABSCISSA,
+            self::ABSCISSA_VALUE,
             $this->abscissa($this->cartesianCoordinatePoint)
         );
     }
@@ -79,8 +79,8 @@ final class CartesianCoordinatePointTest extends TestCase
     public function testShouldReturnTheOrdinateCoordinateValue(): void
     {
         self::assertSame(
-            self::ORDINATE,
-            $this->cartesianCoordinatePoint->coordinateValue(self::ORDINATE_NAME)
+            self::ORDINATE_VALUE,
+            $this->ordinate($this->cartesianCoordinatePoint)
         );
     }
 
@@ -99,13 +99,18 @@ final class CartesianCoordinatePointTest extends TestCase
         $movedCartesianPoint = $this->cartesianCoordinatePoint->moveUp();
 
         self::assertSame(
-            $movedCartesianPoint->coordinateValue(self::ORDINATE_NAME),
-            $this->cartesianCoordinatePoint->coordinateValue(self::ORDINATE_NAME) + 1
+            $this->ordinate($movedCartesianPoint),
+            $this->ordinate($this->cartesianCoordinatePoint) + 1
         );
     }
 
     private function abscissa(CartesianCoordinatePoint $cartesianCoordinatePoint): int
     {
         return $cartesianCoordinatePoint->coordinateValue(self::ABSCISSA_NAME);
+    }
+
+    private function ordinate(CartesianCoordinatePoint $cartesianCoordinatePoint): int
+    {
+        return $cartesianCoordinatePoint->coordinateValue(self::ORDINATE_NAME);
     }
 }
