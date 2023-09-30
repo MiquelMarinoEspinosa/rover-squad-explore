@@ -112,24 +112,12 @@ final class AbscissaCartesianCoordinateTest extends TestCase
 
     public function testShouldNotBeLesserThanWhenValueIsEqual(): void
     {
-        $abscissaNotLesserThan = $this->givenAbscissaCartesianCoordinate(
-            self::VALUE
-        );
-
-        self::assertFalse($abscissaNotLesserThan->lesserThan(
-            $this->abscissaCartesianCoordinate
-        ));
+        $this->thenShouldNotBeLesserThan(self::VALUE);
     }
 
     public function testShouldNotBeLesserThanWhenValueIsGreater(): void
     {
-        $abscissaNotLesserThan = $this->givenAbscissaCartesianCoordinate(
-            self::VALUE + 1
-        );
-
-        self::assertFalse($abscissaNotLesserThan->lesserThan(
-            $this->abscissaCartesianCoordinate
-        ));
+        $this->thenShouldNotBeLesserThan(self::VALUE + 1);
     }
 
     public function testShouldReturnTheValue(): void
@@ -138,13 +126,6 @@ final class AbscissaCartesianCoordinateTest extends TestCase
             self::VALUE,
             $this->abscissaCartesianCoordinate->value()
         );
-    }
-
-    private function givenAbscissaCartesianCoordinate(
-        int $value
-    ): AbscissaCartesianCoordinate {
-
-        return new AbscissaCartesianCoordinate($value);
     }
 
     private function shouldThrowAnException(): void
@@ -172,5 +153,23 @@ final class AbscissaCartesianCoordinateTest extends TestCase
         self::assertFalse($bscissaNotGreaterThan->greaterThan(
             $this->abscissaCartesianCoordinate
         ));
+    }
+
+    private function thenShouldNotBeLesserThan(int $value): void
+    {
+        $abscissaNotLesserThan = $this->givenAbscissaCartesianCoordinate(
+            $value
+        );
+
+        self::assertFalse($abscissaNotLesserThan->lesserThan(
+            $this->abscissaCartesianCoordinate
+        ));
+    }
+
+    private function givenAbscissaCartesianCoordinate(
+        int $value
+    ): AbscissaCartesianCoordinate {
+
+        return new AbscissaCartesianCoordinate($value);
     }
 }
