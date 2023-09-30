@@ -121,6 +121,17 @@ final class AbscissaCartesianCoordinateTest extends TestCase
         ));
     }
 
+    public function testShouldNotBeLesserThanWhenValueIsGreater(): void
+    {
+        $abscissaNotLesserThan = $this->givenAbscissaCartesianCoordinate(
+            self::VALUE + 1
+        );
+
+        self::assertFalse($abscissaNotLesserThan->lesserThan(
+            $this->abscissaCartesianCoordinate
+        ));
+    }
+
     public function testShouldReturnTheValue(): void
     {
         self::assertSame(
