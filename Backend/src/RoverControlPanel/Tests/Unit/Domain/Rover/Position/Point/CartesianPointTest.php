@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point;
 
+use PHPUnit\Framework\TestCase;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Point;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\CartesianPoint;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\CoordinatePointNotFound;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Point;
-use PHPUnit\Framework\TestCase;
 
 final class CartesianPointTest extends TestCase
 {

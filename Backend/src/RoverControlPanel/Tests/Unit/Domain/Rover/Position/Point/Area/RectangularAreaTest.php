@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Core\Tests\Unit\Domain\Rover\Position\Point\Area;
 
+use PHPUnit\Framework\TestCase;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Area\Area;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Area\RectangularArea;
-use PHPUnit\Framework\TestCase;
 
 final class RectangularAreaTest extends TestCase
 {
