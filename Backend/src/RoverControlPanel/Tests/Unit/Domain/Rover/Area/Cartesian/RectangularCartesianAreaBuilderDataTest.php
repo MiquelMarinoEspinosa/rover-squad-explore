@@ -24,4 +24,16 @@ final class RectangularCartesianAreaBuilderDataTest extends TestCase
             $rectangularCartesianAreaBuilderData
         );
     }
+
+    public function testShouldReturnTheUpperRightAbscissa(): void
+    {
+        $rectangularCartesianAreaBuilderData = new RectangularCartesianAreaBuilderData(
+            0
+        );
+
+        self::assertSame(
+            0,
+            $rectangularCartesianAreaBuilderData->upperRightAbscissa()
+        );
+    }
 }
