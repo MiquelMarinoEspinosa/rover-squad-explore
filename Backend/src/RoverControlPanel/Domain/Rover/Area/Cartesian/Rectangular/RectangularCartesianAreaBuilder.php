@@ -26,6 +26,7 @@ final class RectangularCartesianAreaBuilder implements CartesianAreaBuilder
     public function create(
         CartesianAreaBuilderData $data
     ): CartesianArea {
+        
         return RectangularCartesianArea::createWithUpperRightCoordinates(
             $data->upperRightAbscissa(),
             $data->upperRightOrdinate()

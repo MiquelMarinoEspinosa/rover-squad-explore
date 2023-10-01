@@ -42,7 +42,7 @@ final class RectangularCartesianAreaTest extends TestCase
         );
     }
 
-    public function testShouldThrowAnExceptionWhenCreateWithInvalidAbscissa(): void
+    public function testShouldThrowAnExceptionWhenCreateWithUpperRightInvalidAbscissa(): void
     {
         self::expectException(
             RectangularCartesianInvalidArea::class
@@ -51,6 +51,18 @@ final class RectangularCartesianAreaTest extends TestCase
         RectangularCartesianArea::createWithUpperRightCoordinates(
             self::LOWER_LEFT_ABSCISSA - 1,
             self::UPPER_RIGHT_ORDINATE
+        );
+    }
+
+    public function testShouldThrowAnExceptionWhenCreateWithUpperRightInvalidOrdinate(): void
+    {
+        self::expectException(
+            RectangularCartesianInvalidArea::class
+        );
+
+        RectangularCartesianArea::createWithUpperRightCoordinates(
+            self::UPPER_RIGHT_ABSCISSA,
+            self::LOWER_LEFT_ORDINATE - 1
         );
     }
 
