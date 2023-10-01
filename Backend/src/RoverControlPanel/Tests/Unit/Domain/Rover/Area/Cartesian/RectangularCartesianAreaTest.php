@@ -39,7 +39,7 @@ final class RectangularCartesianAreaTest extends TestCase
         );
     }
 
-    public function testCheckPointShouldThrowAnExceptionWhenThePointIsBeyondTheAreaRight(): void
+    public function testCheckPointShouldThrowAnExceptionWhenThePointAbscissaIsBeyondTheAreaUpperRight(): void
     {
         $rectangularCartesianArea = $this->givenRectangularCartesianArea();
 
@@ -49,6 +49,20 @@ final class RectangularCartesianAreaTest extends TestCase
             CartesianCoordinatePoint::create(
                 self::UPPER_RIGHT_ABSCISSA + 1,
                 self::UPPER_RIGHT_ORDINATE
+            )
+        );
+    }
+
+    public function testCheckPointShouldThrowAnExceptionWhenThePointOrdinateIsBeyondTheAreaUpperRight(): void
+    {
+        $rectangularCartesianArea = $this->givenRectangularCartesianArea();
+
+        self::expectException(RectangularCartesianAreaOutOfArea::class);
+
+        $rectangularCartesianArea->checkPoint(
+            CartesianCoordinatePoint::create(
+                self::UPPER_RIGHT_ABSCISSA,
+                self::UPPER_RIGHT_ORDINATE + 1
             )
         );
     }
