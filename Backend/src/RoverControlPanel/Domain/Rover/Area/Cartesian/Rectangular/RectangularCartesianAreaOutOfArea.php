@@ -10,9 +10,9 @@ use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianPoint;
 
 final class RectangularCartesianAreaOutOfArea extends \Exception implements OutOfArea
 {
-    private const ERROR_MESSAGE = 'Point position out of the area.'
-        . 'Point abscissa: %d. Point ordinate: %d.'
-        . 'Area lower left abscissa: %d. Area lower left ordinate: %d.'
+    private const ERROR_MESSAGE = 'Point position out of the area.' . PHP_EOL
+        . 'Point abscissa: %d. Point ordinate: %d.' . PHP_EOL
+        . 'Area lower left abscissa: %d. Area lower left ordinate: %d.' . PHP_EOL
         . 'Area upper right abscissa: %d. Area upper right ordinate: %d';
 
     private function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
