@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 use Core\RoverControlPanel\Domain\Rover\Area\Area;
 use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\RectangularCartesianArea;
-use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\RectangularCartesianAreaOutOfArea;
 use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
+use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\RectangularCartesianAreaOutOfArea;
 
 final class RectangularCartesianAreaTest extends TestCase
 {
@@ -41,29 +41,17 @@ final class RectangularCartesianAreaTest extends TestCase
 
     public function testCheckPointShouldThrowAnExceptionWhenThePointAbscissaIsBeyondTheAreaUpperRight(): void
     {
-        $rectangularCartesianArea = $this->givenRectangularCartesianArea();
-
-        self::expectException(RectangularCartesianAreaOutOfArea::class);
-
-        $rectangularCartesianArea->checkPoint(
-            CartesianCoordinatePoint::create(
-                self::UPPER_RIGHT_ABSCISSA + 1,
-                self::UPPER_RIGHT_ORDINATE
-            )
+        $this->thenCheckPointShouldThrowAnException(
+            self::UPPER_RIGHT_ABSCISSA + 1,
+            self::UPPER_RIGHT_ORDINATE
         );
     }
 
     public function testCheckPointShouldThrowAnExceptionWhenThePointOrdinateIsBeyondTheAreaUpperRight(): void
     {
-        $rectangularCartesianArea = $this->givenRectangularCartesianArea();
-
-        self::expectException(RectangularCartesianAreaOutOfArea::class);
-
-        $rectangularCartesianArea->checkPoint(
-            CartesianCoordinatePoint::create(
-                self::UPPER_RIGHT_ABSCISSA,
-                self::UPPER_RIGHT_ORDINATE + 1
-            )
+        $this->thenCheckPointShouldThrowAnException(
+            self::UPPER_RIGHT_ABSCISSA,
+            self::UPPER_RIGHT_ORDINATE + 1
         );
     }
 
@@ -79,6 +67,22 @@ final class RectangularCartesianAreaTest extends TestCase
         );
 
         self::assertTrue(true);
+    }
+
+    private function thenCheckPointShouldThrowAnException(
+        int $abscissa,
+        int $ordinate
+    ): void {
+        $rectangularCartesianArea = $this->givenRectangularCartesianArea();
+
+        self::expectException(RectangularCartesianAreaOutOfArea::class);
+
+        $rectangularCartesianArea->checkPoint(
+            CartesianCoordinatePoint::create(
+                $abscissa,
+                $ordinate
+            )
+        );
     }
 
     private function givenRectangularCartesianArea(): RectangularCartesianArea
