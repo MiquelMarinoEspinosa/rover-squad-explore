@@ -15,4 +15,9 @@ final readonly class RectangularCartesianAreaBuilderData implements CartesianAre
     {
         return $this->upperRightAbscissa;
     }
+
+    public function upperRightOrdinate(): int
+    {
+        return 5;
+    }
 }

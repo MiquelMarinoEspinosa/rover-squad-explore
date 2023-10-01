@@ -40,4 +40,17 @@ final class RectangularCartesianAreaBuilderDataTest extends TestCase
             $rectangularCartesianAreaBuilderData->upperRightAbscissa()
         );
     }
+
+    public function testShouldReturnTheUpperRightOrdinate(): void
+    {
+        $rectangularCartesianAreaBuilderData = new RectangularCartesianAreaBuilderData(
+            self::UPPER_RIGHT_ABSCISSA,
+            5
+        );
+
+        self::assertSame(
+            5,
+            $rectangularCartesianAreaBuilderData->upperRightOrdinate()
+        );
+    }
 }
