@@ -51,7 +51,7 @@ final class CartesianCoordinatePointDataTest extends TestCase
     public function testShouldReturnTheAbscissa(): void
     {
         self::assertSame(
-            0,
+            self::ABSCISSA,
             $this->cartesianCoordinatePointData->abscissa()
         );
     }
@@ -59,7 +59,7 @@ final class CartesianCoordinatePointDataTest extends TestCase
     public function testShouldReturnTheOrdinate(): void
     {
         self::assertSame(
-            1,
+            self::ORDINATE,
             $this->cartesianCoordinatePointData->ordinate()
         );
     }
