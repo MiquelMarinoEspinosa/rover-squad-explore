@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Position\Point\Coordinate\Cartesian;
 
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinateNotAllowedMovement;
 use PHPUnit\Framework\TestCase;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\CoordinateNotAllowedMovement;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinateNotAllowedMovement;
 
 final class CartesianCoordinateNotAllowedMovementTest extends TestCase
 {
@@ -15,6 +16,11 @@ final class CartesianCoordinateNotAllowedMovementTest extends TestCase
 
         self::assertInstanceOf(
             CartesianCoordinateNotAllowedMovement::class,
+            $cartesianCoordinateNotAllowed
+        );
+
+        self::assertInstanceOf(
+            CoordinateNotAllowedMovement::class,
             $cartesianCoordinateNotAllowed
         );
     }

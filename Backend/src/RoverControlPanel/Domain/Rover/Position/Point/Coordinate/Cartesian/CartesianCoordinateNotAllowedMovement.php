@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian;
 
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\CoordinateNotAllowedMovement;
 use Throwable;
 
-final class CartesianCoordinateNotAllowedMovement extends \Exception
+final class CartesianCoordinateNotAllowedMovement extends \Exception implements CoordinateNotAllowedMovement 
 {
     private const ERROR_MESSAGE = 'CartesianCoordinate movement not allowed: ';
 
