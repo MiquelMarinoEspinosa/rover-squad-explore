@@ -33,14 +33,14 @@ abstract class ParentCartesianCoordinate implements CartesianCoordinate
         throw $this->buildBadMovementException('moveLeft');
     }
 
-    public function greaterThan(
+    public function isGreaterThan(
         CartesianCoordinate $cartesianCoordinate
     ): bool {
 
         return $this->value > $cartesianCoordinate->value();
     }
 
-    public function lesserThan(
+    public function isLesserThan(
         CartesianCoordinate $cartesianCoordinate
     ): bool {
 

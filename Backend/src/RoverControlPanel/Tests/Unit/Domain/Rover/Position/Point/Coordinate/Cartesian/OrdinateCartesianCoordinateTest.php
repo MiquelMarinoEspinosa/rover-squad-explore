@@ -99,7 +99,7 @@ final class OrdinateCartesianCoordinateTest extends TestCase
             self::VALUE + 1
         );
 
-        self::assertTrue($ordinateGreaterThan->greaterThan(
+        self::assertTrue($ordinateGreaterThan->isGreaterThan(
             $this->ordinateCartesianCoordinate
         ));
     }
@@ -120,7 +120,7 @@ final class OrdinateCartesianCoordinateTest extends TestCase
             self::VALUE - 1
         );
 
-        self::assertTrue($ordinateLesserThan->lesserThan(
+        self::assertTrue($ordinateLesserThan->isLesserThan(
             $this->ordinateCartesianCoordinate
         ));
     }
@@ -155,7 +155,7 @@ final class OrdinateCartesianCoordinateTest extends TestCase
             $value - 1
         );
 
-        self::assertFalse($ordinateGreaterThan->greaterThan(
+        self::assertFalse($ordinateGreaterThan->isGreaterThan(
             $this->ordinateCartesianCoordinate
         ));
     }
@@ -166,7 +166,7 @@ final class OrdinateCartesianCoordinateTest extends TestCase
             $value
         );
 
-        self::assertFalse($ordinateNotLesserThan->lesserThan(
+        self::assertFalse($ordinateNotLesserThan->isLesserThan(
             $this->ordinateCartesianCoordinate
         ));
     }

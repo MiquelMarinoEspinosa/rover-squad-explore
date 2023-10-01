@@ -16,11 +16,11 @@ interface CartesianCoordinate extends Coordinate
 
     public function moveLeft(): self;
 
-    public function greaterThan(
+    public function isGreaterThan(
         CartesianCoordinate $cartesianCoordinate
     ): bool;
 
-    public function lesserThan(
+    public function isLesserThan(
         CartesianCoordinate $cartesianCoordinate
     ): bool;
 }

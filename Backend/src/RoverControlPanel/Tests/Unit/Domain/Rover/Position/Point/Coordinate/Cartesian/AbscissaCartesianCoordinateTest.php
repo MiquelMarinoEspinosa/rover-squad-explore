@@ -105,7 +105,7 @@ final class AbscissaCartesianCoordinateTest extends TestCase
             self::VALUE + 1
         );
 
-        self::assertTrue($abscissaGreaterThan->greaterThan(
+        self::assertTrue($abscissaGreaterThan->isGreaterThan(
             $this->abscissaCartesianCoordinate
         ));
     }
@@ -126,7 +126,7 @@ final class AbscissaCartesianCoordinateTest extends TestCase
             self::VALUE - 1
         );
 
-        self::assertTrue($abscissaLesserThan->lesserThan(
+        self::assertTrue($abscissaLesserThan->isLesserThan(
             $this->abscissaCartesianCoordinate
         ));
     }
@@ -161,7 +161,7 @@ final class AbscissaCartesianCoordinateTest extends TestCase
             $value
         );
 
-        self::assertFalse($bscissaNotGreaterThan->greaterThan(
+        self::assertFalse($bscissaNotGreaterThan->isGreaterThan(
             $this->abscissaCartesianCoordinate
         ));
     }
@@ -172,7 +172,7 @@ final class AbscissaCartesianCoordinateTest extends TestCase
             $value
         );
 
-        self::assertFalse($abscissaNotLesserThan->lesserThan(
+        self::assertFalse($abscissaNotLesserThan->isLesserThan(
             $this->abscissaCartesianCoordinate
         ));
     }

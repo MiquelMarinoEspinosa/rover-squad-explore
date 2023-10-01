@@ -79,7 +79,7 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
         $abscissaValue = $cartesianPoint->data()->abscissa();
         $abscissa = new AbscissaCartesianCoordinate($abscissaValue);
 
-        return $this->abscissa->lesserThan($abscissa);
+        return $this->abscissa->isLesserThan($abscissa);
     }
 
     public function data(): CartesianCoordinatePointData
@@ -95,7 +95,7 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
     ): bool {
         $abscissaValue = $cartesianPoint->data()->abscissa();
 
-        return $this->abscissa->greaterThan(
+        return $this->abscissa->isGreaterThan(
             new AbscissaCartesianCoordinate($abscissaValue)
         );
     }
@@ -105,7 +105,7 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
     ): bool {
         $ordinateValue = $cartesianPoint->data()->ordinate();
 
-        return $this->ordinate->greaterThan(
+        return $this->ordinate->isGreaterThan(
             new OrdinateCartesianCoordinate($ordinateValue)
         );
     }
