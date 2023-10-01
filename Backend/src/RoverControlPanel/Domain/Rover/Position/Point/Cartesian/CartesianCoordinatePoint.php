@@ -79,7 +79,14 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
         $abscissaValue = $cartesianPoint->data()->abscissa();
         $abscissa = new AbscissaCartesianCoordinate($abscissaValue);
 
-        return $this->abscissa->isLesserThan($abscissa);
+        if ($this->abscissa->isLesserThan($abscissa)) {
+            return true;
+        }
+
+        $ordinateValue = $cartesianPoint->data()->ordinate();
+        $ordinate = new OrdinateCartesianCoordinate($ordinateValue);
+
+        return $this->ordinate->isLesserThan($ordinate);
     }
 
     public function data(): CartesianCoordinatePointData
