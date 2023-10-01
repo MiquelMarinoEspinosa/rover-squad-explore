@@ -45,5 +45,15 @@ final readonly class RectangularCartesianArea implements CartesianArea
                 $cartesianPoint
             );
         }
+
+        if ($cartesianPoint->isLesserThan(
+            $this->lowerLeft
+        )) {
+            throw RectangularCartesianAreaOutOfArea::create(
+                $this->lowerLeft,
+                $this->upperRight,
+                $cartesianPoint
+            );
+        }
     }
 }
