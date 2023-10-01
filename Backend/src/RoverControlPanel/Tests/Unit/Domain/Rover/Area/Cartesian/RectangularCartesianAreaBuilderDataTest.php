@@ -12,7 +12,7 @@ final class RectangularCartesianAreaBuilderDataTest extends TestCase
 {
     public function testShouldCreateTheRectangularCartesianAreaBuilderData(): void
     {
-        $rectangularCartesianAreaBuilderData = new RectangularCartesianAreaBuilderData();
+        $rectangularCartesianAreaBuilderData = new RectangularCartesianAreaBuilderData(0);
 
         self::assertInstanceOf(
             RectangularCartesianAreaBuilderData::class,
