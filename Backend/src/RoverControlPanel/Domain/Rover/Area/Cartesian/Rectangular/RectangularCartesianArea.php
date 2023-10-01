@@ -17,31 +17,26 @@ final readonly class RectangularCartesianArea implements CartesianArea
         private CartesianCoordinatePoint $lowerLeft,
         private CartesianCoordinatePoint $upperRight,
     ) {
+        $this->validatePointArea(
+            $lowerLeft,
+            $upperRight
+        );
     }
 
     public static function createWithUpperRightCoordinates(
         int $upperRightAbscissa,
         int $upperRightOrdinate
     ): self {
-        $lowerLeft = CartesianCoordinatePoint::create(
-            self::LOWER_LEFT_ABSCISSA,
-            self::LOWER_LEFT_ORDINATE
-        );
-
-        $upperRight = CartesianCoordinatePoint::create(
-            $upperRightAbscissa,
-            $upperRightOrdinate
-        );
-
-        if ($lowerLeft->isGreatherThan($upperRight)) {
-            throw RectangularCartesianInvalidArea::create(
-                $upperRight
-            );
-        }
-
+    
         return new self(
-            $lowerLeft,
-            $upperRight
+            CartesianCoordinatePoint::create(
+                self::LOWER_LEFT_ABSCISSA,
+                self::LOWER_LEFT_ORDINATE
+            ),
+            CartesianCoordinatePoint::create(
+                $upperRightAbscissa,
+                $upperRightOrdinate
+            )
         );
     }
 
@@ -67,10 +62,23 @@ final readonly class RectangularCartesianArea implements CartesianArea
     public function throwRectangularCartesianAreaOutOfArea(
         CartesianPoint $cartesianPoint
     ): void {
+
         throw RectangularCartesianAreaOutOfArea::create(
             $this->lowerLeft,
             $this->upperRight,
             $cartesianPoint
         );
+    }
+
+    private function validatePointArea(
+        CartesianCoordinatePoint $lowerLeft,
+        CartesianCoordinatePoint $upperRight,
+    ): void {
+
+        if ($lowerLeft->isGreatherThan($upperRight)) {
+            throw RectangularCartesianInvalidArea::create(
+                $upperRight
+            );
+        }
     }
 }
