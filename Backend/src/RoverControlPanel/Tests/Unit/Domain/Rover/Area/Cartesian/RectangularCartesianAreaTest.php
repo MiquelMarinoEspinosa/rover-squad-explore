@@ -12,14 +12,15 @@ use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint
 
 final class RectangularCartesianAreaTest extends TestCase
 {
-    private const LOWER_LEFT_ABSCISSA  = 0;
-    private const LOWER_LEFT_ORDINATE  = self::LOWER_LEFT_ABSCISSA;
     private const UPPER_RIGHT_ABSCISSA = 5;
-    private const UPPER_RIGHT_ORDINATE = self::LOWER_LEFT_ABSCISSA;
+    private const UPPER_RIGHT_ORDINATE = self::UPPER_RIGHT_ABSCISSA;
 
     public function testShouldCreateTheRectangularCartesianArea(): void
     {
-        $rectangularCartesianArea = $this->givenRectangularCartesianArea();
+        $rectangularCartesianArea = RectangularCartesianArea::createWithUpperRightCoordinates(
+            self::UPPER_RIGHT_ABSCISSA,
+            self::UPPER_RIGHT_ORDINATE
+        );
 
         self::assertInstanceOf(
             RectangularCartesianArea::class,
@@ -67,9 +68,7 @@ final class RectangularCartesianAreaTest extends TestCase
 
     private function givenRectangularCartesianArea(): RectangularCartesianArea
     {
-        return RectangularCartesianArea::create(
-            self::LOWER_LEFT_ABSCISSA,
-            self::LOWER_LEFT_ORDINATE,
+        return RectangularCartesianArea::createWithUpperRightCoordinates(
             self::UPPER_RIGHT_ABSCISSA,
             self::UPPER_RIGHT_ORDINATE
         );

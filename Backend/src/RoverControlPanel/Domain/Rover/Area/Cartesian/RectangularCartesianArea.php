@@ -9,22 +9,23 @@ use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianPoint;
 
 final readonly class RectangularCartesianArea implements CartesianArea
 {
+    private const LOWER_LEFT_ABSCISSA = 0;
+    private const LOWER_LEFT_ORDINATE = self::LOWER_LEFT_ABSCISSA;
+
     private function __construct(
         private CartesianCoordinatePoint $lowerLeft,
         private CartesianCoordinatePoint $upperRight,
     ) {
     }
 
-    public static function create(
-        int $lowerLeftAbscissa,
-        int $lowerLeftOrdinate,
+    public static function createWithUpperRightCoordinates(
         int $upperRightAbscissa,
         int $upperRightOrdinate
     ): self {
         return new self(
             CartesianCoordinatePoint::create(
-                $lowerLeftAbscissa,
-                $lowerLeftOrdinate
+                self::LOWER_LEFT_ABSCISSA,
+                self::LOWER_LEFT_ORDINATE
             ),
             CartesianCoordinatePoint::create(
                 $upperRightAbscissa,
