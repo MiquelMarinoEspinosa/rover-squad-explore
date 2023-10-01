@@ -10,6 +10,7 @@ use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
 use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
 use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaOutOfArea;
+use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianInvalidArea;
 
 final class RectangularCartesianAreaTest extends TestCase
 {
@@ -38,6 +39,18 @@ final class RectangularCartesianAreaTest extends TestCase
         self::assertInstanceOf(
             Area::class,
             $rectangularCartesianArea
+        );
+    }
+
+    public function testShouldThrowAnExceptionWhenCreateWithInvalidAbscissa(): void
+    {
+        self::expectException(
+            RectangularCartesianInvalidArea::class
+        );
+
+        RectangularCartesianArea::createWithUpperRightCoordinates(
+            self::LOWER_LEFT_ABSCISSA - 1,
+            self::UPPER_RIGHT_ORDINATE
         );
     }
 

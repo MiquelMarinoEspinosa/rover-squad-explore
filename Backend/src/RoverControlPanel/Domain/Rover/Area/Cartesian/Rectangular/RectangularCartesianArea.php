@@ -22,16 +22,26 @@ final readonly class RectangularCartesianArea implements CartesianArea
     public static function createWithUpperRightCoordinates(
         int $upperRightAbscissa,
         int $upperRightOrdinate
-    ): self {
+    ): self { 
+        $lowerLeft = CartesianCoordinatePoint::create(
+            self::LOWER_LEFT_ABSCISSA,
+            self::LOWER_LEFT_ORDINATE
+        );
+
+        $uperRight = CartesianCoordinatePoint::create(
+            $upperRightAbscissa,
+            $upperRightOrdinate
+        );
+
+        if ($lowerLeft->isGreatherThan($uperRight)) {
+            throw RectangularCartesianInvalidArea::create(
+                $uperRight
+            );
+        }
+
         return new self(
-            CartesianCoordinatePoint::create(
-                self::LOWER_LEFT_ABSCISSA,
-                self::LOWER_LEFT_ORDINATE
-            ),
-            CartesianCoordinatePoint::create(
-                $upperRightAbscissa,
-                $upperRightOrdinate
-            )
+            $lowerLeft,
+            $uperRight
         );
     }
 
