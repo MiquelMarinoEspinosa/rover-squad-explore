@@ -21,37 +21,37 @@ final class RectangularCartesianAreaOutOfArea extends \Exception implements OutO
     }
 
     public static function create(
-        CartesianPoint $rectangularCartesianPointAreaLowerLeft,
-        CartesianPoint $rectangularCartesianPointAreaUpperRight,
+        CartesianPoint $areaLowerLeft,
+        CartesianPoint $areaUpperRight,
         CartesianPoint $cartesianCoordinatePoint
     ): self {
         
         return new self(
             self::message(
-                $rectangularCartesianPointAreaLowerLeft,
-                $rectangularCartesianPointAreaUpperRight,
+                $areaLowerLeft,
+                $areaUpperRight,
                 $cartesianCoordinatePoint
             )
         );
     }
 
     private static function message(
-        CartesianPoint $rectangularCartesianPointAreaLowerLeft,
-        CartesianPoint $rectangularCartesianPointAreaUpperRight,
+        CartesianPoint $areaLowerLeft,
+        CartesianPoint $areaUpperRight,
         CartesianPoint $cartesianCoordinatePoint
     ): string {
-        $cartesianCoordinatePointData                = $cartesianCoordinatePoint->data();
-        $rectangularCartesianPointAreaLowerLeftData  = $rectangularCartesianPointAreaLowerLeft->data();
-        $rectangularCartesianPointAreaUpperRightData = $rectangularCartesianPointAreaUpperRight->data();
+        $cartesianCoordinatePointData = $cartesianCoordinatePoint->data();
+        $areaLowerLeftData            = $areaLowerLeft->data();
+        $areaUpperRightData           = $areaUpperRight->data();
 
         return sprintf(
             self::ERROR_MESSAGE,
             $cartesianCoordinatePointData->abscissa(),
             $cartesianCoordinatePointData->ordinate(),
-            $rectangularCartesianPointAreaLowerLeftData->abscissa(),
-            $rectangularCartesianPointAreaLowerLeftData->ordinate(),
-            $rectangularCartesianPointAreaUpperRightData->abscissa(),
-            $rectangularCartesianPointAreaUpperRightData->ordinate()
+            $areaLowerLeftData->abscissa(),
+            $areaLowerLeftData->ordinate(),
+            $areaUpperRightData->abscissa(),
+            $areaUpperRightData->ordinate()
         );
     }
 }

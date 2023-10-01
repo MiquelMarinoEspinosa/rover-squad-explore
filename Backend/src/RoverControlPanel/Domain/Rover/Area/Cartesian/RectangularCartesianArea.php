@@ -39,7 +39,11 @@ final readonly class RectangularCartesianArea implements CartesianArea
         if ($cartesianPoint->isGreatherThan(
             $this->upperRight
         )) {
-            throw new \Exception();
+            throw RectangularCartesianAreaOutOfArea::create(
+                $this->lowerLeft,
+                $this->upperRight,
+                $cartesianPoint
+            );
         }
     }
 }
