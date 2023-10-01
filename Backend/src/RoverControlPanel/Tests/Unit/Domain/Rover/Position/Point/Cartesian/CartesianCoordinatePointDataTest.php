@@ -11,9 +11,15 @@ use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordi
 
 final class CartesianCoordinatePointDataTest extends TestCase
 {
+    private const ABSCISSA = 0;
+    private const ORDINATE = 1;
+    
     public function testShouldCreateTheCartesianCoordinatePointData(): void
     {
-        $cartesianCoordinatePointData = new CartesianCoordinatePointData(0, 1);
+        $cartesianCoordinatePointData = new CartesianCoordinatePointData(
+            self::ABSCISSA,
+            self::ORDINATE
+        );
 
         self::assertInstanceOf(
             CartesianCoordinatePointData::class,
