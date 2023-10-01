@@ -12,24 +12,24 @@ use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordi
 
 final class CartesianCoordinatePointTest extends TestCase
 {
-    private const ABSCISSA_VALUE = 1;
-    private const ORDINATE_VALUE = 2;
+    private const ABSCISSA = 1;
+    private const ORDINATE = 2;
 
     private CartesianCoordinatePoint $cartesianCoordinatePoint;
 
     protected function setUp(): void
     {
         $this->cartesianCoordinatePoint = $this->giveCartesianCoordinatePoint(
-            self::ABSCISSA_VALUE,
-            self::ORDINATE_VALUE
+            self::ABSCISSA,
+            self::ORDINATE
         );
     }
 
     public function testShouldCreateCartesianCoordinatePoint(): void
     {
         $cartesianCoordinatePoint = $this->giveCartesianCoordinatePoint(
-            self::ABSCISSA_VALUE,
-            self::ORDINATE_VALUE
+            self::ABSCISSA,
+            self::ORDINATE
         );
 
         self::assertInstanceOf(
@@ -51,8 +51,8 @@ final class CartesianCoordinatePointTest extends TestCase
     public function testShouldReturnTheData(): void
     {
         $expectedCartesianCoordinatePointData = new CartesianCoordinatePointData(
-            self::ABSCISSA_VALUE,
-            self::ORDINATE_VALUE
+            self::ABSCISSA,
+            self::ORDINATE
         );
 
         $currentCartesianCoordinatePointData = $this->cartesianCoordinatePoint->data();
@@ -151,48 +151,48 @@ final class CartesianCoordinatePointTest extends TestCase
     public function testShouldNotBeGreatherThanWhenEqualAbscissa(): void
     {
         $this->thenShouldNotBeGreater(
-            self::ABSCISSA_VALUE,
-            self::ORDINATE_VALUE
+            self::ABSCISSA,
+            self::ORDINATE
         );
     }
 
     public function testShouldNotBeGreatherThanWhenLesserAbscissa(): void
     {
         $this->thenShouldNotBeGreater(
-            self::ABSCISSA_VALUE - 1,
-            self::ORDINATE_VALUE
+            self::ABSCISSA - 1,
+            self::ORDINATE
         );
     }
 
     public function testShouldBeGreatherThanWhenGreaterAbscissa(): void
     {
         $this->thenShouldBeGreater(
-            self::ABSCISSA_VALUE + 1,
-            self::ORDINATE_VALUE
+            self::ABSCISSA + 1,
+            self::ORDINATE
         );
     }
 
     public function testShouldNotBeGreatherThanWhenEqualOrdinate(): void
     {
         $this->thenShouldNotBeGreater(
-            self::ABSCISSA_VALUE,
-            self::ORDINATE_VALUE
+            self::ABSCISSA,
+            self::ORDINATE
         );
     }
 
     public function testShouldNotBeGreatherThanWhenLesserOrdinate(): void
     {
         $this->thenShouldNotBeGreater(
-            self::ABSCISSA_VALUE,
-            self::ORDINATE_VALUE - 1
+            self::ABSCISSA,
+            self::ORDINATE - 1
         );
     }
 
     public function testShouldBeGreatherThanWhenGreaterOrdinate(): void
     {
         $this->thenShouldBeGreater(
-            self::ABSCISSA_VALUE,
-            self::ORDINATE_VALUE + 1
+            self::ABSCISSA,
+            self::ORDINATE + 1
         );
     }
 
