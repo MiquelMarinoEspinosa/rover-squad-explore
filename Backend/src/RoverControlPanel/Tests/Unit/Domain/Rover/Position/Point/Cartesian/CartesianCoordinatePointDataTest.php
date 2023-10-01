@@ -30,4 +30,17 @@ final class CartesianCoordinatePointDataTest extends TestCase
             $cartesianCoordinatePointData
         );
     }
+
+    public function testShouldReturnTheAbscissa(): void
+    {
+        $cartesianCoordinatePointData = new CartesianCoordinatePointData(
+            0,
+            1
+        );
+
+        self::assertSame(
+            0,
+            $cartesianCoordinatePointData->abscissa()
+        );
+    }
 }

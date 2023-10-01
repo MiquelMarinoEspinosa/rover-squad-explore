@@ -8,4 +8,5 @@ use Core\RoverControlPanel\Domain\Rover\Position\Point\PointData;
 
 interface CartesianPointData extends PointData
 {
+    public function abscissa(): int;
 }
