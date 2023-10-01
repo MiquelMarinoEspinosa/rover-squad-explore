@@ -76,8 +76,10 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
     public function isLesserThan(
         CartesianPoint $cartesianPoint
     ): bool {
+        $abscissaValue = $cartesianPoint->data()->abscissa();
+        $abscissa = new AbscissaCartesianCoordinate($abscissaValue);
 
-        return false;
+        return $this->abscissa->lesserThan($abscissa);
     }
 
     public function data(): CartesianCoordinatePointData
