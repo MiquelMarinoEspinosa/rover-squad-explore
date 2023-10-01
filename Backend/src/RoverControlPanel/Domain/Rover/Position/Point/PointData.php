@@ -6,5 +6,4 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point;
 
 interface PointData
 {
-    
 }

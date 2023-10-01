@@ -7,6 +7,7 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinate;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\AbscissaCartesianCoordinate;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\OrdinateCartesianCoordinate;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\PointData;
 
 final readonly class CartesianCoordinatePoint implements CartesianPoint
 {
@@ -84,6 +85,14 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
 
         return $this->isOrdinateCoordinateGreatherThan(
             $cartesianPoint
+        );
+    }
+
+    public function data(): CartesianCoordinatePointData
+    {
+        return new CartesianCoordinatePointData(
+            $this->abscissa->value(),
+            $this->ordinate->value()
         );
     }
 

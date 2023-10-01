@@ -9,6 +9,7 @@ use Core\RoverControlPanel\Domain\Rover\Position\Point\Point;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianPoint;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinatePoint;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinateNotFound;
+use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinatePointData;
 
 final class CartesianCoordinatePointTest extends TestCase
 {
@@ -47,6 +48,26 @@ final class CartesianCoordinatePointTest extends TestCase
         self::assertInstanceOf(
             Point::class,
             $cartesianCoordinatePoint
+        );
+    }
+
+    public function testShouldReturnTheData(): void
+    {
+        $expectedCartesianCoordinatePointData = new CartesianCoordinatePointData(
+            self::ABSCISSA_VALUE,
+            self::ORDINATE_VALUE
+        );
+
+        $currentCartesianCoordinatePointData = $this->cartesianCoordinatePoint->data();
+
+        self::assertSame(
+            $expectedCartesianCoordinatePointData->abscissa(),
+            $currentCartesianCoordinatePointData->abscissa()
+        );
+
+        self::assertSame(
+            $expectedCartesianCoordinatePointData->ordinate(),
+            $currentCartesianCoordinatePointData->ordinate()
         );
     }
 
