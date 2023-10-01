@@ -15,7 +15,7 @@ final class CartesianCoordinatePointDataTest extends TestCase
     private const ORDINATE = 1;
 
     private CartesianCoordinatePointData $cartesianCoordinatePointData;
-    
+
     protected function setUp(): void
     {
         $this->cartesianCoordinatePointData = new CartesianCoordinatePointData(
@@ -23,7 +23,6 @@ final class CartesianCoordinatePointDataTest extends TestCase
             self::ORDINATE
         );
     }
-
 
     public function testShouldCreateTheCartesianCoordinatePointData(): void
     {
