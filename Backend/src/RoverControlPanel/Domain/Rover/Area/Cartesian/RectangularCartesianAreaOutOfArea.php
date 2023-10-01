@@ -25,6 +25,7 @@ final class RectangularCartesianAreaOutOfArea extends \Exception implements OutO
         CartesianPoint $rectangularCartesianPointAreaUpperRight,
         CartesianPoint $cartesianCoordinatePoint
     ): self {
+        
         return new self(
             self::message(
                 $rectangularCartesianPointAreaLowerLeft,
@@ -39,14 +40,18 @@ final class RectangularCartesianAreaOutOfArea extends \Exception implements OutO
         CartesianPoint $rectangularCartesianPointAreaUpperRight,
         CartesianPoint $cartesianCoordinatePoint
     ): string {
+        $cartesianCoordinatePointData                = $cartesianCoordinatePoint->data();
+        $rectangularCartesianPointAreaLowerLeftData  = $rectangularCartesianPointAreaLowerLeft->data();
+        $rectangularCartesianPointAreaUpperRightData = $rectangularCartesianPointAreaUpperRight->data();
+
         return sprintf(
             self::ERROR_MESSAGE,
-            $cartesianCoordinatePoint->data()->abscissa(),
-            $cartesianCoordinatePoint->data()->ordinate(),
-            $rectangularCartesianPointAreaLowerLeft->data()->abscissa(),
-            $rectangularCartesianPointAreaLowerLeft->data()->ordinate(),
-            $rectangularCartesianPointAreaUpperRight->data()->abscissa(),
-            $rectangularCartesianPointAreaUpperRight->data()->ordinate()
+            $cartesianCoordinatePointData->abscissa(),
+            $cartesianCoordinatePointData->ordinate(),
+            $rectangularCartesianPointAreaLowerLeftData->abscissa(),
+            $rectangularCartesianPointAreaLowerLeftData->ordinate(),
+            $rectangularCartesianPointAreaUpperRightData->abscissa(),
+            $rectangularCartesianPointAreaUpperRightData->ordinate()
         );
     }
 }
