@@ -73,6 +73,13 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
         );
     }
 
+    public function isLesserThan(
+        CartesianPoint $cartesianPoint
+    ): bool {
+
+        return false;
+    }
+
     public function data(): CartesianCoordinatePointData
     {
         return new CartesianCoordinatePointData(

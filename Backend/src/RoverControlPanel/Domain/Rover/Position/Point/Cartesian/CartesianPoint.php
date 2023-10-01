@@ -19,4 +19,8 @@ interface CartesianPoint extends Point
     public function isGreatherThan(
         CartesianPoint $cartesianPoint
     ): bool;
+
+    public function isLesserThan(
+        CartesianPoint $cartesianPoint
+    ): bool;
 }
