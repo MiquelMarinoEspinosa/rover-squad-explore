@@ -8,15 +8,12 @@ use PHPUnit\Framework\TestCase;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Point;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianPoint;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinatePoint;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinateNotFound;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian\CartesianCoordinatePointData;
 
 final class CartesianCoordinatePointTest extends TestCase
 {
     private const ABSCISSA_VALUE = 1;
     private const ORDINATE_VALUE = 2;
-    private const ABSCISSA_NAME  = 'abscissa';
-    private const ORDINATE_NAME  = 'ordinate';
 
     private CartesianCoordinatePoint $cartesianCoordinatePoint;
 
@@ -71,47 +68,13 @@ final class CartesianCoordinatePointTest extends TestCase
         );
     }
 
-    public function testShouldReturnTheCoordinateNames(): void
-    {
-        self::assertSame(
-            [
-                self::ABSCISSA_NAME,
-                self::ORDINATE_NAME
-            ],
-            $this->cartesianCoordinatePoint->coordinateNames()
-        );
-    }
-
-    public function testShouldThrowAnExceptionWhenCoordinateNotFound(): void
-    {
-        self::expectException(CartesianCoordinateNotFound::class);
-
-        $this->cartesianCoordinatePoint->coordinateValue('');
-    }
-
-    public function testShouldReturnTheAbscissaCoordinateValue(): void
-    {
-        self::assertSame(
-            self::ABSCISSA_VALUE,
-            $this->abscissaValue($this->cartesianCoordinatePoint)
-        );
-    }
-
-    public function testShouldReturnTheOrdinateCoordinateValue(): void
-    {
-        self::assertSame(
-            self::ORDINATE_VALUE,
-            $this->ordinateValue($this->cartesianCoordinatePoint)
-        );
-    }
-
     public function testShouldNotMoveAbscissaWhenMoveUp(): void
     {
         $movedCartesianPoint = $this->cartesianCoordinatePoint->moveUp();
 
         self::assertSame(
-            $this->abscissaValue($movedCartesianPoint),
-            $this->abscissaValue($this->cartesianCoordinatePoint)
+            $movedCartesianPoint->data()->abscissa(),
+            $this->cartesianCoordinatePoint->data()->abscissa()
         );
     }
 
@@ -120,8 +83,8 @@ final class CartesianCoordinatePointTest extends TestCase
         $movedCartesianPoint = $this->cartesianCoordinatePoint->moveUp();
 
         self::assertSame(
-            $this->ordinateValue($movedCartesianPoint),
-            $this->ordinateValue($this->cartesianCoordinatePoint) + 1
+            $movedCartesianPoint->data()->ordinate(),
+            $this->cartesianCoordinatePoint->data()->ordinate() + 1
         );
     }
 
@@ -130,8 +93,8 @@ final class CartesianCoordinatePointTest extends TestCase
         $movedCartesianPoint = $this->cartesianCoordinatePoint->moveDown();
 
         self::assertSame(
-            $this->abscissaValue($movedCartesianPoint),
-            $this->abscissaValue($this->cartesianCoordinatePoint)
+            $movedCartesianPoint->data()->abscissa(),
+            $this->cartesianCoordinatePoint->data()->abscissa()
         );
     }
 
@@ -140,8 +103,8 @@ final class CartesianCoordinatePointTest extends TestCase
         $movedCartesianPoint = $this->cartesianCoordinatePoint->moveDown();
 
         self::assertSame(
-            $this->ordinateValue($movedCartesianPoint),
-            $this->ordinateValue($this->cartesianCoordinatePoint) - 1
+            $movedCartesianPoint->data()->ordinate(),
+            $this->cartesianCoordinatePoint->data()->ordinate() - 1
         );
     }
 
@@ -150,8 +113,8 @@ final class CartesianCoordinatePointTest extends TestCase
         $movedCartesianPoint = $this->cartesianCoordinatePoint->moveRight();
 
         self::assertSame(
-            $this->abscissaValue($movedCartesianPoint),
-            $this->abscissaValue($this->cartesianCoordinatePoint) + 1
+            $movedCartesianPoint->data()->abscissa(),
+            $this->cartesianCoordinatePoint->data()->abscissa() + 1
         );
     }
 
@@ -160,8 +123,8 @@ final class CartesianCoordinatePointTest extends TestCase
         $movedCartesianPoint = $this->cartesianCoordinatePoint->moveRight();
 
         self::assertSame(
-            $this->ordinateValue($movedCartesianPoint),
-            $this->ordinateValue($this->cartesianCoordinatePoint)
+            $movedCartesianPoint->data()->ordinate(),
+            $this->cartesianCoordinatePoint->data()->ordinate()
         );
     }
 
@@ -170,8 +133,8 @@ final class CartesianCoordinatePointTest extends TestCase
         $movedCartesianPoint = $this->cartesianCoordinatePoint->moveLeft();
 
         self::assertSame(
-            $this->abscissaValue($movedCartesianPoint),
-            $this->abscissaValue($this->cartesianCoordinatePoint) - 1
+            $movedCartesianPoint->data()->abscissa(),
+            $this->cartesianCoordinatePoint->data()->abscissa() - 1
         );
     }
 
@@ -180,8 +143,8 @@ final class CartesianCoordinatePointTest extends TestCase
         $movedCartesianPoint = $this->cartesianCoordinatePoint->moveLeft();
 
         self::assertSame(
-            $this->ordinateValue($movedCartesianPoint),
-            $this->ordinateValue($this->cartesianCoordinatePoint)
+            $movedCartesianPoint->data()->ordinate(),
+            $this->cartesianCoordinatePoint->data()->ordinate()
         );
     }
 
@@ -231,35 +194,6 @@ final class CartesianCoordinatePointTest extends TestCase
             self::ABSCISSA_VALUE,
             self::ORDINATE_VALUE + 1
         );
-    }
-
-    private function abscissaValue(
-        CartesianCoordinatePoint $cartesianCoordinatePoint
-    ): int {
-
-        return $this->coordinateValue(
-            $cartesianCoordinatePoint,
-            self::ABSCISSA_NAME
-        );
-    }
-
-    private function ordinateValue(
-        CartesianCoordinatePoint $cartesianCoordinatePoint
-    ): int {
-
-        return $this->coordinateValue(
-            $cartesianCoordinatePoint,
-            self::ORDINATE_NAME
-        );
-    }
-
-    private function coordinateValue(
-        CartesianCoordinatePoint $cartesianCoordinatePoint,
-        string $coordinateName
-    ) {
-
-        return $cartesianCoordinatePoint
-            ->coordinateValue($coordinateName);
     }
 
     private function thenShouldNotBeGreater(
