@@ -5,11 +5,16 @@ declare(strict_types=1);
 namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Area\Cartesian;
 
 use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\CartesianAreaBuilder;
+use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\RectangularCartesianArea;
 use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\RectangularCartesianAreaBuilder;
+use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\RectangularCartesianAreaBuilderData;
 use PHPUnit\Framework\TestCase;
 
 final class RectangularCartesianAreaBuilderTest extends TestCase
 {
+    private const UPPER_RIGHT_ABSCISSA = 5;
+    private const UPPER_RIGHT_ORDINATE = self::UPPER_RIGHT_ABSCISSA;
+
     public function testShouldInstanciateTheRectangularCartesianAreaBuilder(): void
     {
         $rectangularCartesianAreaBuilder = RectangularCartesianAreaBuilder::getInstance();
@@ -28,8 +33,61 @@ final class RectangularCartesianAreaBuilderTest extends TestCase
     public function testShouldReturnTheSameInstanceWhenGetInstanceTwice(): void
     {
         self::assertSame(
-            RectangularCartesianAreaBuilder::getInstance(),
-            RectangularCartesianAreaBuilder::getInstance()
+            $this->givenRectangularCartesianAreaBuilder(),
+            $this->givenRectangularCartesianAreaBuilder()
+        );
+    }
+
+    public function testShouldBuildTheRectangularCartesianArea(): void
+    {
+        $rectangularCartesianAreaBuilder = $this->givenRectangularCartesianAreaBuilder();
+
+        $rectangularCartesianAreaBuilderData = $this->givenRectangularCartesianAreaBuilderData();
+
+        $rectangularCartesianArea = $this->whenBuildRectangularCartesianArea(
+            $rectangularCartesianAreaBuilder,
+            $rectangularCartesianAreaBuilderData
+        );
+
+        $this->thenShouldHaveCreatedTheRectangularCartesianArea(
+            $rectangularCartesianArea
+        );
+    }
+
+    private function givenRectangularCartesianAreaBuilder(): RectangularCartesianAreaBuilder
+    {
+        return RectangularCartesianAreaBuilder::getInstance();
+    }
+
+    private function givenRectangularCartesianAreaBuilderData(): RectangularCartesianAreaBuilderData
+    {
+        return new RectangularCartesianAreaBuilderData(
+            self::UPPER_RIGHT_ABSCISSA,
+            self::UPPER_RIGHT_ABSCISSA
+        );
+    }
+
+    private function whenBuildRectangularCartesianArea(
+        RectangularCartesianAreaBuilder $rectangularCartesianAreaBuilder,
+        RectangularCartesianAreaBuilderData $rectangularCartesianAreaBuilderData
+    ): RectangularCartesianArea {
+
+        return $rectangularCartesianAreaBuilder->create(
+            $rectangularCartesianAreaBuilderData
+        );
+    }
+
+    private function thenShouldHaveCreatedTheRectangularCartesianArea(
+        RectangularCartesianArea $rectangularCartesianArea
+    ): void {
+        $expectedRectangularCartesianArea = RectangularCartesianArea::createWithUpperRightCoordinates(
+            self::UPPER_RIGHT_ABSCISSA,
+            self::UPPER_RIGHT_ORDINATE
+        );
+
+        self::assertEquals(
+            $expectedRectangularCartesianArea,
+            $rectangularCartesianArea
         );
     }
 }

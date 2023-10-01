@@ -18,4 +18,13 @@ final class RectangularCartesianAreaBuilder implements CartesianAreaBuilder
 
         return self::$instance;
     }
+
+    public function create(
+        CartesianAreaBuilderData $data
+    ): CartesianArea {
+        return RectangularCartesianArea::createWithUpperRightCoordinates(
+            $data->upperRightAbscissa(),
+            $data->upperRightOrdinate()
+        );        
+    }
 }
