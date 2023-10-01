@@ -9,5 +9,5 @@ use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianPoint;
 
 interface CartesianArea extends Area
 {
-    public function checkPoint(CartesianPoint $point);
+    public function validatePoint(CartesianPoint $point);
 }

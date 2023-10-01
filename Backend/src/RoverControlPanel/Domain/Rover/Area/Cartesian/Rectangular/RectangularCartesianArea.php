@@ -40,7 +40,7 @@ final readonly class RectangularCartesianArea implements CartesianArea
         );
     }
 
-    public function checkPoint(CartesianPoint $cartesianPoint): void
+    public function validatePoint(CartesianPoint $cartesianPoint): void
     {
         if ($cartesianPoint->isGreatherThan(
             $this->upperRight

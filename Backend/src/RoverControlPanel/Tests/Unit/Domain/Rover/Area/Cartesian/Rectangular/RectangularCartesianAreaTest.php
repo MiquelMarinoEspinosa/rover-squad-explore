@@ -66,11 +66,11 @@ final class RectangularCartesianAreaTest extends TestCase
         );
     }
 
-    public function testCheckPointShouldConsiderThePointValid(): void
+    public function testValidatePointShouldConsiderThePointValid(): void
     {
         $rectangularCartesianArea = $this->givenRectangularCartesianArea();
 
-        $rectangularCartesianArea->checkPoint(
+        $rectangularCartesianArea->validatePoint(
             CartesianCoordinatePoint::create(
                 self::UPPER_RIGHT_ABSCISSA,
                 self::UPPER_RIGHT_ORDINATE
@@ -80,39 +80,39 @@ final class RectangularCartesianAreaTest extends TestCase
         self::assertTrue(true);
     }
 
-    public function testCheckPointShouldThrowAnExceptionWhenThePointAbscissaIsBeyondTheAreaUpperRight(): void
+    public function testValidatePointShouldThrowAnExceptionWhenThePointAbscissaIsBeyondTheAreaUpperRight(): void
     {
-        $this->thenCheckPointShouldThrowAnException(
+        $this->thenValidatePointShouldThrowAnException(
             self::UPPER_RIGHT_ABSCISSA + 1,
             self::UPPER_RIGHT_ORDINATE
         );
     }
 
-    public function testCheckPointShouldThrowAnExceptionWhenThePointOrdinateIsBeyondTheAreaUpperRight(): void
+    public function testValidatePointShouldThrowAnExceptionWhenThePointOrdinateIsBeyondTheAreaUpperRight(): void
     {
-        $this->thenCheckPointShouldThrowAnException(
+        $this->thenValidatePointShouldThrowAnException(
             self::UPPER_RIGHT_ABSCISSA,
             self::UPPER_RIGHT_ORDINATE + 1
         );
     }
 
-    public function testCheckPointShouldThrowAnExceptionWhenThePointAbscissaIsBeyondTheAreaLowerLeft(): void
+    public function testValiadtePointShouldThrowAnExceptionWhenThePointAbscissaIsBeyondTheAreaLowerLeft(): void
     {
-        $this->thenCheckPointShouldThrowAnException(
+        $this->thenValidatePointShouldThrowAnException(
             self::LOWER_LEFT_ABSCISSA - 1,
             self::LOWER_LEFT_ORDINATE
         );
     }
 
-    public function testCheckPointShouldThrowAnExceptionWhenThePointOrdinateIsBeyondTheAreaLowerLeft(): void
+    public function testValidatePointShouldThrowAnExceptionWhenThePointOrdinateIsBeyondTheAreaLowerLeft(): void
     {
-        $this->thenCheckPointShouldThrowAnException(
+        $this->thenValidatePointShouldThrowAnException(
             self::LOWER_LEFT_ABSCISSA,
             self::LOWER_LEFT_ORDINATE - 1
         );
     }
 
-    private function thenCheckPointShouldThrowAnException(
+    private function thenValidatePointShouldThrowAnException(
         int $abscissa,
         int $ordinate
     ): void {
@@ -120,7 +120,7 @@ final class RectangularCartesianAreaTest extends TestCase
 
         self::expectException(RectangularCartesianAreaOutOfArea::class);
 
-        $rectangularCartesianArea->checkPoint(
+        $rectangularCartesianArea->validatePoint(
             CartesianCoordinatePoint::create(
                 $abscissa,
                 $ordinate
