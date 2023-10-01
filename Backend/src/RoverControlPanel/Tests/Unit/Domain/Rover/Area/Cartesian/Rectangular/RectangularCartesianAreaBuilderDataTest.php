@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Area\Cartesian;
+namespace Core\RoverControlPanel\Tests\Unit\Domain\Rover\Area\Cartesian\Rectangular;
 
-use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\CartesianAreaBuilderData;
 use PHPUnit\Framework\TestCase;
-use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\RectangularCartesianAreaBuilderData;
+use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\CartesianAreaBuilderData;
+use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaBuilderData;
 
 final class RectangularCartesianAreaBuilderDataTest extends TestCase
 {

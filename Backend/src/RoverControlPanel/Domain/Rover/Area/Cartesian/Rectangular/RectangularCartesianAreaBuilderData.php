@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\RoverControlPanel\Domain\Rover\Area\Cartesian;
+namespace Core\RoverControlPanel\Domain\Rover\Area\Cartesian\Rectangular;
+
+use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\CartesianAreaBuilderData;
 
 final readonly class RectangularCartesianAreaBuilderData implements CartesianAreaBuilderData
 {

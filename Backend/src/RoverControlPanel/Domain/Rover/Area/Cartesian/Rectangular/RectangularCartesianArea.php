@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Core\RoverControlPanel\Domain\Rover\Area\Cartesian;
+namespace Core\RoverControlPanel\Domain\Rover\Area\Cartesian\Rectangular;
 
-use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
+use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianPoint;
+use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
 
 final readonly class RectangularCartesianArea implements CartesianArea
 {

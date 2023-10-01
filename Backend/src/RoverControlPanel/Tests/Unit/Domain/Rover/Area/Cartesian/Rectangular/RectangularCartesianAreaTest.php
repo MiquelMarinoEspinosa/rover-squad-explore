@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Core\Tests\Unit\Domain\Rover\Area;
+namespace Core\Tests\Unit\Domain\Rover\Area\Rectangular;
 
 use PHPUnit\Framework\TestCase;
 use Core\RoverControlPanel\Domain\Rover\Area\Area;
 use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\CartesianArea;
-use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\RectangularCartesianArea;
 use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
-use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\RectangularCartesianAreaOutOfArea;
+use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
+use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaOutOfArea;
 
 final class RectangularCartesianAreaTest extends TestCase
 {
