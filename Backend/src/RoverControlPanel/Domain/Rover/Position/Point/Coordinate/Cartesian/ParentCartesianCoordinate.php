@@ -6,7 +6,6 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesia
 
 abstract class ParentCartesianCoordinate implements CartesianCoordinate
 {
-    private const ERROR_MESSAGE = 'CartesianCoordinate movement not allowed: ';
     private const MOVEMENT_STEP = 1;
 
     public function __construct(
@@ -67,8 +66,8 @@ abstract class ParentCartesianCoordinate implements CartesianCoordinate
         string $movement
     ): CartesianCoordinateNotAllowedMovement {
 
-        return new CartesianCoordinateNotAllowedMovement(
-            self::ERROR_MESSAGE . $movement
+        return CartesianCoordinateNotAllowedMovement::create(
+            $movement
         );
     }
 }
