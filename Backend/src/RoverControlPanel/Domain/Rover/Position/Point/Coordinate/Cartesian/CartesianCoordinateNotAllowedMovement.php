@@ -10,7 +10,7 @@ final class CartesianCoordinateNotAllowedMovement extends \Exception
 {
     private const ERROR_MESSAGE = 'CartesianCoordinate movement not allowed: ';
 
-    public function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
+    private function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
