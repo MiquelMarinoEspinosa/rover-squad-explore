@@ -15,4 +15,9 @@ final readonly class CartesianCoordinatePointData implements CartesianPointData
     {
         return $this->abscissa;
     }
+
+    public function ordinate(): int
+    {
+        return 1;
+    }
 }
