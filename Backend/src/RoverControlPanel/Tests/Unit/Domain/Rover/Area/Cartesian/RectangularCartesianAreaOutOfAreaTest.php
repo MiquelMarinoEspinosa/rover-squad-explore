@@ -13,24 +13,37 @@ use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\RectangularCartesianAreaO
 
 final class RectangularCartesianAreaOutOfAreaTest extends TestCase
 {
+    private const LOWER_LEFT_ABSCISSA  = 0;
+    private const LOWER_LEFT_ORDINATE  = self::LOWER_LEFT_ABSCISSA;
     private const UPPER_RIGHT_ABSCISSA = 5;
-    private const UPPER_RIGHT_ORDINATE = 5;
+    private const UPPER_RIGHT_ORDINATE = self::UPPER_RIGHT_ABSCISSA;
 
     public function testShouldCreateRectangularCartesianAreaOutOfArea(): void
     {
-        $rectangularCartesianArea = $this->givenRectangularCartesianArea();
+        $lowerLeftCoordinatePoint = $this->givenLowerLeftCoordinatePoint();
+
+        $upperRightCoordinatePoint = $this->givenUpperRightCoordinatePoint();
 
         $cartesianCoordinatePoint = $this->givenCartestianCoordinatePoint();
 
         $this->thenShouldCreateTheRectangularCartesianAreaOutOfArea(
-            $rectangularCartesianArea,
+            $lowerLeftCoordinatePoint,
+            $upperRightCoordinatePoint,
             $cartesianCoordinatePoint
         );
     }
 
-    private function givenRectangularCartesianArea(): RectangularCartesianArea
+    private function givenLowerLeftCoordinatePoint(): CartesianCoordinatePoint
     {
-        return RectangularCartesianArea::createWithUpperRightCoordinates(
+        return CartesianCoordinatePoint::create(
+            self::LOWER_LEFT_ABSCISSA,
+            self::LOWER_LEFT_ORDINATE
+        );
+    }
+
+    private function givenUpperRightCoordinatePoint(): CartesianCoordinatePoint
+    {
+        return CartesianCoordinatePoint::create(
             self::UPPER_RIGHT_ABSCISSA,
             self::UPPER_RIGHT_ORDINATE
         );
@@ -45,11 +58,13 @@ final class RectangularCartesianAreaOutOfAreaTest extends TestCase
     }
 
     private function thenShouldCreateTheRectangularCartesianAreaOutOfArea(
-        RectangularCartesianArea $rectangular,
+        CartesianCoordinatePoint $lowerLeftCoordinatePoint,
+        CartesianCoordinatePoint $upperRightCoordinatePoint,
         CartesianCoordinatePoint $cartesianCoordinatePoint
     ): void {
         $rectangularCartesianAreaOutOfArea = RectangularCartesianAreaOutOfArea::create(
-            $rectangular,
+            $lowerLeftCoordinatePoint,
+            $upperRightCoordinatePoint,
             $cartesianCoordinatePoint
         );
 
