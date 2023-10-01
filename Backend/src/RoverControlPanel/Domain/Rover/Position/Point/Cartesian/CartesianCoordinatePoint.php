@@ -7,28 +7,13 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\CartesianCoordinate;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\AbscissaCartesianCoordinate;
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian\OrdinateCartesianCoordinate;
-use Core\RoverControlPanel\Domain\Rover\Position\Point\PointData;
 
 final readonly class CartesianCoordinatePoint implements CartesianPoint
 {
-    private const ABSCISSA         = 'abscissa';
-    private const ORDINATE         = 'ordinate';
-    private const COORDINATE_NAMES =  [
-        self::ABSCISSA,
-        self::ORDINATE
-    ];
-    private const ERROR_MESSAGE = 'Coordinate point not found: ';
-
-    private array $coordinates;
-
     private function __construct(
         private CartesianCoordinate $abscissa,
         private CartesianCoordinate $ordinate
     ) {
-        $this->coordinates = [
-            self::ABSCISSA => $this->abscissa,
-            self::ORDINATE => $this->ordinate
-        ];
     }
 
     public static function create(
@@ -94,27 +79,6 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
             $this->abscissa->value(),
             $this->ordinate->value()
         );
-    }
-
-    public function coordinateNames(): array
-    {
-        return self::COORDINATE_NAMES;
-    }
-
-    public function coordinateValue(string $coordinateName): int
-    {
-        if (!$this->coordinateExists($coordinateName)) {
-            throw new CartesianCoordinateNotFound(
-                self::ERROR_MESSAGE . $coordinateName
-            );
-        }
-
-        return $this->coordinates[$coordinateName]->value();
-    }
-
-    private function coordinateExists($coordinateName): bool
-    {
-        return isset($this->coordinates[$coordinateName]);
     }
 
     private function isAbscissaCoordinateGreatherThan(
