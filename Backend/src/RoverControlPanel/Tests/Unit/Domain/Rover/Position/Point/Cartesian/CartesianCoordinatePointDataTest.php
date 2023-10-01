@@ -13,7 +13,18 @@ final class CartesianCoordinatePointDataTest extends TestCase
 {
     private const ABSCISSA = 0;
     private const ORDINATE = 1;
+
+    private CartesianCoordinatePointData $cartesianCoordinatePointData;
     
+    protected function setUp(): void
+    {
+        $this->cartesianCoordinatePointData = new CartesianCoordinatePointData(
+            self::ABSCISSA,
+            self::ORDINATE
+        );
+    }
+
+
     public function testShouldCreateTheCartesianCoordinatePointData(): void
     {
         $cartesianCoordinatePointData = new CartesianCoordinatePointData(
@@ -39,27 +50,17 @@ final class CartesianCoordinatePointDataTest extends TestCase
 
     public function testShouldReturnTheAbscissa(): void
     {
-        $cartesianCoordinatePointData = new CartesianCoordinatePointData(
-            0,
-            1
-        );
-
         self::assertSame(
             0,
-            $cartesianCoordinatePointData->abscissa()
+            $this->cartesianCoordinatePointData->abscissa()
         );
     }
 
     public function testShouldReturnTheOrdinate(): void
     {
-        $cartesianCoordinatePointData = new CartesianCoordinatePointData(
-            0,
-            1
-        );
-
         self::assertSame(
             1,
-            $cartesianCoordinatePointData->ordinate()
+            $this->cartesianCoordinatePointData->ordinate()
         );
     }
 }
