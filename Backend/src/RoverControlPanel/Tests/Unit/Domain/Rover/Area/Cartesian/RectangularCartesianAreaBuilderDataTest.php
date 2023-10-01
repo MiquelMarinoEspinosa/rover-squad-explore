@@ -11,11 +11,13 @@ use Core\RoverControlPanel\Domain\Rover\Area\Cartesian\RectangularCartesianAreaB
 final class RectangularCartesianAreaBuilderDataTest extends TestCase
 {
     private const UPPER_RIGHT_ABSCISSA = 5;
-     
+    private const UPPER_RIGHT_ORDINATE = self::UPPER_RIGHT_ABSCISSA;
+
     public function testShouldCreateTheRectangularCartesianAreaBuilderData(): void
     {
         $rectangularCartesianAreaBuilderData = new RectangularCartesianAreaBuilderData(
-            self::UPPER_RIGHT_ABSCISSA
+            self::UPPER_RIGHT_ABSCISSA,
+            self::UPPER_RIGHT_ORDINATE
         );
 
         self::assertInstanceOf(
@@ -32,7 +34,8 @@ final class RectangularCartesianAreaBuilderDataTest extends TestCase
     public function testShouldReturnTheUpperRightAbscissa(): void
     {
         $rectangularCartesianAreaBuilderData = new RectangularCartesianAreaBuilderData(
-            self::UPPER_RIGHT_ABSCISSA
+            self::UPPER_RIGHT_ABSCISSA,
+            self::UPPER_RIGHT_ORDINATE
         );
 
         self::assertSame(
@@ -45,11 +48,11 @@ final class RectangularCartesianAreaBuilderDataTest extends TestCase
     {
         $rectangularCartesianAreaBuilderData = new RectangularCartesianAreaBuilderData(
             self::UPPER_RIGHT_ABSCISSA,
-            5
+            self::UPPER_RIGHT_ORDINATE
         );
 
         self::assertSame(
-            5,
+            self::UPPER_RIGHT_ORDINATE,
             $rectangularCartesianAreaBuilderData->upperRightOrdinate()
         );
     }

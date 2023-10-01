@@ -7,7 +7,8 @@ namespace Core\RoverControlPanel\Domain\Rover\Area\Cartesian;
 final readonly class RectangularCartesianAreaBuilderData implements CartesianAreaBuilderData
 {
     public function __construct(
-        private int $upperRightAbscissa
+        private int $upperRightAbscissa,
+        private int $upperRightOrdinate
     ) {
     }
 
@@ -18,6 +19,6 @@ final readonly class RectangularCartesianAreaBuilderData implements CartesianAre
 
     public function upperRightOrdinate(): int
     {
-        return 5;
+        return $this->upperRightOrdinate;
     }
 }
