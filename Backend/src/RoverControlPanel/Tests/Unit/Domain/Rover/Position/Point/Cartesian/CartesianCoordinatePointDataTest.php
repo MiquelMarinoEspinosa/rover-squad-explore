@@ -13,7 +13,7 @@ final class CartesianCoordinatePointDataTest extends TestCase
 {
     public function testShouldCreateTheCartesianCoordinatePointData(): void
     {
-        $cartesianCoordinatePointData = new CartesianCoordinatePointData();
+        $cartesianCoordinatePointData = new CartesianCoordinatePointData(0);
 
         self::assertInstanceOf(
             CartesianCoordinatePointData::class,
