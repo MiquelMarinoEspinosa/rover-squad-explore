@@ -22,4 +22,12 @@ final class RectangularCartesianAreaBuilderTest extends TestCase
             $rectangularCartesianAreaBuilder
         );
     }
+
+    public function testShouldReturnTheSameInstanceWhenGetInstanceTwice(): void
+    {
+        self::assertSame(
+            RectangularCartesianAreaBuilder::getInstance(),
+            RectangularCartesianAreaBuilder::getInstance()
+        );
+    }
 }
