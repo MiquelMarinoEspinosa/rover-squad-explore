@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Cartesian;
 
 use Core\RoverControlPanel\Domain\Rover\Position\Point\Coordinate\Coordinate;
