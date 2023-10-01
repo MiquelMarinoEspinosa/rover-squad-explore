@@ -7,7 +7,8 @@ namespace Core\RoverControlPanel\Domain\Rover\Position\Point\Cartesian;
 final readonly class CartesianCoordinatePointData implements CartesianPointData
 {
     public function __construct(
-        private int $abscissa
+        private int $abscissa,
+        private int $ordinate
     ) {
     }
 
@@ -18,6 +19,6 @@ final readonly class CartesianCoordinatePointData implements CartesianPointData
 
     public function ordinate(): int
     {
-        return 1;
+        return $this->ordinate;
     }
 }
