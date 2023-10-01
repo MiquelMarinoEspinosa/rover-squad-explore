@@ -120,7 +120,7 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
     private function isAbscissaCoordinateGreatherThan(
         CartesianPoint $cartesianPoint
     ): bool {
-        $abscissaValue = $cartesianPoint->coordinateValue(self::ABSCISSA);
+        $abscissaValue = $cartesianPoint->data()->abscissa();
 
         return $this->abscissa->greaterThan(
             new AbscissaCartesianCoordinate($abscissaValue)
@@ -130,7 +130,7 @@ final readonly class CartesianCoordinatePoint implements CartesianPoint
     private function isOrdinateCoordinateGreatherThan(
         CartesianPoint $cartesianPoint
     ): bool {
-        $ordinateValue = $cartesianPoint->coordinateValue(self::ORDINATE);
+        $ordinateValue = $cartesianPoint->data()->ordinate();
 
         return $this->ordinate->greaterThan(
             new OrdinateCartesianCoordinate($ordinateValue)
