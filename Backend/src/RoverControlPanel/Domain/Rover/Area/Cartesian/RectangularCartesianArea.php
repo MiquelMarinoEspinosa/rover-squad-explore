@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\RoverControlPanel\Domain\Rover\Point\Area\Cartesian;
+namespace Core\RoverControlPanel\Domain\Rover\Area\Cartesian;
 
 use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
 use Core\RoverControlPanel\Domain\Rover\Point\Cartesian\CartesianPoint;
