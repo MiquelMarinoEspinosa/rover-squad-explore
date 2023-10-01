@@ -204,6 +204,14 @@ final class CartesianCoordinatePointTest extends TestCase
         );     
     }
 
+    public function testShouldNotBeLesserThanWhenGreaterAbscissa(): void
+    {
+        $this->thenShouldNotBeLesser(
+            self::ABSCISSA + 1,
+            self::ORDINATE
+        );     
+    }
+
     private function thenShouldNotBeGreater(
         int $abscissaValue,
         int $ordinateValue
