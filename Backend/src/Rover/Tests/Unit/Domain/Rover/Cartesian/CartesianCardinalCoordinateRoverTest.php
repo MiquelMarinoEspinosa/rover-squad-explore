@@ -58,7 +58,7 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
     {
         $cartesianCardinalCoordinateRover = $this->givenCartesianRover();
 
-        $cartesianCardinalCoordinateRoverData = $cartesianCardinalCoordinateRover->data();
+        $cartesianCardinalCoordinateRoverData = $cartesianCardinalCoordinateRover->position();
 
         self::assertInstanceOf(
             CartesianCardinalCoordinateRoverData::class,
@@ -88,7 +88,7 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
 
         self::assertSame(
             $cartesianCardinalDirection->value(),
-            $cartesianRover->data()->cardinalDirection()
+            $cartesianRover->position()->cardinal()
         );
     }
 

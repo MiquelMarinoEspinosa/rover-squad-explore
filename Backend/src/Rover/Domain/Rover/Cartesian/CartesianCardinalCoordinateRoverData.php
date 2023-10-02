@@ -7,13 +7,12 @@ namespace Core\Rover\Domain\Rover\Cartesian;
 final readonly class CartesianCardinalCoordinateRoverData implements CartesianRoverData
 {
     public function __construct(
-        private string $cardinalDirection
+        private string $cardinal
     ) {
-
     }
-    
-    public function cardinalDirection(): string
+
+    public function cardinal(): string
     {
-        return $this->cardinalDirection;
+        return $this->cardinal;
     }
 }

@@ -6,5 +6,5 @@ use Core\Rover\Domain\Rover\RoverData;
 
 interface CartesianRoverData extends RoverData
 {
-    public function cardinalDirection(): string;
+    public function cardinal(): string;
 }
