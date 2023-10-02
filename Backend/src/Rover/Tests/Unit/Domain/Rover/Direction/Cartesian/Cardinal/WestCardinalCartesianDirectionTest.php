@@ -9,6 +9,7 @@ use Core\Rover\Domain\Rover\Direction\Direction;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
 
 final class WestCardinalCartesianDirectionTest extends TestCase
 {
@@ -32,12 +33,12 @@ final class WestCardinalCartesianDirectionTest extends TestCase
         );
     }
 
-    public function testShouldPointNorthWhenRotateLeft(): void
+    public function testShouldPointSouthWhenRotateLeft(): void
     {
         $westCartesianCardinalDirection = $this->givenWestCartesianCardinalDirection();
 
         self::assertInstanceOf(
-            NorthCardinalCartesianDirection::class,
+            SouthCardinalCartesianDirection::class,
             $westCartesianCardinalDirection->rotateLeft()
         );
     }

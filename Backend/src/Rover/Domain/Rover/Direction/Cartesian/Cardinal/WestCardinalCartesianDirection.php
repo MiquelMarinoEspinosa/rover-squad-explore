@@ -10,7 +10,7 @@ final readonly class WestCardinalCartesianDirection implements CartesianCardinal
 {
     public function rotateLeft(): CartesianCardinalDirection
     {
-        return new NorthCardinalCartesianDirection;
+        return new SouthCardinalCartesianDirection;
     }
 
     public function rotateRight(): CartesianCardinalDirection
