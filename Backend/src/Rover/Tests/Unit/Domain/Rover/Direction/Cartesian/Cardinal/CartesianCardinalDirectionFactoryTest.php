@@ -44,7 +44,7 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
 
     public function testShouldCreateEastCartesianCardinalDirection(): void
     {
-        $cartesianCardinalDirectionFactory = CartesianCardinalDirectionFactory::getInstance();
+        $cartesianCardinalDirectionFactory = $this->givenCartesianCardinalDirectionFactory();
 
         self::assertInstanceOf(
             EastCardinalCartesianDirection::class,
@@ -56,7 +56,7 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
 
     public function testShouldCreateNorthCartesianCardinalDirection(): void
     {
-        $cartesianCardinalDirectionFactory = CartesianCardinalDirectionFactory::getInstance();
+        $cartesianCardinalDirectionFactory = $this->givenCartesianCardinalDirectionFactory();
 
         self::assertInstanceOf(
             NorthCardinalCartesianDirection::class,
@@ -68,7 +68,7 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
 
     public function testShouldCreateSouthCartesianCardinalDirection(): void
     {
-        $cartesianCardinalDirectionFactory = CartesianCardinalDirectionFactory::getInstance();
+        $cartesianCardinalDirectionFactory = $this->givenCartesianCardinalDirectionFactory();
 
         self::assertInstanceOf(
             SouthCardinalCartesianDirection::class,
@@ -80,7 +80,7 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
 
     public function testShouldCreateWestCartesianCardinalDirection(): void
     {
-        $cartesianCardinalDirectionFactory = CartesianCardinalDirectionFactory::getInstance();
+        $cartesianCardinalDirectionFactory = $this->givenCartesianCardinalDirectionFactory();
 
         self::assertInstanceOf(
             WestCardinalCartesianDirection::class,
@@ -88,5 +88,10 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
                 self::WEST_VALUE
             )
         );
+    }
+
+    private function givenCartesianCardinalDirectionFactory(): CartesianCardinalDirectionFactory
+    {
+        return CartesianCardinalDirectionFactory::getInstance();
     }
 }
