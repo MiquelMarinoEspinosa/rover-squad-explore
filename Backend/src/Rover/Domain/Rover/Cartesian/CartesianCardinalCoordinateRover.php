@@ -15,8 +15,7 @@ final readonly class CartesianCardinalCoordinateRover implements CartesianRover
         private CartesianArea $cartesianArea,
         private CartesianCardinalDirection $cartesianCardinalDirection,
         private CartesianPoint $cartesianPoint
-    )
-    {
+    ) {
     }
 
     public static function create(
@@ -39,7 +38,8 @@ final readonly class CartesianCardinalCoordinateRover implements CartesianRover
     public function position(): CartesianCardinalCoordinateRoverPosition
     {
         return new CartesianCardinalCoordinateRoverPosition(
-            $this->cartesianCardinalDirection->value()
+            $this->cartesianCardinalDirection->value(),
+            $this->cartesianPoint->data()->abscissa()
         );
     }
 }

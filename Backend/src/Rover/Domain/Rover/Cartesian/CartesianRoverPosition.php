@@ -7,4 +7,6 @@ use Core\Rover\Domain\Rover\RoverPosition;
 interface CartesianRoverPosition extends RoverPosition
 {
     public function cardinal(): string;
+
+    public function abscissa(): int;
 }

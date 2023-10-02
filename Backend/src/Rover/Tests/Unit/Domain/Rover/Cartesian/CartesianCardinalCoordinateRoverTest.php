@@ -22,8 +22,8 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
 {
     private const AREA_UPPER_RIGHT_ABSCISSA = 5;
     private const AREA_UPPER_RIGHT_ORDINATE = self::AREA_UPPER_RIGHT_ABSCISSA;
-    private const POINT_ABSCISSA            = 0;
-    private const POINT_ORDINATE            = self::POINT_ABSCISSA;
+    private const POSITION_ABSCISSA         = 0;
+    private const POSITION_ORDINATE         = 1;
 
     public function testShouldCreateCartesianCardinalCoordinateRover(): void
     {
@@ -34,8 +34,8 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         $cartesianCardinalCoordinateRover = CartesianCardinalCoordinateRover::create(
             $cartesianArea,
             $cartesianCardinalDirection,
-            self::POINT_ABSCISSA,
-            self::POINT_ORDINATE
+            self::POSITION_ABSCISSA,
+            self::POSITION_ORDINATE
         );
 
         self::assertInstanceOf(
@@ -82,13 +82,23 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         $cartesianRover = CartesianCardinalCoordinateRover::create(
             $cartesianArea,
             $cartesianCardinalDirection,
-            self::POINT_ABSCISSA,
-            self::POINT_ORDINATE
+            self::POSITION_ABSCISSA,
+            self::POSITION_ORDINATE
         );
 
         self::assertSame(
             $cartesianCardinalDirection->value(),
             $cartesianRover->position()->cardinal()
+        );
+    }
+
+    public function testShouldReturnTheAbsissa(): void
+    {
+        $cartesianCardinalCoordinateRover = $this->givenCartesianRover();
+
+        self::assertSame(
+            self::POSITION_ABSCISSA,
+            $cartesianCardinalCoordinateRover->position()->abscissa()
         );
     }
 
@@ -111,8 +121,8 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         return CartesianCardinalCoordinateRover::create(
             $cartesianArea,
             $cartesianCardinalDirection,
-            self::POINT_ABSCISSA,
-            self::POINT_ORDINATE
+            self::POSITION_ABSCISSA,
+            self::POSITION_ORDINATE
         );
     }
 
