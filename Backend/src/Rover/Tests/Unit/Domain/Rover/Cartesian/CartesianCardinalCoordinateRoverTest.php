@@ -139,7 +139,28 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
             $cartesianCardinalCoordinateRover
         );
 
-        $this->thenShouldHaveBeenTurnLeft(
+        $this->thenShouldHaveBeenRotate(
+            $cartesianCardinalCoordinateRover,
+            $expectedCardinalDirection
+        );
+    }
+
+    /**
+     * @dataProvider cardinalDirectionRotateRightProvider
+     */
+    public function testShouldRotateRight(
+        CartesianCardinalDirection $cartesianCardinalDirection,
+        CartesianCardinalDirection $expectedCardinalDirection,
+    ): void {
+        $cartesianCardinalCoordinateRover = $this->givenCartesianRover(
+            $cartesianCardinalDirection
+        );
+
+        $cartesianCardinalCoordinateRover = $this->whenRotateRight(
+            $cartesianCardinalCoordinateRover
+        );
+
+        $this->thenShouldHaveBeenRotate(
             $cartesianCardinalCoordinateRover,
             $expectedCardinalDirection
         );
@@ -177,6 +198,28 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         ];
     }
 
+    public static function cardinalDirectionRotateRightProvider(): array
+    {
+        return [
+            'east-south' => [
+                new EastCardinalCartesianDirection,
+                new SouthCardinalCartesianDirection
+            ],
+            'north-east' => [
+                new NorthCardinalCartesianDirection,
+                new EastCardinalCartesianDirection
+            ],
+            'south-west' => [
+                new SouthCardinalCartesianDirection,
+                new WestCardinalCartesianDirection
+            ],
+            'west-north' => [
+                new WestCardinalCartesianDirection,
+                new NorthCardinalCartesianDirection
+            ]
+        ];
+    }
+
     private function givenCartesianRover(
         CartesianCardinalDirection $cartesianCardinalDirection
     ): CartesianCardinalCoordinateRover {
@@ -210,7 +253,14 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         return $cartesianCardinalCoordinateRover->rotateLeft();
     }
 
-    private function thenShouldHaveBeenTurnLeft(
+    private function whenRotateRight(
+        CartesianCardinalCoordinateRover $cartesianCardinalCoordinateRover
+    ): CartesianCardinalCoordinateRover {
+
+        return $cartesianCardinalCoordinateRover->rotateRight();
+    }
+
+    private function thenShouldHaveBeenRotate(
         CartesianCardinalCoordinateRover $cartesianCardinalCoordinateRover,
         CartesianCardinalDirection $expectedCardinalDirection
     ): void {

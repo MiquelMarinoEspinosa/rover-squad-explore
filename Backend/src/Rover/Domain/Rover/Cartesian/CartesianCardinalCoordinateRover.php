@@ -48,7 +48,16 @@ final class CartesianCardinalCoordinateRover implements CartesianRover
 
     public function rotateLeft(): self
     {
-        $this->cartesianCardinalDirection = $this->cartesianCardinalDirection->rotateLeft();
+        $this->cartesianCardinalDirection = $this->cartesianCardinalDirection
+            ->rotateLeft();
+
+        return $this;
+    }
+
+    public function rotateRight(): self
+    {
+        $this->cartesianCardinalDirection = $this->cartesianCardinalDirection
+            ->rotateRight();
 
         return $this;
     }
