@@ -11,7 +11,10 @@ use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRover;
 use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRoverData;
 use Core\Rover\Domain\Rover\Cartesian\CartesianRover;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Rover;
 use Core\Rover\Domain\Rover\RoverData;
 
@@ -68,6 +71,37 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         );
     }
 
+    /**
+     * @dataProvider cardinalDirectionProvider
+     */
+    public function testShouldReturnTheCardinalDirection(
+        CartesianCardinalDirection $cartesianCardinalDirection
+    ): void {
+        $cartesianArea = $this->givenCartesianArea();
+
+        $cartesianRover = CartesianCardinalCoordinateRover::create(
+            $cartesianArea,
+            $cartesianCardinalDirection,
+            self::POINT_ABSCISSA,
+            self::POINT_ORDINATE
+        );
+
+        self::assertSame(
+            $cartesianCardinalDirection->value(),
+            $cartesianRover->data()->cardinalDirection()
+        );
+    }
+
+    public static function cardinalDirectionProvider(): array
+    {
+        return [
+            'east'  => [new EastCardinalCartesianDirection],
+            'north' => [new NorthCardinalCartesianDirection],
+            'south' => [new SouthCardinalCartesianDirection],
+            'west'  => [new WestCardinalCartesianDirection]
+        ];
+    }
+
     private function givenCartesianRover(): CartesianCardinalCoordinateRover
     {
         $cartesianArea = $this->givenCartesianArea();
@@ -77,8 +111,8 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         return CartesianCardinalCoordinateRover::create(
             $cartesianArea,
             $cartesianCardinalDirection,
-            1,
-            1
+            self::POINT_ABSCISSA,
+            self::POINT_ORDINATE
         );
     }
 
