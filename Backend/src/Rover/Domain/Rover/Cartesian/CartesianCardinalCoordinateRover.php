@@ -9,7 +9,7 @@ use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirect
 use Core\Rover\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
 use Core\Rover\Domain\Rover\Point\Cartesian\CartesianPoint;
 
-final readonly class CartesianCardinalCoordinateRover implements CartesianRover
+final class CartesianCardinalCoordinateRover implements CartesianRover
 {
     public function __construct(
         private CartesianArea $cartesianArea,
@@ -37,10 +37,19 @@ final readonly class CartesianCardinalCoordinateRover implements CartesianRover
 
     public function position(): CartesianCardinalCoordinateRoverPosition
     {
+        $cartesianPointData = $this->cartesianPoint->data();
+
         return new CartesianCardinalCoordinateRoverPosition(
             $this->cartesianCardinalDirection->value(),
-            $this->cartesianPoint->data()->abscissa(),
-            $this->cartesianPoint->data()->ordinate()
+            $cartesianPointData->abscissa(),
+            $cartesianPointData->ordinate()
         );
+    }
+
+    public function rotateLeft(): self
+    {
+        $this->cartesianCardinalDirection = $this->cartesianCardinalDirection->rotateLeft();
+
+        return $this;
     }
 }

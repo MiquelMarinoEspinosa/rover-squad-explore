@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Domain\Rover\Cartesian;
 
-use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRoverPosition;
-use Core\Rover\Domain\Rover\Cartesian\CartesianRoverPosition;
-use Core\Rover\Domain\Rover\RoverPosition;
 use PHPUnit\Framework\TestCase;
+use Core\Rover\Domain\Rover\RoverPosition;
+use Core\Rover\Domain\Rover\Cartesian\CartesianRoverPosition;
+use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRoverPosition;
 
 final class CartesianCardinalCoordinateRoverPositionTest extends TestCase
 {
