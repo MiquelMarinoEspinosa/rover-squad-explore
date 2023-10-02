@@ -10,6 +10,7 @@ use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirect
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
 
 final class SouthCardinalCartesianDirectionTest extends TestCase
 {
@@ -53,8 +54,64 @@ final class SouthCardinalCartesianDirectionTest extends TestCase
         );
     }
 
+    public function testShouldMoveThePointDownWhenMoveForward(): void
+    {
+        $southCartesianCardinalDirection = $this->givenSouthCartesianCardinalDirection();
+
+        $cartesianCoordinatePoint = $this->givenCartesianCoordinatePoint();
+
+        $movedCartesianCoordinatePoint = $this->whenMoveForward(
+            $southCartesianCardinalDirection,
+            $cartesianCoordinatePoint
+        );
+
+        $this->thenThePointShouldHaveMovedUp(
+            $cartesianCoordinatePoint,
+            $movedCartesianCoordinatePoint
+        );
+    }
+
     private function givenSouthCartesianCardinalDirection(): SouthCardinalCartesianDirection
     {
         return new SouthCardinalCartesianDirection;
+    }
+
+    private function givenCartesianCoordinatePoint(): CartesianCoordinatePoint
+    {
+        $abscissa = 0;
+        $ordinate = 0;
+
+        return CartesianCoordinatePoint::create(
+            $abscissa,
+            $ordinate
+        );
+    }
+
+    private function whenMoveForward(
+        SouthCardinalCartesianDirection $southCartesianCardinalDirection,
+        CartesianCoordinatePoint $cartesianCoordinatePoint
+    ): CartesianCoordinatePoint {
+
+        return $southCartesianCardinalDirection->moveForward(
+            $cartesianCoordinatePoint
+        );
+    }
+
+    private function thenThePointShouldHaveMovedUp(
+        CartesianCoordinatePoint $cartesianCoordinatePoint,
+        CartesianCoordinatePoint $movedCartesianCoordinatePoint
+    ): void {
+        $cartesianCoordinatePointData      = $cartesianCoordinatePoint->data();
+        $movedCartesianCoordinatePointData = $movedCartesianCoordinatePoint->data();
+
+        self::assertSame(
+            $cartesianCoordinatePointData->abscissa(),
+            $movedCartesianCoordinatePointData->abscissa()
+        );
+
+        self::assertSame(
+            $cartesianCoordinatePointData->ordinate() - 1,
+            $movedCartesianCoordinatePointData->ordinate()
+        );
     }
 }

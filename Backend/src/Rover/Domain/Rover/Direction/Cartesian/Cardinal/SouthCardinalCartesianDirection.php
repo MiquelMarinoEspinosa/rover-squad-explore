@@ -20,5 +20,6 @@ final readonly class SouthCardinalCartesianDirection implements CartesianCardina
 
     public function moveForward(CartesianPoint $point): CartesianPoint
     {
+        return $point->moveDown();
     }
 }
