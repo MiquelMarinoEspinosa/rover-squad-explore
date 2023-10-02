@@ -8,10 +8,12 @@ use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirectionFactory;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirectionAbstractFactory;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
 
 final class CartesianCardinalDirectionFactoryTest extends TestCase
 {
-    private const EAST_VALUE = 'E';
+    private const EAST_VALUE  = 'E';
+    private const NORTH_VALUE = 'N';
 
     public function testShouldInstanciateCartesianCardinalDirectionFactory(): void
     {
@@ -43,6 +45,16 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
         self::assertInstanceOf(
             EastCardinalCartesianDirection::class,
             $cartesianCardinalDirectionFactory->create(self::EAST_VALUE)
+        );
+    }
+
+    public function testShouldCreateNorthCartesianCardinalDirection(): void
+    {
+        $cartesianCardinalDirectionFactory = CartesianCardinalDirectionFactory::getInstance();
+
+        self::assertInstanceOf(
+            NorthCardinalCartesianDirection::class,
+            $cartesianCardinalDirectionFactory->create(self::NORTH_VALUE)
         );
     }
 }

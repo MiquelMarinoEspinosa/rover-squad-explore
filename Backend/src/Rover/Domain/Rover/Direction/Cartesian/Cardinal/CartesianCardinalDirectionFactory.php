@@ -21,6 +21,10 @@ final class CartesianCardinalDirectionFactory implements CartesianCardinalDirect
 
     public function create(string $value): CartesianCardinalDirection
     {
-        return new EastCardinalCartesianDirection;
+        if ('E' === $value) {
+            return new EastCardinalCartesianDirection;
+        }
+        
+        return new NorthCardinalCartesianDirection;
     }
 }
