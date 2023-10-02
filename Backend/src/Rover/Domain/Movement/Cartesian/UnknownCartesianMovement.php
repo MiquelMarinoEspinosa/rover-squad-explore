@@ -4,13 +4,23 @@ declare(strict_types=1);
 
 namespace Core\Rover\Domain\Movement\Cartesian;
 
-use Core\Rover\Domain\Movement\UnknownMovement;
 use Exception;
+use Throwable;
+use Core\Rover\Domain\Movement\UnknownMovement;
 
 final class UnknownCartesianMovement extends Exception implements UnknownMovement
 {
-    public static function create(): self
+    private const ERROR_MESSAGE = 'Unknown movement: %s';
+
+    private function __construct(string $message = "", int $code = 0, Throwable $previous = null)
     {
-        return new self;
+        parent::__construct($message, $code, $previous);
+    }
+
+    public static function create(string $value): self
+    {
+        return new self(
+            sprintf(self::ERROR_MESSAGE, $value)
+        );
     }
 }
