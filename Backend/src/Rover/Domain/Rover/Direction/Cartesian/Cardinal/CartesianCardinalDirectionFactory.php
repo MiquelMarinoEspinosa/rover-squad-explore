@@ -13,9 +13,14 @@ final class CartesianCardinalDirectionFactory implements CartesianCardinalDirect
         if (null !== self::$instance) {
             return self::$instance;
         }
-        
+
         self::$instance = new self();
-        
+
         return self::$instance;
+    }
+
+    public function create(string $value): CartesianCardinalDirection
+    {
+        return new EastCardinalCartesianDirection;
     }
 }
