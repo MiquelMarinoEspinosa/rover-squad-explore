@@ -10,14 +10,16 @@ use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirect
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirectionAbstractFactory;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\UnknownCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
 
 final class CartesianCardinalDirectionFactoryTest extends TestCase
 {
-    private const EAST_VALUE  = 'E';
-    private const NORTH_VALUE = 'N';
-    private const SOUTH_VALUE = 'S';
-    private const WEST_VALUE  = 'W';
+    private const EAST_VALUE    = 'E';
+    private const NORTH_VALUE   = 'N';
+    private const SOUTH_VALUE   = 'S';
+    private const WEST_VALUE    = 'W';
+    private const UNKNOWN_VALUE = 'unknown';
 
     public function testShouldInstanciateCartesianCardinalDirectionFactory(): void
     {
@@ -90,8 +92,41 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
         );
     }
 
+    public function testGivenUnknownDirectionValueShouldThrowAnException(): void
+    {
+        $cartesianCardinalDirectionFactory = $this->givenCartesianCardinalDirectionFactory();
+
+        $unknownValue = $this->givenUnknownDirectionValue();
+
+        $this->shouldThrowAnException();
+
+        $this->whenCreateCartesianCardinalDirection(
+            $cartesianCardinalDirectionFactory,
+            $unknownValue
+        );
+    }
+
     private function givenCartesianCardinalDirectionFactory(): CartesianCardinalDirectionFactory
     {
         return CartesianCardinalDirectionFactory::getInstance();
+    }
+
+    private function givenUnknownDirectionValue(): string
+    {
+        return self::UNKNOWN_VALUE;
+    }
+
+    private function shouldThrowAnException(): void
+    {
+        self::expectException(
+            UnknownCardinalCartesianDirection::class
+        );
+    }
+
+    private function whenCreateCartesianCardinalDirection(
+        CartesianCardinalDirectionFactory $cartesianCardinalDirectionFactory,
+        string $value
+    ): void {
+        $cartesianCardinalDirectionFactory->create($value);
     }
 }

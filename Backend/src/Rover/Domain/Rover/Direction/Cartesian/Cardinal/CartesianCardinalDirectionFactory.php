@@ -30,7 +30,10 @@ final class CartesianCardinalDirectionFactory implements CartesianCardinalDirect
             self::EAST_VALUE  => new EastCardinalCartesianDirection,
             self::SOUTH_VALUE => new SouthCardinalCartesianDirection,
             self::WEST_VALUE  => new WestCardinalCartesianDirection,
-            default => new NorthCardinalCartesianDirection
+            self::NORTH_VALUE => new NorthCardinalCartesianDirection,
+            default           => throw UnknownCardinalCartesianDirection::create(
+                $value
+            )
         };
     }
 }
