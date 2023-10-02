@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Direction\Direction;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
 
 final class NorthCardinalCartesianDirectionTest extends TestCase
 {
@@ -29,5 +30,20 @@ final class NorthCardinalCartesianDirectionTest extends TestCase
             Direction::class,
             $northCartesianCardinalDirection
         );
+    }
+
+    public function testShouldPointWestWhenRotateLeft(): void
+    {
+        $northCartesianCardinalDirection = $this->givenNorthCartesianCardinalDirection();
+
+        self::assertInstanceOf(
+            WestCardinalCartesianDirection::class,
+            $northCartesianCardinalDirection->rotateLeft()
+        );
+    }
+
+    private function givenNorthCartesianCardinalDirection(): NorthCardinalCartesianDirection
+    {
+        return new NorthCardinalCartesianDirection;
     }
 }

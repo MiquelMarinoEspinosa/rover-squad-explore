@@ -8,9 +8,16 @@ use Core\Rover\Domain\Rover\Point\Cartesian\CartesianPoint;
 
 final readonly class NorthCardinalCartesianDirection implements CartesianCardinalDirection
 {
-    public function rotateLeft(): CartesianCardinalDirection {}
+    public function rotateLeft(): CartesianCardinalDirection
+    {
+        return new WestCardinalCartesianDirection;
+    }
 
-    public function rotateRight(): CartesianCardinalDirection {}
+    public function rotateRight(): CartesianCardinalDirection
+    {
+    }
 
-    public function moveForward(CartesianPoint $point): CartesianPoint {}
+    public function moveForward(CartesianPoint $point): CartesianPoint
+    {
+    }
 }
