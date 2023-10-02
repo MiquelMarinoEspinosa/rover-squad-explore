@@ -65,6 +65,7 @@ final class ForwardCartesianMovementTest extends TestCase
 
         $this->thenShouldHaveBeenMovedForward(
             $cartesianCardinalCoordinateRover,
+            $cartesianCardinalDirection,
             $expectedPositionAbscissa,
             $expectedPositionOrdinate
         );
@@ -129,11 +130,17 @@ final class ForwardCartesianMovementTest extends TestCase
 
     private function thenShouldHaveBeenMovedForward(
         CartesianCardinalCoordinateRover $cartesianCardinalCoordinateRover,
+        CartesianCardinalDirection $cartesianCardinalDirection,
         int $expectedPositionAbscissa,
         int $expectedPositionOrdinate,
     ): void {
         $cartesianCardinalCoordinateRoverPosition = $cartesianCardinalCoordinateRover
             ->position();
+
+        self::assertSame(
+            $cartesianCardinalDirection->value(),
+            $cartesianCardinalCoordinateRoverPosition->cardinal()
+        );
 
         self::assertSame(
             $expectedPositionAbscissa,
