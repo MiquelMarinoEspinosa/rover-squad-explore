@@ -166,6 +166,29 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         );
     }
 
+    /**
+     * @dataProvider cardinalDirectionMoveForwardProvider
+     */
+    public function testShouldMoveForward(
+        CartesianCardinalDirection $cartesianCardinalDirection,
+        int $expectedPositionAbscissa,
+        int $expectedPositionOrdinate,
+    ): void {
+        $cartesianCardinalCoordinateRover = $this->givenCartesianRover(
+            $cartesianCardinalDirection
+        );
+
+        $cartesianCardinalCoordinateRover = $this->whenMoveForward(
+            $cartesianCardinalCoordinateRover
+        );
+
+        $this->thenShouldHaveBeenMovedForward(
+            $cartesianCardinalCoordinateRover,
+            $expectedPositionAbscissa,
+            $expectedPositionOrdinate
+        );
+    }
+
     public static function cardinalDirectionProvider(): array
     {
         return [
@@ -220,6 +243,32 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         ];
     }
 
+    public static function cardinalDirectionMoveForwardProvider(): array
+    {
+        return [
+            'east-right' => [
+                new EastCardinalCartesianDirection,
+                self::POSITION_ABSCISSA + 1,
+                self::POSITION_ORDINATE
+            ],
+            'north-up'   => [
+                new NorthCardinalCartesianDirection,
+                self::POSITION_ABSCISSA,
+                self::POSITION_ORDINATE + 1
+            ],
+            'south-down' => [
+                new SouthCardinalCartesianDirection,
+                self::POSITION_ABSCISSA,
+                self::POSITION_ORDINATE - 1
+            ],
+            'west-left'  => [
+                new WestCardinalCartesianDirection,
+                self::POSITION_ABSCISSA - 1,
+                self::POSITION_ORDINATE
+            ]
+        ];
+    }
+
     private function givenCartesianRover(
         CartesianCardinalDirection $cartesianCardinalDirection
     ): CartesianCardinalCoordinateRover {
@@ -260,6 +309,13 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         return $cartesianCardinalCoordinateRover->rotateRight();
     }
 
+    private function whenMoveForward(
+        CartesianCardinalCoordinateRover $cartesianCardinalCoordinateRover
+    ): CartesianCardinalCoordinateRover {
+
+        return $cartesianCardinalCoordinateRover->moveForward();
+    }
+
     private function thenShouldHaveBeenRotate(
         CartesianCardinalCoordinateRover $cartesianCardinalCoordinateRover,
         CartesianCardinalDirection $expectedCardinalDirection
@@ -267,6 +323,25 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         self::assertSame(
             $expectedCardinalDirection->value(),
             $cartesianCardinalCoordinateRover->position()->cardinal()
+        );
+    }
+
+    private function thenShouldHaveBeenMovedForward(
+        CartesianCardinalCoordinateRover $cartesianCardinalCoordinateRover,
+        int $expectedPositionAbscissa,
+        int $expectedPositionOrdinate,
+    ): void {
+        $cartesianCardinalCoordinateRoverPosition = $cartesianCardinalCoordinateRover
+            ->position();
+
+        self::assertSame(
+            $expectedPositionAbscissa,
+            $cartesianCardinalCoordinateRoverPosition->abscissa()
+        );
+
+        self::assertSame(
+            $expectedPositionOrdinate,
+            $cartesianCardinalCoordinateRoverPosition->ordinate()
         );
     }
 }

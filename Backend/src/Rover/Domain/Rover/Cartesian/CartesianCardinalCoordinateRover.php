@@ -61,4 +61,14 @@ final class CartesianCardinalCoordinateRover implements CartesianRover
 
         return $this;
     }
+
+    public function moveForward(): self
+    {
+        $this->cartesianPoint = $this->cartesianCardinalDirection
+            ->moveForward(
+                $this->cartesianPoint
+            );
+
+        return $this;
+    }
 }
