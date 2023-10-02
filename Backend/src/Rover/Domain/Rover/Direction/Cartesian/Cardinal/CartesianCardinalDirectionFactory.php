@@ -6,6 +6,8 @@ namespace Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal;
 
 final class CartesianCardinalDirectionFactory implements CartesianCardinalDirectionAbstractFactory
 {
+    private const EAST_VALUE= 'E';
+
     private static ?self $instance = null;
 
     public static function getInstance(): self
@@ -21,7 +23,7 @@ final class CartesianCardinalDirectionFactory implements CartesianCardinalDirect
 
     public function create(string $value): CartesianCardinalDirection
     {
-        if ('E' === $value) {
+        if (self::EAST_VALUE === $value) {
             return new EastCardinalCartesianDirection;
         }
         
