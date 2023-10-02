@@ -5,13 +5,19 @@ declare(strict_types=1);
 namespace Core\Rover\Tests\Unit\Domain\Movement\Cartesian;
 
 use PHPUnit\Framework\TestCase;
+use Core\Rover\Domain\Movement\Cartesian\LeftCartesianMovement;
+use Core\Rover\Domain\Movement\Cartesian\RightCartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactory;
-use Core\Rover\Domain\Movement\Cartesian\CartesianMovementAbstractFactory;
+use Core\Rover\Domain\Movement\Cartesian\ForwardCartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\UnknownCartesianMovement;
+use Core\Rover\Domain\Movement\Cartesian\CartesianMovementAbstractFactory;
 
 final class CartesianMovementFactoryTest extends TestCase
 {
     private const UNKNOWN_MOVEMENT_VALUE = 'unknown';
+    private const FORWARD_MOVEMENT_VALUE = 'M';
+    private const LEFT_MOVEMENT_VALUE    = 'L';
+    private const RIGHT_MOVEMENT_VALUE   = 'R';
 
     public function testShouldInstanciateCartesianMovementFactory(): void
     {
@@ -44,6 +50,36 @@ final class CartesianMovementFactoryTest extends TestCase
 
         CartesianMovementFactory::getInstance()->create(
             self::UNKNOWN_MOVEMENT_VALUE
+        );
+    }
+
+    public function testShouldCreateTheForwardMovement(): void
+    {
+        self::assertInstanceOf(
+            ForwardCartesianMovement::class,
+            CartesianMovementFactory::getInstance()->create(
+                self::FORWARD_MOVEMENT_VALUE
+            )
+        );
+    }
+
+    public function testShouldCreateTheLeftMovement(): void
+    {
+        self::assertInstanceOf(
+            LeftCartesianMovement::class,
+            CartesianMovementFactory::getInstance()->create(
+                self::LEFT_MOVEMENT_VALUE
+            )
+        );
+    }
+
+    public function testShouldCreateTheRightMovement(): void
+    {
+        self::assertInstanceOf(
+            RightCartesianMovement::class,
+            CartesianMovementFactory::getInstance()->create(
+                self::RIGHT_MOVEMENT_VALUE
+            )
         );
     }
 }
