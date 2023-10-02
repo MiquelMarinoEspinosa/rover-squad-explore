@@ -36,9 +36,9 @@ final readonly class CartesianCardinalCoordinateRover implements CartesianRover
         );
     }
 
-    public function position(): CartesianCardinalCoordinateRoverData
+    public function position(): CartesianCardinalCoordinateRoverPosition
     {
-        return new CartesianCardinalCoordinateRoverData(
+        return new CartesianCardinalCoordinateRoverPosition(
             $this->cartesianCardinalDirection->value()
         );
     }

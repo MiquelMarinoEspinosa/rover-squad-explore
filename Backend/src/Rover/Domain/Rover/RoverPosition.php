@@ -2,6 +2,6 @@
 
 namespace Core\Rover\Domain\Rover;
 
-interface RoverData
+interface RoverPosition
 {
 }

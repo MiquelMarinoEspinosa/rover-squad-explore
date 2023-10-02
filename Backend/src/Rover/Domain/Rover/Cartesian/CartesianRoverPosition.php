@@ -2,9 +2,9 @@
 
 namespace Core\Rover\Domain\Rover\Cartesian;
 
-use Core\Rover\Domain\Rover\RoverData;
+use Core\Rover\Domain\Rover\RoverPosition;
 
-interface CartesianRoverData extends RoverData
+interface CartesianRoverPosition extends RoverPosition
 {
     public function cardinal(): string;
 }
