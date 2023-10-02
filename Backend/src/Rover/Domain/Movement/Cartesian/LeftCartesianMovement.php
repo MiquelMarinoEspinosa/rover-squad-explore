@@ -10,5 +10,6 @@ final readonly class LeftCartesianMovement implements CartesianMovement
 {
     public function apply(CartesianRover $cartesianRover): CartesianRover
     {
+        return $cartesianRover->rotateLeft();
     }
 }

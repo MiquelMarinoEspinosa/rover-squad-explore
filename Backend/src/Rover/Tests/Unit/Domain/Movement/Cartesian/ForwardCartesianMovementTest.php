@@ -6,16 +6,16 @@ namespace Core\Rover\Tests\Unit\Domain\Movement\Cartesian;
 
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Movement\Movement;
+use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\ForwardCartesianMovement;
 use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRover;
+use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
-use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
-use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
-use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
 
 final class ForwardCartesianMovementTest extends TestCase
 {
@@ -53,7 +53,7 @@ final class ForwardCartesianMovementTest extends TestCase
         int $expectedPositionOrdinate,
     ): void {
         $forwardCartesianMovement = new ForwardCartesianMovement;
-        
+
         $cartesianCardinalCoordinateRover = $this->givenCartesianRover(
             $cartesianCardinalDirection
         );
