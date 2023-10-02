@@ -24,4 +24,12 @@ final class CartesianMovementFactoryTest extends TestCase
             $cartesianMovementFactory
         );
     }
+
+    public function testShouldReturnTheSameInstanceWhenInstanciatedTwice(): void
+    {
+        self::assertSame(
+            CartesianMovementFactory::getInstance(),
+            CartesianMovementFactory::getInstance()
+        );
+    }
 }
