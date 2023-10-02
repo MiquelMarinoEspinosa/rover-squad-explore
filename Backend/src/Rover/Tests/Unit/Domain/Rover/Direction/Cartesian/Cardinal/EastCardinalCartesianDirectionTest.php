@@ -56,38 +56,62 @@ final class EastCardinalCartesianDirectionTest extends TestCase
 
     public function testShouldMoveThePointToRightWhenMoveForward(): void
     {
-        $abscissa = 0;
-        $ordinate = 0;
-        
         $eastCartesianCardinalDirection = $this->givenEastCartesianCardinalDirection();
 
-        $cartesianCoordinatePoint = CartesianCoordinatePoint::create(
-            $abscissa, 
-            $ordinate
-        );
+        $cartesianCoordinatePoint = $this->givenCartesianCoordinatePoint();
 
-        $movedCartesianCoordinatePoint = $eastCartesianCardinalDirection->moveForward(
+        $movedCartesianCoordinatePoint = $this->whenMoveForward(
+            $eastCartesianCardinalDirection,
             $cartesianCoordinatePoint
         );
 
-        self::assertInstanceOf(
-            CartesianCoordinatePoint::class,
+        $this->thenThePointShouldHaveMovedRight(
+            $cartesianCoordinatePoint,
             $movedCartesianCoordinatePoint
-        );
-
-        self::assertSame(
-            $abscissa + 1,
-            $movedCartesianCoordinatePoint->data()->abscissa()
-        );
-
-        self::assertSame(
-            $ordinate,
-            $movedCartesianCoordinatePoint->data()->ordinate()
         );
     }
 
     private function givenEastCartesianCardinalDirection(): EastCardinalCartesianDirection
     {
         return new EastCardinalCartesianDirection;
+    }
+
+    private function givenCartesianCoordinatePoint(): CartesianCoordinatePoint
+    {
+        $abscissa = 0;
+        $ordinate = 0;
+
+        return CartesianCoordinatePoint::create(
+            $abscissa,
+            $ordinate
+        );
+    }
+
+    private function whenMoveForward(
+        EastCardinalCartesianDirection $eastCartesianCardinalDirection,
+        CartesianCoordinatePoint $cartesianCoordinatePoint
+    ): CartesianCoordinatePoint {
+
+        return $eastCartesianCardinalDirection->moveForward(
+            $cartesianCoordinatePoint
+        );
+    }
+
+    private function thenThePointShouldHaveMovedRight(
+        CartesianCoordinatePoint $cartesianCoordinatePoint,
+        CartesianCoordinatePoint $movedCartesianCoordinatePoint
+    ): void {
+        $cartesianCoordinatePointData      = $cartesianCoordinatePoint->data();
+        $movedCartesianCoordinatePointData = $movedCartesianCoordinatePoint->data(); 
+
+        self::assertSame(
+            $cartesianCoordinatePointData->abscissa() + 1,
+            $movedCartesianCoordinatePointData->abscissa()
+        );
+
+        self::assertSame(
+            $cartesianCoordinatePointData->ordinate(),
+            $movedCartesianCoordinatePointData->ordinate()
+        );
     }
 }
