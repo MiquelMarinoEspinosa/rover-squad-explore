@@ -71,6 +71,16 @@ final class EastCardinalCartesianDirectionTest extends TestCase
         );
     }
 
+    public function testShouldReturnTheValue(): void
+    {
+        $eastCartesianCardinalDirection = $this->givenEastCartesianCardinalDirection();
+
+        self::assertSame(
+            'E',
+            $eastCartesianCardinalDirection->value()
+        );
+    }
+
     private function givenEastCartesianCardinalDirection(): EastCardinalCartesianDirection
     {
         return new EastCardinalCartesianDirection;
@@ -102,7 +112,7 @@ final class EastCardinalCartesianDirectionTest extends TestCase
         CartesianCoordinatePoint $movedCartesianCoordinatePoint
     ): void {
         $cartesianCoordinatePointData      = $cartesianCoordinatePoint->data();
-        $movedCartesianCoordinatePointData = $movedCartesianCoordinatePoint->data(); 
+        $movedCartesianCoordinatePointData = $movedCartesianCoordinatePoint->data();
 
         self::assertSame(
             $cartesianCoordinatePointData->abscissa() + 1,

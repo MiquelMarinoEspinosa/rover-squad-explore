@@ -22,4 +22,9 @@ final readonly class EastCardinalCartesianDirection implements CartesianCardinal
     {
         return $point->moveRight();
     }
+
+    public function value(): string
+    {
+        return 'E';
+    }
 }

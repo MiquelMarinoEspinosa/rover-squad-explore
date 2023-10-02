@@ -14,4 +14,6 @@ interface CartesianCardinalDirection extends Direction
     public function rotateRight(): CartesianCardinalDirection;
 
     public function moveForward(CartesianPoint $point): CartesianPoint; 
+
+    public function value(): string;
 }

@@ -22,4 +22,8 @@ final readonly class WestCardinalCartesianDirection implements CartesianCardinal
     {
         return $point->moveLeft();
     }
+
+    public function value(): string
+    {
+    }
 }
