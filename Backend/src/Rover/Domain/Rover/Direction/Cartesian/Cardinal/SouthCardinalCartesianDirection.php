@@ -15,6 +15,7 @@ final readonly class SouthCardinalCartesianDirection implements CartesianCardina
 
     public function rotateRight(): CartesianCardinalDirection
     {
+        return new WestCardinalCartesianDirection;
     }
 
     public function moveForward(CartesianPoint $point): CartesianPoint
