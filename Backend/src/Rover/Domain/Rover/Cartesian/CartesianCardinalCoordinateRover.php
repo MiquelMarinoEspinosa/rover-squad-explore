@@ -17,4 +17,9 @@ final readonly class CartesianCardinalCoordinateRover implements CartesianRover
     ): self {
         return new self;
     }
+
+    public function data(): CartesianCardinalCoordinateRoverData
+    {
+        return new CartesianCardinalCoordinateRoverData;
+    }
 }

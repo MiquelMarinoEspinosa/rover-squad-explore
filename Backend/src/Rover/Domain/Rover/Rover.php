@@ -6,4 +6,5 @@ namespace Core\Rover\Domain\Rover;
 
 interface Rover
 {
+    public function data(): RoverData;
 }
