@@ -6,6 +6,7 @@ namespace Core\Rover\Tests\Unit\Domain\Rover\Direction\Cartesian\Cardinal;
 
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Direction\Direction;
+use Core\Rover\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
@@ -50,6 +51,27 @@ final class EastCardinalCartesianDirectionTest extends TestCase
         self::assertInstanceOf(
             SouthCardinalCartesianDirection::class,
             $eastCartesianCardinalDirection->rotateRight()
+        );
+    }
+
+    public function testShouldMoveThePointToRightWhenMoveForward(): void
+    {
+        $eastCartesianCardinalDirection = $this->givenEastCartesianCardinalDirection();
+
+        $cartesianCoordinatePoint = CartesianCoordinatePoint::create(0, 0);
+
+        $movedCartesianCoordinatePoint = $eastCartesianCardinalDirection->moveForward(
+            $cartesianCoordinatePoint
+        );
+
+        self::assertInstanceOf(
+            CartesianCoordinatePoint::class,
+            $movedCartesianCoordinatePoint
+        );
+
+        self::assertSame(
+            0 + 1,
+            $movedCartesianCoordinatePoint->data()->abscissa()
         );
     }
 
