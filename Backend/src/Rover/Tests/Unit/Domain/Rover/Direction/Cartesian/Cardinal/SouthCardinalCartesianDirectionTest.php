@@ -13,7 +13,7 @@ final class SouthCardinalCartesianDirectionTest extends TestCase
 {
     public function testShouldCreateSouthCardinalCartesianDirection(): void
     {
-        $southCartesianCardinalDirection = new SouthCardinalCartesianDirection();
+        $southCartesianCardinalDirection = new SouthCardinalCartesianDirection;
 
         self::assertInstanceOf(
             SouthCardinalCartesianDirection::class,
