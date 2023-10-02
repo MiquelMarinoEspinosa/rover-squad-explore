@@ -8,7 +8,7 @@ use Core\Rover\Domain\Rover\Rover;
 use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 
-final readonly class CartesianRover implements Rover
+final readonly class CartesianCardinalCoordinateRover implements Rover
 {
     public static function create(
         CartesianArea $cartesianArea,
