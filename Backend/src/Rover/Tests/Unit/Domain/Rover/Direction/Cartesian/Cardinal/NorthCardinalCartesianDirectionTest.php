@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Core\Rover\Tests\Unit\Domain\Rover\Direction\Cartesian;
+namespace Core\Rover\Tests\Unit\Domain\Rover\Direction\Cartesian\Cardinal;
 
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Direction\Direction;
-use Core\Rover\Domain\Rover\Direction\Cartesian\CartesianCardinalDirection;
-use Core\Rover\Domain\Rover\Direction\Cartesian\NorthCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
 
 final class NorthCardinalCartesianDirectionTest extends TestCase
 {
