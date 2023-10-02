@@ -54,7 +54,7 @@ final class EastCardinalCartesianDirectionTest extends TestCase
         );
     }
 
-    public function testShouldMoveThePointToRightWhenMoveForward(): void
+    public function testShouldMoveThePointRightWhenMoveForward(): void
     {
         $eastCartesianCardinalDirection = $this->givenEastCartesianCardinalDirection();
 
