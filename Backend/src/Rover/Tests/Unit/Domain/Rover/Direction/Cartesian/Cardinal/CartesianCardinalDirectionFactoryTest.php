@@ -24,4 +24,12 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
             $cartesianCardinalDirectionFactory
         );
     }
+
+    public function testShouldBeTheSameInstanceWhenInstanciateTwice(): void
+    {
+        self::assertSame(
+            CartesianCardinalDirectionFactory::getInstance(),
+            CartesianCardinalDirectionFactory::getInstance()
+        );
+    }
 }
