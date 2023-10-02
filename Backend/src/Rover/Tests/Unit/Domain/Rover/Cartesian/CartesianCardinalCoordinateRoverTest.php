@@ -139,9 +139,11 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
             $cartesianCardinalCoordinateRover
         );
 
-        $this->thenShouldHaveBeenRotate(
+        $this->thenShouldHaveBeenMoved(
             $cartesianCardinalCoordinateRover,
-            $expectedCardinalDirection
+            $expectedCardinalDirection,
+            self::POSITION_ABSCISSA,
+            self::POSITION_ORDINATE
         );
     }
 
@@ -160,9 +162,11 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
             $cartesianCardinalCoordinateRover
         );
 
-        $this->thenShouldHaveBeenRotate(
+        $this->thenShouldHaveBeenMoved(
             $cartesianCardinalCoordinateRover,
-            $expectedCardinalDirection
+            $expectedCardinalDirection,
+            self::POSITION_ABSCISSA,
+            self::POSITION_ORDINATE
         );
     }
 
@@ -182,8 +186,9 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
             $cartesianCardinalCoordinateRover
         );
 
-        $this->thenShouldHaveBeenMovedForward(
+        $this->thenShouldHaveBeenMoved(
             $cartesianCardinalCoordinateRover,
+            $cartesianCardinalDirection,
             $expectedPositionAbscissa,
             $expectedPositionOrdinate
         );
@@ -316,23 +321,19 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         return $cartesianCardinalCoordinateRover->moveForward();
     }
 
-    private function thenShouldHaveBeenRotate(
+    private function thenShouldHaveBeenMoved(
         CartesianCardinalCoordinateRover $cartesianCardinalCoordinateRover,
-        CartesianCardinalDirection $expectedCardinalDirection
-    ): void {
-        self::assertSame(
-            $expectedCardinalDirection->value(),
-            $cartesianCardinalCoordinateRover->position()->cardinal()
-        );
-    }
-
-    private function thenShouldHaveBeenMovedForward(
-        CartesianCardinalCoordinateRover $cartesianCardinalCoordinateRover,
+        CartesianCardinalDirection $expectedCardinalDirection,
         int $expectedPositionAbscissa,
-        int $expectedPositionOrdinate,
+        int $expectedPositionOrdinate  
     ): void {
         $cartesianCardinalCoordinateRoverPosition = $cartesianCardinalCoordinateRover
             ->position();
+
+        self::assertSame(
+            $expectedCardinalDirection->value(),
+            $cartesianCardinalCoordinateRoverPosition->cardinal()
+        );
 
         self::assertSame(
             $expectedPositionAbscissa,
