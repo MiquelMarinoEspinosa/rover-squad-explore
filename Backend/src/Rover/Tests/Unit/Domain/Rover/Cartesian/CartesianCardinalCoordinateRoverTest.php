@@ -102,6 +102,16 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         );
     }
 
+    public function testShouldReturnTheOrdinate(): void
+    {
+        $cartesianCardinalCoordinateRover = $this->givenCartesianRover();
+
+        self::assertSame(
+            self::POSITION_ORDINATE,
+            $cartesianCardinalCoordinateRover->position()->ordinate()
+        );
+    }
+
     public static function cardinalDirectionProvider(): array
     {
         return [

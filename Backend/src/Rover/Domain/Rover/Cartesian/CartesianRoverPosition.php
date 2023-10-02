@@ -9,4 +9,6 @@ interface CartesianRoverPosition extends RoverPosition
     public function cardinal(): string;
 
     public function abscissa(): int;
+
+    public function ordinate(): int;
 }

@@ -39,7 +39,8 @@ final readonly class CartesianCardinalCoordinateRover implements CartesianRover
     {
         return new CartesianCardinalCoordinateRoverPosition(
             $this->cartesianCardinalDirection->value(),
-            $this->cartesianPoint->data()->abscissa()
+            $this->cartesianPoint->data()->abscissa(),
+            $this->cartesianPoint->data()->ordinate()
         );
     }
 }

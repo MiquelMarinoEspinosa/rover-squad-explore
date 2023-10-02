@@ -8,7 +8,8 @@ final readonly class CartesianCardinalCoordinateRoverPosition implements Cartesi
 {
     public function __construct(
         private string $cardinal,
-        private int $abscissa
+        private int $abscissa,
+        private int $ordinate
     ) {
     }
 
@@ -20,5 +21,10 @@ final readonly class CartesianCardinalCoordinateRoverPosition implements Cartesi
     public function abscissa(): int
     {
         return $this->abscissa;
+    }
+
+    public function ordinate(): int
+    {
+        return $this->ordinate;
     }
 }
