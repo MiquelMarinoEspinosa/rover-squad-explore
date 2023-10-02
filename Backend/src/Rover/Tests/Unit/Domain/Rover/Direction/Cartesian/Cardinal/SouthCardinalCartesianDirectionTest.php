@@ -6,11 +6,11 @@ namespace Core\Rover\Tests\Unit\Domain\Rover\Direction\Cartesian\Cardinal;
 
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Direction\Direction;
+use Core\Rover\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDirection;
-use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
-use Core\Rover\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
 
 final class SouthCardinalCartesianDirectionTest extends TestCase
 {
