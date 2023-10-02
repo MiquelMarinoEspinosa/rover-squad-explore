@@ -9,6 +9,7 @@ use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDi
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirectionFactory;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirectionAbstractFactory;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
 
 final class CartesianCardinalDirectionFactoryTest extends TestCase
 {
@@ -55,6 +56,16 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
         self::assertInstanceOf(
             NorthCardinalCartesianDirection::class,
             $cartesianCardinalDirectionFactory->create(self::NORTH_VALUE)
+        );
+    }
+
+    public function testShouldCreateSouthCartesianCardinalDirection(): void
+    {
+        $cartesianCardinalDirectionFactory = CartesianCardinalDirectionFactory::getInstance();
+
+        self::assertInstanceOf(
+            SouthCardinalCartesianDirection::class,
+            $cartesianCardinalDirectionFactory->create('S')
         );
     }
 }
