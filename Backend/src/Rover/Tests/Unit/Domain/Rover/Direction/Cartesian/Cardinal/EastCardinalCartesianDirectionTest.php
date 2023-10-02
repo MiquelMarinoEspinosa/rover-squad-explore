@@ -35,7 +35,7 @@ final class EastCardinalCartesianDirectionTest extends TestCase
 
     public function testShouldPointNorthWhenRotateLeft(): void
     {
-        $eastCartesianCardinalDirection = new EastCardinalCartesianDirection;
+        $eastCartesianCardinalDirection = $this->givenEastCartesianCardinalDirection();
 
         self::assertInstanceOf(
             NorthCardinalCartesianDirection::class,
@@ -45,11 +45,16 @@ final class EastCardinalCartesianDirectionTest extends TestCase
 
     public function testShouldPointSouthWhenRotateRight(): void
     {
-        $eastCartesianCardinalDirection = new EastCardinalCartesianDirection;
+        $eastCartesianCardinalDirection = $this->givenEastCartesianCardinalDirection();
 
         self::assertInstanceOf(
             SouthCardinalCartesianDirection::class,
             $eastCartesianCardinalDirection->rotateRight()
         );
+    }
+
+    private function givenEastCartesianCardinalDirection(): EastCardinalCartesianDirection
+    {
+        return new EastCardinalCartesianDirection;
     }
 }
