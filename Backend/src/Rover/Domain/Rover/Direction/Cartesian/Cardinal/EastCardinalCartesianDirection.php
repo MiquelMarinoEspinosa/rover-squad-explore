@@ -6,5 +6,8 @@ namespace Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal;
 
 final readonly class EastCardinalCartesianDirection implements CartesianCardinalDirection
 {
-    
+    public function rotateLeft(): CartesianCardinalDirection
+    {
+        return new NorthCardinalCartesianDirection;
+    }
 }

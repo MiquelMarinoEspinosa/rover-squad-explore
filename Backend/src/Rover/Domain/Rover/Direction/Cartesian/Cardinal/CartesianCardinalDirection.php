@@ -8,4 +8,5 @@ use Core\Rover\Domain\Rover\Direction\Direction;
 
 interface CartesianCardinalDirection extends Direction
 {
+    public function rotateLeft(): CartesianCardinalDirection;
 }

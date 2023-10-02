@@ -8,12 +8,13 @@ use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Direction\Direction;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
 
 final class EastCardinalCartesianDirectionTest extends TestCase
 {
     public function testShouldCreateEastCardinalCartesianDirection(): void
     {
-        $eastCartesianCardinalDirection = new EastCardinalCartesianDirection();
+        $eastCartesianCardinalDirection = new EastCardinalCartesianDirection;
 
         self::assertInstanceOf(
             EastCardinalCartesianDirection::class,
@@ -28,6 +29,16 @@ final class EastCardinalCartesianDirectionTest extends TestCase
         self::assertInstanceOf(
             Direction::class,
             $eastCartesianCardinalDirection
+        );
+    }
+
+    public function testShouldPointNorthWhenRotateLeft(): void
+    {
+        $eastCartesianCardinalDirection = new EastCardinalCartesianDirection;
+
+        self::assertInstanceOf(
+            NorthCardinalCartesianDirection::class,
+            $eastCartesianCardinalDirection->rotateLeft()
         );
     }
 }
