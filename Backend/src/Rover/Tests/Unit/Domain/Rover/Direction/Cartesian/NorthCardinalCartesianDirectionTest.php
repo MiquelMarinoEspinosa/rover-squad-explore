@@ -7,16 +7,16 @@ namespace Core\Rover\Tests\Unit\Domain\Rover\Direction\Cartesian;
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Direction\Direction;
 use Core\Rover\Domain\Rover\Direction\Cartesian\CartesianCardinalDirection;
-use Core\Rover\Domain\Rover\Direction\Cartesian\NorthCartesianCardinalDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\NorthCardinalCartesianDirection;
 
-final class NorthCartesianCardinalDirectionTest extends TestCase
+final class NorthCardinalCartesianDirectionTest extends TestCase
 {
     public function testShouldCreateNorthCartesianCardinalDirection(): void
     {
-        $northCartesianCardinalDirection = new NorthCartesianCardinalDirection();
+        $northCartesianCardinalDirection = new NorthCardinalCartesianDirection();
 
         self::assertInstanceOf(
-            NorthCartesianCardinalDirection::class,
+            NorthCardinalCartesianDirection::class,
             $northCartesianCardinalDirection
         );
 
@@ -29,5 +29,5 @@ final class NorthCartesianCardinalDirectionTest extends TestCase
             Direction::class,
             $northCartesianCardinalDirection
         );
-    }    
+    }
 }
