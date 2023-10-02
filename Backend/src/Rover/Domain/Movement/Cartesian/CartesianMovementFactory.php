@@ -18,4 +18,9 @@ final class CartesianMovementFactory implements CartesianMovementAbstractFactory
 
         return self::$instance;
     }
+
+    public function create(string $value): CartesianMovement
+    {
+        throw UnknownCartesianMovement::create($value);
+    }
 }
