@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
 use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRover;
+use Core\Rover\Domain\Rover\Cartesian\CartesianRover;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Rover;
@@ -32,6 +33,11 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
 
         self::assertInstanceOf(
             CartesianCardinalCoordinateRover::class,
+            $cartesianCardinalCoordinateRover
+        );
+
+        self::assertInstanceOf(
+            CartesianRover::class,
             $cartesianCardinalCoordinateRover
         );
 
