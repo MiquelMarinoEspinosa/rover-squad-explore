@@ -56,9 +56,15 @@ final class EastCardinalCartesianDirectionTest extends TestCase
 
     public function testShouldMoveThePointToRightWhenMoveForward(): void
     {
+        $abscissa = 0;
+        $ordinate = 0;
+        
         $eastCartesianCardinalDirection = $this->givenEastCartesianCardinalDirection();
 
-        $cartesianCoordinatePoint = CartesianCoordinatePoint::create(0, 0);
+        $cartesianCoordinatePoint = CartesianCoordinatePoint::create(
+            $abscissa, 
+            $ordinate
+        );
 
         $movedCartesianCoordinatePoint = $eastCartesianCardinalDirection->moveForward(
             $cartesianCoordinatePoint
@@ -70,8 +76,13 @@ final class EastCardinalCartesianDirectionTest extends TestCase
         );
 
         self::assertSame(
-            0 + 1,
+            $abscissa + 1,
             $movedCartesianCoordinatePoint->data()->abscissa()
+        );
+
+        self::assertSame(
+            $ordinate,
+            $movedCartesianCoordinatePoint->data()->ordinate()
         );
     }
 
