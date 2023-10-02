@@ -14,6 +14,8 @@ use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianD
 
 final class EastCardinalCartesianDirectionTest extends TestCase
 {
+    public const VALUE = 'E';
+
     public function testShouldCreateEastCardinalCartesianDirection(): void
     {
         $eastCartesianCardinalDirection = new EastCardinalCartesianDirection;
@@ -76,7 +78,7 @@ final class EastCardinalCartesianDirectionTest extends TestCase
         $eastCartesianCardinalDirection = $this->givenEastCartesianCardinalDirection();
 
         self::assertSame(
-            'E',
+            self::VALUE,
             $eastCartesianCardinalDirection->value()
         );
     }
