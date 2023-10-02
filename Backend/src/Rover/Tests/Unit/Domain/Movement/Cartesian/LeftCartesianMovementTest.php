@@ -6,23 +6,23 @@ namespace Core\Rover\Tests\Unit\Domain\Movement\Cartesian;
 
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Movement\Movement;
+use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\LeftCartesianMovement;
 use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRover;
-use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
-use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
-use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
 
 final class LeftCartesianMovementTest extends TestCase
 {
     private const POSITION_ABSCISSA         = 0;
     private const POSITION_ORDINATE         = 1;
     private const AREA_UPPER_RIGHT_ABSCISSA = 5;
-    private const AREA_UPPER_RIGHT_ORDINATE = 5;
+    private const AREA_UPPER_RIGHT_ORDINATE = self::AREA_UPPER_RIGHT_ABSCISSA;
 
     public function testShouldCreateTheLeftCartesianMovement(): void
     {
