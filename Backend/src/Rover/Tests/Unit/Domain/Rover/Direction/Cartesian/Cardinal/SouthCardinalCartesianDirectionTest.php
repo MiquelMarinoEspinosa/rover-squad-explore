@@ -65,7 +65,7 @@ final class SouthCardinalCartesianDirectionTest extends TestCase
             $cartesianCoordinatePoint
         );
 
-        $this->thenThePointShouldHaveMovedUp(
+        $this->thenThePointShouldHaveMovedDown(
             $cartesianCoordinatePoint,
             $movedCartesianCoordinatePoint
         );
@@ -97,7 +97,7 @@ final class SouthCardinalCartesianDirectionTest extends TestCase
         );
     }
 
-    private function thenThePointShouldHaveMovedUp(
+    private function thenThePointShouldHaveMovedDown(
         CartesianCoordinatePoint $cartesianCoordinatePoint,
         CartesianCoordinatePoint $movedCartesianCoordinatePoint
     ): void {
