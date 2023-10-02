@@ -11,7 +11,7 @@ use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianD
 
 final class NorthCardinalCartesianDirectionTest extends TestCase
 {
-    public function testShouldCreateNorthCartesianCardinalDirection(): void
+    public function testShouldCreateNorthCardinalCartesianDirection(): void
     {
         $northCartesianCardinalDirection = new NorthCardinalCartesianDirection();
 
