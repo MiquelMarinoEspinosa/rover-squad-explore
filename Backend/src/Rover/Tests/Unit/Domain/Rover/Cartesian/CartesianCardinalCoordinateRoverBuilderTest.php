@@ -24,4 +24,12 @@ final class CartesianCardinalCoordinateRoverBuilderTest extends TestCase
             $cartesianCardinalCoordinateRoverBuilder
         );
     }
+
+    public function testShouldBeTheSameInstanceWhenInstantiateTwice(): void
+    {
+        self::assertSame(
+            CartesianCardinalCoordinateRoverBuilder::getInstance(),
+            CartesianCardinalCoordinateRoverBuilder::getInstance()
+        );
+    }
 }
