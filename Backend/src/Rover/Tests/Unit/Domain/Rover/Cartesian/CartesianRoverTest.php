@@ -14,6 +14,9 @@ use Core\Rover\Domain\Rover\Rover;
 
 final class CartesianRoverTest extends TestCase
 {
+    private const AREA_UPPER_RIGHT_ABSCISSA = 5;
+    private const AREA_UPPER_RIGHT_ORDINATE = self::AREA_UPPER_RIGHT_ABSCISSA;
+
     public function testShouldCreateCartesianRover(): void
     {
         $area = $this->givenArea();
@@ -41,8 +44,8 @@ final class CartesianRoverTest extends TestCase
     private function givenArea(): CartesianArea
     {
         return RectangularCartesianArea::createWithUpperRightCoordinates(
-            5,
-            5
+            self::AREA_UPPER_RIGHT_ABSCISSA,
+            self::AREA_UPPER_RIGHT_ORDINATE
         );
     }
 
