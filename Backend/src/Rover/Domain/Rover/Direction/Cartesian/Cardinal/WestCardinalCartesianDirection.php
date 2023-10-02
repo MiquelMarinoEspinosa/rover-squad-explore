@@ -8,6 +8,8 @@ use Core\Rover\Domain\Rover\Point\Cartesian\CartesianPoint;
 
 final readonly class WestCardinalCartesianDirection implements CartesianCardinalDirection
 {
+    private const VALUE = 'W';
+
     public function rotateLeft(): CartesianCardinalDirection
     {
         return new SouthCardinalCartesianDirection;
@@ -25,5 +27,6 @@ final readonly class WestCardinalCartesianDirection implements CartesianCardinal
 
     public function value(): string
     {
+        return self::VALUE;
     }
 }

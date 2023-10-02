@@ -14,6 +14,8 @@ use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianD
 
 final class WestCardinalCartesianDirectionTest extends TestCase
 {
+    private const VALUE = 'W';
+
     public function testShouldCreateWestCardinalCartesianDirection(): void
     {
         $westCartesianCardinalDirection = new WestCardinalCartesianDirection;
@@ -68,6 +70,16 @@ final class WestCardinalCartesianDirectionTest extends TestCase
         $this->thenThePointShouldHaveMovedLeft(
             $cartesianCoordinatePoint,
             $movedCartesianCoordinatePoint
+        );
+    }
+
+    public function testShouldReturnTheValue(): void
+    {
+        $westCartesianCardinalDirection = $this->givenWestCartesianCardinalDirection();
+
+        self::assertSame(
+            self::VALUE,
+            $westCartesianCardinalDirection->value()
         );
     }
 
