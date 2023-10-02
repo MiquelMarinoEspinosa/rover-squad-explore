@@ -42,6 +42,16 @@ final class WestCardinalCartesianDirectionTest extends TestCase
         );
     }
 
+    public function testShouldPointNorthWhenRotateRight(): void
+    {
+        $westCartesianCardinalDirection = $this->givenWestCartesianCardinalDirection();
+
+        self::assertInstanceOf(
+            NorthCardinalCartesianDirection::class,
+            $westCartesianCardinalDirection->rotateRight()
+        );
+    }
+
     private function givenWestCartesianCardinalDirection(): WestCardinalCartesianDirection
     {
         return new WestCardinalCartesianDirection;
