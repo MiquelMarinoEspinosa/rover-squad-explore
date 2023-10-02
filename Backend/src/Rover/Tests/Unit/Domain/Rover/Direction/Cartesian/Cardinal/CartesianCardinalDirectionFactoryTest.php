@@ -10,11 +10,14 @@ use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirect
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirectionAbstractFactory;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
 
 final class CartesianCardinalDirectionFactoryTest extends TestCase
 {
     private const EAST_VALUE  = 'E';
     private const NORTH_VALUE = 'N';
+    private const SOUTH_VALUE = 'S';
+    private const WEST_VALUE  = 'W';
 
     public function testShouldInstanciateCartesianCardinalDirectionFactory(): void
     {
@@ -45,7 +48,9 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
 
         self::assertInstanceOf(
             EastCardinalCartesianDirection::class,
-            $cartesianCardinalDirectionFactory->create(self::EAST_VALUE)
+            $cartesianCardinalDirectionFactory->create(
+                self::EAST_VALUE
+            )
         );
     }
 
@@ -55,7 +60,9 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
 
         self::assertInstanceOf(
             NorthCardinalCartesianDirection::class,
-            $cartesianCardinalDirectionFactory->create(self::NORTH_VALUE)
+            $cartesianCardinalDirectionFactory->create(
+                self::NORTH_VALUE
+            )
         );
     }
 
@@ -65,7 +72,21 @@ final class CartesianCardinalDirectionFactoryTest extends TestCase
 
         self::assertInstanceOf(
             SouthCardinalCartesianDirection::class,
-            $cartesianCardinalDirectionFactory->create('S')
+            $cartesianCardinalDirectionFactory->create(
+                self::SOUTH_VALUE
+            )
+        );
+    }
+
+    public function testShouldCreateWestCartesianCardinalDirection(): void
+    {
+        $cartesianCardinalDirectionFactory = CartesianCardinalDirectionFactory::getInstance();
+
+        self::assertInstanceOf(
+            WestCardinalCartesianDirection::class,
+            $cartesianCardinalDirectionFactory->create(
+                self::WEST_VALUE
+            )
         );
     }
 }
