@@ -27,13 +27,13 @@ final class CartesianMovementFactory implements CartesianMovementAbstractFactory
 
     public function create(MovementFactoryData $data): CartesianMovement
     {
-        return match ($data->movementValue()) {
+        $value = $data->movementValue();
+
+        return match ($value) {
             self::FORWARD_VALUE => new ForwardCartesianMovement,
             self::LEFT_VALUE    => new LeftCartesianMovement,
             self::RIGHT_VALUE   => new RightCartesianMovement,
-            default             => throw UnknownCartesianMovement::create(
-                $data->movementValue()
-            )
+            default             => throw UnknownCartesianMovement::create($value)
         };
     }
 }

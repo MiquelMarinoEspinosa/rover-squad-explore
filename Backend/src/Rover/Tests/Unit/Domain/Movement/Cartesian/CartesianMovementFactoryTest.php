@@ -21,6 +21,13 @@ final class CartesianMovementFactoryTest extends TestCase
     private const LEFT_MOVEMENT_VALUE    = 'L';
     private const RIGHT_MOVEMENT_VALUE   = 'R';
 
+    private CartesianMovementFactory $cartesianMovementFactory;
+
+    protected function setUp(): void
+    {
+        $this->cartesianMovementFactory = CartesianMovementFactory::getInstance();
+    }
+
     public function testShouldInstanciateCartesianMovementFactory(): void
     {
         $cartesianMovementFactory = CartesianMovementFactory::getInstance();
@@ -55,7 +62,7 @@ final class CartesianMovementFactoryTest extends TestCase
             UnknownCartesianMovement::class
         );
 
-        CartesianMovementFactory::getInstance()->create(
+        $this->cartesianMovementFactory->create(
             new CartesianMovementFactoryData(
                 self::UNKNOWN_MOVEMENT_VALUE
             )
@@ -66,7 +73,7 @@ final class CartesianMovementFactoryTest extends TestCase
     {
         self::assertInstanceOf(
             ForwardCartesianMovement::class,
-            CartesianMovementFactory::getInstance()->create(
+            $this->cartesianMovementFactory->create(
                 new CartesianMovementFactoryData(
                     self::FORWARD_MOVEMENT_VALUE
                 )
@@ -78,7 +85,7 @@ final class CartesianMovementFactoryTest extends TestCase
     {
         self::assertInstanceOf(
             LeftCartesianMovement::class,
-            CartesianMovementFactory::getInstance()->create(
+            $this->cartesianMovementFactory->create(
                 new CartesianMovementFactoryData(
                     self::LEFT_MOVEMENT_VALUE
                 )
@@ -90,7 +97,7 @@ final class CartesianMovementFactoryTest extends TestCase
     {
         self::assertInstanceOf(
             RightCartesianMovement::class,
-            CartesianMovementFactory::getInstance()->create(
+            $this->cartesianMovementFactory->create(
                 new CartesianMovementFactoryData(
                     self::RIGHT_MOVEMENT_VALUE
                 )
