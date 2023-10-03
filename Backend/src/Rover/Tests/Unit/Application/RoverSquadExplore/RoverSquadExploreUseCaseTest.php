@@ -146,19 +146,7 @@ final class RoverSquadExploreUseCaseTest extends TestCase
             $roverExploreRequests
         );
 
-        $roverBuilderData = $this->givenRoverBuilderData();
-
-        $roverPosition = $this->givenRoverPosition();
-
-        $rover = self::createMock(Rover::class);
-        $rover->expects(self::once())
-            ->method('position')
-            ->willReturn($roverPosition);
-
-        $this->roverBuilder->expects(self::once())
-            ->method('build')
-            ->with($roverBuilderData)
-            ->willReturn($rover);
+        $this->givenBuildRover();
 
         $response = $this->roverSquadExploreUseCase->execute(
             $roverRequest
@@ -200,6 +188,24 @@ final class RoverSquadExploreUseCaseTest extends TestCase
                 self::POSITION_ORDINATE
             )
         ];
+    }
+    
+    private function givenBuildRover(): void
+    {
+        $roverBuilderData = $this->givenRoverBuilderData();
+        
+        $roverPosition = $this->givenRoverPosition();
+
+        $rover = self::createMock(Rover::class);
+
+        $rover->expects(self::once())
+            ->method('position')
+            ->willReturn($roverPosition);
+
+        $this->roverBuilder->expects(self::once())
+            ->method('build')
+            ->with($roverBuilderData)
+            ->willReturn($rover);
     }
 
     private function givenRoverBuilderData(): CartesianCardinalCoordinateRoverBuilderData
