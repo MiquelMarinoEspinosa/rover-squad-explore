@@ -111,6 +111,34 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         $this->roverSquadExploreUseCase->execute($emptyRoverRequest);
     }
 
+    public function testShouldThrowAnExceptionWhenRoverBuilderFails(): void
+    {
+        $movementExploreCollectionRequests = $this->givenMovementExploreCollectionRequests();
+
+        $roverExploreRequests = $this->givenRoverExploreRequests();
+
+        $roverRequest = new RoverSquadExploreRequest(
+            $movementExploreCollectionRequests,
+            $roverExploreRequests
+        );
+
+        $roverBuilderData = $this->givenRoverBuilderData();
+
+        $this->roverBuilder
+            ->expects(self::once())
+            ->method('build')
+            ->with($roverBuilderData)
+            ->willThrowException(new \Exception);
+
+        self::expectException(
+            RoverSquadExploreUseCaseException::class
+        );
+
+        $this->roverSquadExploreUseCase->execute(
+            $roverRequest
+        );
+    }
+
     public function testShouldThrowAnExceptionWhenMovementFactoryFails(): void
     {
         $movementExploreCollectionRequests = $this->givenMovementExploreCollectionRequests();
@@ -207,8 +235,6 @@ final class RoverSquadExploreUseCaseTest extends TestCase
     private function givenBuildRover(): MockObject
     {
         $roverBuilderData = $this->givenRoverBuilderData();
-
-        $roverPosition = $this->givenRoverPosition();
 
         $rover = self::createMock(Rover::class);
 
