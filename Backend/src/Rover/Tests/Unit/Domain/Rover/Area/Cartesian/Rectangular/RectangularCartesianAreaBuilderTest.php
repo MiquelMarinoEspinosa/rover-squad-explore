@@ -72,7 +72,7 @@ final class RectangularCartesianAreaBuilderTest extends TestCase
         RectangularCartesianAreaBuilderData $rectangularCartesianAreaBuilderData
     ): RectangularCartesianArea {
 
-        return $rectangularCartesianAreaBuilder->create(
+        return $rectangularCartesianAreaBuilder->build(
             $rectangularCartesianAreaBuilderData
         );
     }

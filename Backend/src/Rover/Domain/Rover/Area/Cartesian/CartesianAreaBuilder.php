@@ -6,7 +6,7 @@ namespace Core\Rover\Domain\Rover\Area\Cartesian;
 
 interface CartesianAreaBuilder
 {
-    public function create(
+    public function build(
         CartesianAreaBuilderData $data
     ): CartesianArea;
 }

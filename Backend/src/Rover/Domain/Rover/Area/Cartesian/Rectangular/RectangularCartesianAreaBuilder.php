@@ -23,7 +23,7 @@ final class RectangularCartesianAreaBuilder implements CartesianAreaBuilder
         return self::$instance;
     }
 
-    public function create(
+    public function build(
         CartesianAreaBuilderData $data
     ): CartesianArea {
         
