@@ -14,6 +14,9 @@ use Core\Rover\Application\RoverSquadExplore\Response\RoverSquadExploreResponse;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\RoverBuilderDataMapper;
 use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\RoverExploreResponseMapper;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Movement\Cartesian\CartesianMovementFactoryDataMapper;
+use Core\Rover\Application\RoverSquadExplore\Request\Rover\RoverExploreRequest;
+use Core\Rover\Application\RoverSquadExplore\Response\Rover\RoverExploreResponse;
+use Core\Rover\Domain\Rover\Rover;
 
 final class RoverSquadExploreUseCase implements UseCase
 {
@@ -70,19 +73,29 @@ final class RoverSquadExploreUseCase implements UseCase
         $responses = [];
 
         foreach ($roverExploreRequests as $roverIndex => $roverExploreRequest) {
-            $roverBuilderData = $this->roverBuilderDataMapper->map($roverExploreRequest);
-            $rover = $this->roverBuilder->build($roverBuilderData);
-            foreach ($movementExploreCollectionRequests[$roverIndex] as $movementExploreRequest) {
-                $movementFactoryData = $this->movementFactoryDataMapper->map($movementExploreRequest);
-                $movement = $this->movementFactory->create($movementFactoryData);
-                $rover = $movement->apply($rover);
-            }
-
-            $responses[] = $this->roverExploreResponseMapper->map(
-                $rover->position()
+            $responses[] = $this->roverExploration(
+                $roverExploreRequest,
+                $movementExploreCollectionRequests[$roverIndex]
             );
         }
 
         return $responses;
+    }
+
+    private function roverExploration(
+        RoverExploreRequest $roverExploreRequest,
+        array $movementExploreRequests,
+    ): RoverExploreResponse {
+        $roverBuilderData = $this->roverBuilderDataMapper->map($roverExploreRequest);
+        $rover = $this->roverBuilder->build($roverBuilderData);
+        foreach ($movementExploreRequests as $movementExploreRequest) {
+            $movementFactoryData = $this->movementFactoryDataMapper->map($movementExploreRequest);
+            $movement = $this->movementFactory->create($movementFactoryData);
+            $rover = $movement->apply($rover);
+        }
+
+        return $this->roverExploreResponseMapper->map(
+            $rover->position()
+        );
     }
 }
