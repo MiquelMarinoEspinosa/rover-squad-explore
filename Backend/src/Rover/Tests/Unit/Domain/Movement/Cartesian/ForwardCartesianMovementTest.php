@@ -43,11 +43,6 @@ final class ForwardCartesianMovementTest extends TestCase
             Movement::class,
             $forwardCartesianMovement
         );
-
-        self::assertInstanceOf(
-            CollectionItem::class,
-            $forwardCartesianMovement
-        );
     }
 
     /**

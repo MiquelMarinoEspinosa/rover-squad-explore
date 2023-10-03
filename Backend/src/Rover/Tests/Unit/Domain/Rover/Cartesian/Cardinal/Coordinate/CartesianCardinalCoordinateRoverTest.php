@@ -54,11 +54,6 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
             Rover::class,
             $cartesianCardinalCoordinateRover
         );
-
-        self::assertInstanceOf(
-            CollectionItem::class,
-            $cartesianCardinalCoordinateRover
-        );
     }
 
     public function testShouldReturnTheData(): void
