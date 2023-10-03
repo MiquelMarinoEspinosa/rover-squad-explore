@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Domain\Movement\Cartesian;
 
+use Core\Rover\Domain\Collection\CollectionItem;
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Movement\Movement;
 use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
@@ -40,6 +41,11 @@ final class RightCartesianMovementTest extends TestCase
 
         self::assertInstanceOf(
             Movement::class,
+            $rightCartesianMovement
+        );
+
+        self::assertInstanceOf(
+            CollectionItem::class,
             $rightCartesianMovement
         );
     }

@@ -9,19 +9,41 @@ use Core\Rover\Domain\Collection\CollectionItem;
 
 final class MovementCollection implements Collection
 {
+    private array $movements;
+    private int $index;
+    private int $size;
+
+    public function __construct()
+    {
+        $this->movements = [];
+        $this->index     = 0;
+        $this->size      = 0;
+    }
+
     public function empty(): bool
     {
+        return 0 === $this->size;
     }
 
     public function next(): bool
     {
+        $this->index = $this->index + 1;
+
+        return $this->size >= $this->index;
     }
 
-    public function current(): CollectionItem
+    public function current(): Movement
     {
+        if (!isset($this->movements[$this->index])) {
+            throw MovementCollectionOutOfRange::create();
+        }
+
+        return $this->movements[$this->index];
     }
 
     public function add(CollectionItem $item): void
     {
+        $this->movements[] = $item;
+        $this->size     = $this->size + 1;
     }
 }
