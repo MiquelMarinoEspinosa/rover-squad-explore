@@ -10,6 +10,13 @@ use Core\Rover\Domain\Rover\RoverSquad;
 
 final class RoverSquadTest extends TestCase
 {
+    private RoverSquad $roverSquad;
+
+    protected function setUp(): void
+    {
+        $this->roverSquad = new RoverSquad;
+    }
+
     public function testShouldCreateTheRoverSquad(): void
     {
         $roverSquad = new RoverSquad;
@@ -28,14 +35,14 @@ final class RoverSquadTest extends TestCase
     public function testShouldReturnTrueWhenEmptyMethodExecuted(): void
     {
         self::assertTrue(
-            (new RoverSquad)->empty()
+            $this->roverSquad->empty()
         );
     }
 
     public function testShouldReturnFalseWhenNextMethodExecuted(): void
     {
         self::assertTrue(
-            (new RoverSquad)->next()
+            $this->roverSquad->next()
         );
     }
 }
