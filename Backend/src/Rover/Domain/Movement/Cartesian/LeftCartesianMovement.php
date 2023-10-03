@@ -9,8 +9,8 @@ use Core\Rover\Domain\Rover\Rover;
 
 final readonly class LeftCartesianMovement implements CartesianMovement
 {
-    public function apply(Rover $cartesianRover): CartesianRover
+    public function apply(Rover $rover): CartesianRover
     {
-        return $cartesianRover->rotateLeft();
+        return $rover->rotateLeft();
     }
 }
