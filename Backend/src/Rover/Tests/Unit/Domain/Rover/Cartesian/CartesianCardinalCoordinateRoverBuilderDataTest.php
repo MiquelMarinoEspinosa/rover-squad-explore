@@ -7,6 +7,7 @@ namespace Core\Rover\Tests\Unit\Domain\Rover\Cartesian;
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Cartesian\CartesianRoverBuilderData;
 use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRoverBuilderData;
+use Core\Rover\Domain\Rover\RoverBuilderData;
 
 final class CartesianCardinalCoordinateRoverBuilderDataTest extends TestCase
 {
@@ -46,6 +47,11 @@ final class CartesianCardinalCoordinateRoverBuilderDataTest extends TestCase
 
         self::assertInstanceOf(
             CartesianRoverBuilderData::class,
+            $cartesianCardinalCoordinateRoverBuilderData
+        );
+
+        self::assertInstanceOf(
+            RoverBuilderData::class,
             $cartesianCardinalCoordinateRoverBuilderData
         );
     }
