@@ -7,6 +7,7 @@ namespace Core\Rover\Domain\Rover\Cartesian;
 use Core\Rover\Domain\Rover\Rover;
 use Core\Rover\Domain\Rover\RoverBuilderData;
 use Core\Rover\Domain\Rover\Area\Cartesian\CartesianAreaBuilder;
+use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaBuilderData;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirectionAbstractFactory;
 
@@ -21,22 +22,26 @@ final class CartesianCardinalCoordinateRoverBuilder implements CartesianRoverBui
 
     public function build(RoverBuilderData $data): Rover
     {
-        $areaData = new RectangularCartesianAreaBuilderData(
-            $data->areaUpperRightAbscissa(),
-            $data->areaUpperRightOrdinate()
-        );
-        
-        $area = $this->cartesianAreaBuilder->build($areaData);
-
         $cardinal = $this->cartesianCardinalDirectionAbstractFactory->create(
             $data->positionCardinal()
         );
 
         return CartesianCardinalCoordinateRover::create(
-            $area,
+            $this->buidlArea($data),
             $cardinal,
             $data->positionAbscissa(),
             $data->positionOrdinate()
         );
+    }
+
+    private function buidlArea(
+        RoverBuilderData $data
+    ): RectangularCartesianArea {
+        $areaData = new RectangularCartesianAreaBuilderData(
+            $data->areaUpperRightAbscissa(),
+            $data->areaUpperRightOrdinate()
+        );
+        
+        return $this->cartesianAreaBuilder->build($areaData);
     }
 }
