@@ -25,11 +25,9 @@ final class MovementCollection implements Collection
         return 0 === $this->size;
     }
 
-    public function next(): bool
+    public function next(): void
     {
         $this->index = $this->index + 1;
-
-        return $this->size >= $this->index;
     }
 
     public function current(): Movement
@@ -44,6 +42,11 @@ final class MovementCollection implements Collection
     public function add(CollectionItem $item): void
     {
         $this->movements[] = $item;
-        $this->size     = $this->size + 1;
+        $this->size        = $this->size + 1;
+    }
+
+    public function end(): bool
+    {
+        return $this->size === $this->index;
     }
 }

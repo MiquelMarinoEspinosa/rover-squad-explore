@@ -41,10 +41,10 @@ final class MovementCollectionTest extends TestCase
         );
     }
 
-    public function testShouldReturnFalseWhenNextMethodExecutedOnEmpty(): void
+    public function testShouldReturnTrueWhenEndMethodExecutedOnEmpty(): void
     {
-        self::assertFalse(
-            $this->movementCollection->next()
+        self::assertTrue(
+            $this->movementCollection->end()
         );
     }
 
@@ -80,29 +80,31 @@ final class MovementCollectionTest extends TestCase
         );
     }
 
-    public function testShouldHaveNext(): void
+    public function testShouldNotBeEnd(): void
     {
         $movement = self::createMock(Movement::class);
 
         $this->movementCollection->add($movement);
 
-        self::assertTrue(
-            $this->movementCollection->next()
+        self::assertFalse(
+            $this->movementCollection->end()
         );
     }
 
-    public function testShouldNotHaveNext(): void
+    public function testShouldBeEndAfterNext(): void
     {
         $movement = self::createMock(Movement::class);
 
         $this->movementCollection->add($movement);
 
-        self::assertTrue(
-            $this->movementCollection->next()
+        self::assertFalse(
+            $this->movementCollection->end()
         );
 
-        self::assertFalse(
-            $this->movementCollection->next()
+        $this->movementCollection->next();
+
+        self::assertTrue(
+            $this->movementCollection->end()
         );
     }
 }

@@ -41,10 +41,10 @@ final class RoverSquadTest extends TestCase
         );
     }
 
-    public function testShouldReturnFalseWhenNextMethodExecutedOnEmpty(): void
+    public function testShouldReturnTrueWhenEndMethodExecutedOnEmpty(): void
     {
-        self::assertFalse(
-            $this->roverSquad->next()
+        self::assertTrue(
+            $this->roverSquad->end()
         );
     }
 
@@ -80,29 +80,31 @@ final class RoverSquadTest extends TestCase
         );
     }
 
-    public function testShouldHaveNext(): void
+    public function testShouldNotHaveEnd(): void
     {
         $rover = self::createMock(Rover::class);
 
         $this->roverSquad->add($rover);
 
-        self::assertTrue(
-            $this->roverSquad->next()
+        self::assertFalse(
+            $this->roverSquad->end()
         );
     }
 
-    public function testShouldNotHaveNext(): void
+    public function testShouldHaveEndAfterNext(): void
     {
         $rover = self::createMock(Rover::class);
 
         $this->roverSquad->add($rover);
 
-        self::assertTrue(
-            $this->roverSquad->next()
+        self::assertFalse(
+            $this->roverSquad->end()
         );
 
-        self::assertFalse(
-            $this->roverSquad->next()
+        $this->roverSquad->next();
+
+        self::assertTrue(
+            $this->roverSquad->end()
         );
     }
 }

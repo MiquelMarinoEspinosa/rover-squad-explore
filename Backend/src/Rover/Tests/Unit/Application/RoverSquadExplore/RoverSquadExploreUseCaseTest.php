@@ -15,6 +15,10 @@ use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoord
 use Core\Rover\Application\RoverSquadExplore\Request\Movement\Cartesian\CartesianMovementExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderDataMapper;
+use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponseMapper;
+use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponse;
+use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverPosition;
+use Core\Rover\Domain\Rover\Rover;
 
 final class RoverSquadExploreUseCaseTest extends TestCase
 {
@@ -29,7 +33,8 @@ final class RoverSquadExploreUseCaseTest extends TestCase
     {
         $roverSquadExploreUseCase = new RoverSquadExploreUseCase(
             new CartesianCardinalCoordinateRoverBuilderDataMapper,
-            self::createMock(RoverBuilder::class)
+            self::createMock(RoverBuilder::class),
+            new CartesianCardinalCoordinateRoverExploreResponseMapper
         );
 
         self::assertInstanceOf(
@@ -53,11 +58,12 @@ final class RoverSquadExploreUseCaseTest extends TestCase
             $emptyRoverExploreRequests
         );
 
-        $emptyResponse = new RoverSquadExploreResponse;
+        $emptyResponse = new RoverSquadExploreResponse([]);
 
         $roverSquadExploreUseCase = new RoverSquadExploreUseCase(
             new CartesianCardinalCoordinateRoverBuilderDataMapper,
-            self::createMock(RoverBuilder::class)
+            self::createMock(RoverBuilder::class),
+            new CartesianCardinalCoordinateRoverExploreResponseMapper
         );
 
         $response = $roverSquadExploreUseCase->execute($emptyRequest);
@@ -79,11 +85,12 @@ final class RoverSquadExploreUseCaseTest extends TestCase
             $emptyRoverExploreRequests
         );
 
-        $emptyResponse = new RoverSquadExploreResponse;
+        $emptyResponse = new RoverSquadExploreResponse([]);
 
         $roverSquadExploreUseCase = new RoverSquadExploreUseCase(
             new CartesianCardinalCoordinateRoverBuilderDataMapper,
-            self::createMock(RoverBuilder::class)
+            self::createMock(RoverBuilder::class),
+            new CartesianCardinalCoordinateRoverExploreResponseMapper
         );
 
         $response = $roverSquadExploreUseCase->execute($emptyRoverRequest);
@@ -119,11 +126,70 @@ final class RoverSquadExploreUseCaseTest extends TestCase
 
         $roverSquadExploreUseCase = new RoverSquadExploreUseCase(
             new CartesianCardinalCoordinateRoverBuilderDataMapper,
-            $roverBuilder
+            $roverBuilder,
+            new CartesianCardinalCoordinateRoverExploreResponseMapper
         );
 
         $roverSquadExploreUseCase->execute(
             $roverRequest
+        );
+    }
+
+    public function testGivenNoMovementsWhenExecuteThenShouldReturnTheRoverPositionResponse(): void
+    {
+        $emptyMovementExploreRequests = [];
+
+        $roverExploreRequests = $this->givenRoverExploreRequests();
+
+
+        $roverRequest = new RoverSquadExploreRequest(
+            $emptyMovementExploreRequests,
+            $roverExploreRequests
+        );
+
+        $roverBuilderData = $this->givenRoverBuilderData();
+
+        $roverPosition = new CartesianCardinalCoordinateRoverPosition(
+            self::POSITION_CARDINAL,
+            self::POSITION_ABSCISSA,
+            self::POSITION_ORDINATE
+        );
+
+        $rover = self::createMock(Rover::class);
+        $rover->expects(self::once())
+            ->method('position')
+            ->willReturn($roverPosition);
+
+        $roverBuilder = self::createMock(RoverBuilder::class);
+
+        $roverBuilder->expects(self::once())
+            ->method('build')
+            ->with($roverBuilderData)
+            ->willReturn($rover);
+
+        $roverSquadExploreUseCase = new RoverSquadExploreUseCase(
+            new CartesianCardinalCoordinateRoverBuilderDataMapper,
+            $roverBuilder,
+            new CartesianCardinalCoordinateRoverExploreResponseMapper
+        );
+
+        $response = $roverSquadExploreUseCase->execute(
+            $roverRequest
+        );
+
+        $roverExploreResponse = new CartesianCardinalCoordinateRoverExploreResponse(
+            self::POSITION_CARDINAL,
+            self::POSITION_ABSCISSA,
+            self::POSITION_ORDINATE
+        );
+
+        $expectedResponse = new RoverSquadExploreResponse(
+            [$roverExploreResponse]
+        );
+
+        self::assertEquals(
+            $expectedResponse->roverExploreResponses(),
+            $response->roverExploreResponses()
         );
     }
 
