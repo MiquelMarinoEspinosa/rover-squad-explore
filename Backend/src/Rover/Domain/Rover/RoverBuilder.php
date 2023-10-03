@@ -6,4 +6,5 @@ namespace Core\Rover\Domain\Rover;
 
 interface RoverBuilder
 {
+    public function build(RoverBuilderData $data): Rover;
 }

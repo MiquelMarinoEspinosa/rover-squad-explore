@@ -11,7 +11,7 @@ final readonly class CartesianCardinalCoordinateRoverBuilderData implements Cart
         private int $areaUpperRightOrdinate,
         private string $positionCardinal,
         private int $positionAbscissa,
-        private int $positionCordinate
+        private int $positionOrdinate
     ) {
     }
 
@@ -35,8 +35,8 @@ final readonly class CartesianCardinalCoordinateRoverBuilderData implements Cart
         return $this->positionAbscissa;
     }
 
-    public function positionCordinate(): int
+    public function positionOrdinate(): int
     {
-        return $this->positionCordinate;
+        return $this->positionOrdinate;
     }
 }

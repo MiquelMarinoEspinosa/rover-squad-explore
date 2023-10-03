@@ -16,5 +16,5 @@ interface CartesianRoverBuilderData extends RoverBuilderData
 
     public function positionAbscissa(): int;
 
-    public function positionCordinate(): int;
+    public function positionOrdinate(): int;
 }

@@ -92,12 +92,12 @@ final class CartesianCardinalCoordinateRoverBuilderDataTest extends TestCase
         );
     }
 
-    public function testShouldReturnThePositionCordinate(): void
+    public function testShouldReturnThePositionOrdinate(): void
     {
         self::assertSame(
             self::POSITION_ORDINATE,
             $this->cartesianCardinalCoordinateRoverBuilderData
-                ->positionCordinate()
+                ->positionOrdinate()
         );
     }
 }
