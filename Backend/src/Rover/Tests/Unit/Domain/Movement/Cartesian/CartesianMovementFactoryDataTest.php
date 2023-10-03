@@ -30,4 +30,14 @@ final class CartesianMovementFactoryDataTest extends TestCase
             $cartesianMovementFactoryData
         );
     }
+
+    public function testShouldReturnTheMovementValue(): void
+    {
+        $cartesianMovementFactoryData = new CartesianMovementFactoryData('L');
+
+        self::assertSame(
+            'L',
+            $cartesianMovementFactoryData->movementValue()
+        );
+    }
 }

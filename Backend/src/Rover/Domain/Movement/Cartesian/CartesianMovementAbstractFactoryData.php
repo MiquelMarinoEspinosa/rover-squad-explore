@@ -8,4 +8,5 @@ use Core\Rover\Domain\Movement\MovementFactoryData;
 
 interface CartesianMovementAbstractFactoryData extends MovementFactoryData
 {
+    public function movementValue(): string;
 }
