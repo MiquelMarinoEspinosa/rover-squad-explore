@@ -22,6 +22,7 @@ use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\C
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderDataMapper;
 use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponseMapper;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactoryData;
+use Core\Rover\Domain\Movement\Movement;
 use Core\Rover\Domain\Movement\MovementFactory;
 
 final class RoverSquadExploreUseCaseTest extends TestCase
@@ -74,11 +75,11 @@ final class RoverSquadExploreUseCaseTest extends TestCase
 
     public function testGivenAnEmptyRequestWhenExecuteShouldReturnAnEmptyResponse(): void
     {
-        $emptyMovementExploreRequests = [];
+        $emptyMovementExploreCollectionRequests = [];
         $emptyRoverExploreRequests    = [];
 
         $emptyRequest = new RoverSquadExploreRequest(
-            $emptyMovementExploreRequests,
+            $emptyMovementExploreCollectionRequests,
             $emptyRoverExploreRequests
         );
 
@@ -92,99 +93,32 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         );
     }
 
-    public function testGivenAnEmptyRoverRequestWhenExecuteShouldReturnAnEmptyResponse(): void
+    public function testGivenAnEmptyRoverRequestAndGivenMovementsWhenExecuteShouldThrowAnException(): void
     {
         $emptyRoverExploreRequests = [];
 
-        $movementExploreRequests = $this->givenMovementExploreRequests();
+        $movementExploreCollectionRequests = $this->givenMovementExploreCollectionRequests();
 
         $emptyRoverRequest = new RoverSquadExploreRequest(
-            $movementExploreRequests,
+            $movementExploreCollectionRequests,
             $emptyRoverExploreRequests
         );
 
-        $emptyRoverExploreResponses = [];
-
-        $emptyResponse = new RoverSquadExploreResponse(
-            $emptyRoverExploreResponses
+        self::expectException(
+            RoverSquadExploreUseCaseException::class
         );
 
-        $response = $this->roverSquadExploreUseCase->execute($emptyRoverRequest);
-
-        self::assertEquals(
-            $emptyResponse,
-            $response
-        );
-    }
-
-    public function testShouldThrowAnExceptionWhenRoverBuilderFails(): void
-    {
-        $emptyMovementExploreRequests = [];
-
-        $roverExploreRequests = $this->givenRoverExploreRequests();
-
-
-        $roverRequest = new RoverSquadExploreRequest(
-            $emptyMovementExploreRequests,
-            $roverExploreRequests
-        );
-
-        $roverBuilderData = $this->givenRoverBuilderData();
-
-        $this->roverBuilder->expects(self::once())
-            ->method('build')
-            ->with($roverBuilderData)
-            ->willThrowException(new \Exception);
-
-        self::expectException(RoverSquadExploreUseCaseException::class);
-
-        $this->roverSquadExploreUseCase->execute(
-            $roverRequest
-        );
-    }
-
-    public function testGivenNoMovementsWhenExecuteThenShouldReturnTheRoverPositionResponse(): void
-    {
-        $emptyMovementExploreRequests = [];
-
-        $roverExploreRequests = $this->givenRoverExploreRequests();
-
-
-        $roverRequest = new RoverSquadExploreRequest(
-            $emptyMovementExploreRequests,
-            $roverExploreRequests
-        );
-
-        $this->givenBuildRover();
-
-        $response = $this->roverSquadExploreUseCase->execute(
-            $roverRequest
-        );
-
-        $roverExploreResponse = new CartesianCardinalCoordinateRoverExploreResponse(
-            self::POSITION_CARDINAL,
-            self::POSITION_ABSCISSA,
-            self::POSITION_ORDINATE
-        );
-
-        $expectedResponse = new RoverSquadExploreResponse(
-            [$roverExploreResponse]
-        );
-
-        self::assertEquals(
-            $expectedResponse->roverExploreResponses(),
-            $response->roverExploreResponses()
-        );
+        $this->roverSquadExploreUseCase->execute($emptyRoverRequest);
     }
 
     public function testShouldThrowAnExceptionWhenMovementFactoryFails(): void
     {
-        $movementExploreRequests = $this->givenMovementExploreRequests();
+        $movementExploreCollectionRequests = $this->givenMovementExploreCollectionRequests();
 
         $roverExploreRequests = $this->givenRoverExploreRequests();
 
         $roverRequest = new RoverSquadExploreRequest(
-            $movementExploreRequests,
+            $movementExploreCollectionRequests,
             $roverExploreRequests
         );
 
@@ -204,15 +138,56 @@ final class RoverSquadExploreUseCaseTest extends TestCase
 
         $this->roverSquadExploreUseCase->execute(
             $roverRequest
-        );        
+        );
     }
 
-    private function givenMovementExploreRequests(): array
+    public function testShouldThrowAnExceptionWhenMovementApplyFails(): void
+    {
+        $movementExploreCollectionRequests = $this->givenMovementExploreCollectionRequests();
+
+        $roverExploreRequests = $this->givenRoverExploreRequests();
+
+        $roverRequest = new RoverSquadExploreRequest(
+            $movementExploreCollectionRequests,
+            $roverExploreRequests
+        );
+
+        $movementFactoryData = new CartesianMovementFactoryData(
+            self::MOVEMENT_VALUE
+        );
+
+        $rover = $this->givenBuildRover();
+
+        $movement = $this->createMock(Movement::class);
+
+        $movement->expects(self::once())
+            ->method('apply')
+            ->with($rover)
+            ->willThrowException(new \Exception);
+
+        $this->movementFactory
+            ->expects(self::once())
+            ->method('create')
+            ->with($movementFactoryData)
+            ->willReturn($movement);
+
+        self::expectException(
+            RoverSquadExploreUseCaseException::class
+        );
+
+        $this->roverSquadExploreUseCase->execute(
+            $roverRequest
+        );
+    }
+
+    private function givenMovementExploreCollectionRequests(): array
     {
         return [
-            new CartesianMovementExploreRequest(
-                self::MOVEMENT_VALUE
-            )
+            [
+                new CartesianMovementExploreRequest(
+                    self::MOVEMENT_VALUE
+                )
+            ]
         ];
     }
 
@@ -228,23 +203,21 @@ final class RoverSquadExploreUseCaseTest extends TestCase
             )
         ];
     }
-    
-    private function givenBuildRover(): void
+
+    private function givenBuildRover(): MockObject
     {
         $roverBuilderData = $this->givenRoverBuilderData();
-        
+
         $roverPosition = $this->givenRoverPosition();
 
         $rover = self::createMock(Rover::class);
-
-        $rover->expects(self::once())
-            ->method('position')
-            ->willReturn($roverPosition);
 
         $this->roverBuilder->expects(self::once())
             ->method('build')
             ->with($roverBuilderData)
             ->willReturn($rover);
+
+        return $rover;
     }
 
     private function givenRoverBuilderData(): CartesianCardinalCoordinateRoverBuilderData

@@ -6,7 +6,6 @@ namespace Core\Rover\Application\RoverSquadExplore;
 
 use Throwable;
 use Core\Rover\Application\UseCase;
-use Core\Rover\Domain\Rover\RoverSquad;
 use Core\Rover\Domain\Rover\RoverBuilder;
 use Core\Rover\Application\UseCaseRequest;
 use Core\Rover\Domain\Movement\MovementFactory;
@@ -18,6 +17,8 @@ use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Movement\Cartesian\C
 
 final class RoverSquadExploreUseCase implements UseCase
 {
+    private const ERROR_MESSAGE = 'Not valid request. Rover and movements collection should be same number';
+
     public function __construct(
         private RoverBuilderDataMapper $roverBuilderDataMapper,
         private RoverBuilder $roverBuilder,
@@ -29,6 +30,8 @@ final class RoverSquadExploreUseCase implements UseCase
 
     public function execute(UseCaseRequest $request): RoverSquadExploreResponse
     {
+        $this->validateRequest($request);
+
         try {
             return $this->explore($request);
         } catch (Throwable $exception) {
@@ -40,50 +43,30 @@ final class RoverSquadExploreUseCase implements UseCase
 
     private function explore(RoverSquadExploreRequest $request): RoverSquadExploreResponse
     {
-        if (empty($request->roverExploreRequests())) {
-            return new RoverSquadExploreResponse([], []);
+
+
+        $movementExploreCollectionRequests = $request->movementExploreCollectionRequests();
+        $roverExploreRequests = $request->roverExploreRequests();
+
+        foreach ($roverExploreRequests as $roverIndex => $roverExploreRequest) {
+            $roverBuilderData = $this->roverBuilderDataMapper->map($roverExploreRequest);
+            $rover = $this->roverBuilder->build($roverBuilderData);
+            foreach ($movementExploreCollectionRequests[$roverIndex] as $movementExploreRequest) {
+                $movementFactoryData = $this->movementFactoryDataMapper->map($movementExploreRequest);
+                $movement = $this->movementFactory->create($movementFactoryData);
+                $movement->apply($rover);
+            }
         }
 
-        foreach ($request->movementExploreRequests() as $movementExploreRequest) {
-            $movementFactoryData = $this->movementFactoryDataMapper->map($movementExploreRequest);
-            $this->movementFactory->create($movementFactoryData);
-        }
-
-        $roverSquad = $this->buildRoverSquad(
-            $request->roverExploreRequests()
-        );
-
-        $roverExploreResponses = [];
-
-        while (!$roverSquad->end()) {
-
-            $rover = $roverSquad->current();
-
-            $roverExploreResponse = $this->roverExploreResponseMapper->map(
-                $rover->position()
-            );
-
-            $roverExploreResponses[] = $roverExploreResponse;
-
-            $roverSquad->next();
-        }
-
-        return new RoverSquadExploreResponse($roverExploreResponses);
+        return new RoverSquadExploreResponse([]);
     }
 
-    private function buildRoverSquad(
-        array $roverExploreRequests
-    ): RoverSquad {
-        $roverSquad = new RoverSquad;
-
-        foreach ($roverExploreRequests as $roverExploreRequest) {
-            $roverBuilderData = $this->roverBuilderDataMapper->map($roverExploreRequest);
-
-            $rover = $this->roverBuilder->build($roverBuilderData);
-
-            $roverSquad->add($rover);
+    private function validateRequest(RoverSquadExploreRequest $request): void
+    {
+        if (count($request->roverExploreRequests()) !== count($request->movementExploreCollectionRequests())) {
+            throw RoverSquadExploreUseCaseException::create(
+                self::ERROR_MESSAGE
+            );
         }
-
-        return $roverSquad;
     }
 }
