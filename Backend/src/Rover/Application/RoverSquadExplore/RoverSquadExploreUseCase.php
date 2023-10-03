@@ -10,12 +10,12 @@ use Core\Rover\Domain\Rover\RoverBuilder;
 use Core\Rover\Application\UseCaseRequest;
 use Core\Rover\Domain\Movement\MovementFactory;
 use Core\Rover\Application\RoverSquadExplore\Request\RoverSquadExploreRequest;
+use Core\Rover\Application\RoverSquadExplore\Request\Rover\RoverExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\Response\RoverSquadExploreResponse;
+use Core\Rover\Application\RoverSquadExplore\Response\Rover\RoverExploreResponse;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\RoverBuilderDataMapper;
 use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\RoverExploreResponseMapper;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Movement\Cartesian\CartesianMovementFactoryDataMapper;
-use Core\Rover\Application\RoverSquadExplore\Request\Rover\RoverExploreRequest;
-use Core\Rover\Application\RoverSquadExplore\Response\Rover\RoverExploreResponse;
 use Core\Rover\Domain\Rover\Rover;
 
 final class RoverSquadExploreUseCase implements UseCase
@@ -86,8 +86,8 @@ final class RoverSquadExploreUseCase implements UseCase
         RoverExploreRequest $roverExploreRequest,
         array $movementExploreRequests,
     ): RoverExploreResponse {
-        $roverBuilderData = $this->roverBuilderDataMapper->map($roverExploreRequest);
-        $rover = $this->roverBuilder->build($roverBuilderData);
+        $rover = $this->buildRover($roverExploreRequest);
+
         foreach ($movementExploreRequests as $movementExploreRequest) {
             $movementFactoryData = $this->movementFactoryDataMapper->map($movementExploreRequest);
             $movement = $this->movementFactory->create($movementFactoryData);
@@ -97,5 +97,13 @@ final class RoverSquadExploreUseCase implements UseCase
         return $this->roverExploreResponseMapper->map(
             $rover->position()
         );
+    }
+
+    private function buildRover(
+        RoverExploreRequest $roverExploreRequest
+    ): Rover {
+        $roverBuilderData = $this->roverBuilderDataMapper->map($roverExploreRequest);
+        
+        return $this->roverBuilder->build($roverBuilderData);
     }
 }
