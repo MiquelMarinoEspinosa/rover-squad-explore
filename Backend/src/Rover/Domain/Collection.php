@@ -9,4 +9,6 @@ interface Collection
     public function empty(): bool;
 
     public function next(): bool;
+
+    public function current(): CollectionItem;
 }

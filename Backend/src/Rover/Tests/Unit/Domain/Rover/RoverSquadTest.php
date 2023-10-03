@@ -7,6 +7,7 @@ namespace Core\Rover\Tests\Unit\Domain\Rover;
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Collection;
 use Core\Rover\Domain\Rover\RoverSquad;
+use Core\Rover\Domain\Rover\RoverSquadOutOfRange;
 
 final class RoverSquadTest extends TestCase
 {
@@ -32,17 +33,26 @@ final class RoverSquadTest extends TestCase
         );
     }
 
-    public function testShouldReturnTrueWhenEmptyMethodExecuted(): void
+    public function testShouldReturnTrueWhenEmptyMethodExecutedOnEmpty(): void
     {
         self::assertTrue(
             $this->roverSquad->empty()
         );
     }
 
-    public function testShouldReturnFalseWhenNextMethodExecuted(): void
+    public function testShouldReturnFalseWhenNextMethodExecutedOnEmpty(): void
     {
         self::assertTrue(
             $this->roverSquad->next()
         );
+    }
+
+    public function testShouldThrowAnExceptionWhenCurrentMethodExecutedOnEmpty(): void
+    {
+        self::expectException(
+            RoverSquadOutOfRange::class
+        );
+
+        $this->roverSquad->current();
     }
 }
