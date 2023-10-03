@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Application\RoverSquadExplore;
 
+use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Movement\Cartesian\CartesianMovementFactoryDataMapper;
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Rover;
 use Core\Rover\Application\UseCase;
@@ -20,6 +21,7 @@ use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Co
 use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponse;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderDataMapper;
 use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponseMapper;
+use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactoryData;
 use Core\Rover\Domain\Movement\MovementFactory;
 
 final class RoverSquadExploreUseCaseTest extends TestCase
@@ -43,6 +45,7 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         $this->roverSquadExploreUseCase = new RoverSquadExploreUseCase(
             new CartesianCardinalCoordinateRoverBuilderDataMapper,
             $this->roverBuilder,
+            new CartesianMovementFactoryDataMapper,
             $this->movementFactory,
             new CartesianCardinalCoordinateRoverExploreResponseMapper
         );
@@ -53,6 +56,7 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         $roverSquadExploreUseCase = new RoverSquadExploreUseCase(
             new CartesianCardinalCoordinateRoverBuilderDataMapper,
             $this->roverBuilder,
+            new CartesianMovementFactoryDataMapper,
             $this->movementFactory,
             new CartesianCardinalCoordinateRoverExploreResponseMapper
         );
@@ -171,6 +175,36 @@ final class RoverSquadExploreUseCaseTest extends TestCase
             $expectedResponse->roverExploreResponses(),
             $response->roverExploreResponses()
         );
+    }
+
+    public function testShouldThrowAnExceptionWhenMovementFactoryFails(): void
+    {
+        $movementExploreRequests = $this->givenMovementExploreRequests();
+
+        $roverExploreRequests = $this->givenRoverExploreRequests();
+
+        $roverRequest = new RoverSquadExploreRequest(
+            $movementExploreRequests,
+            $roverExploreRequests
+        );
+
+        $movementFactoryData = new CartesianMovementFactoryData(
+            self::MOVEMENT_VALUE
+        );
+
+        $this->movementFactory
+            ->expects(self::once())
+            ->method('create')
+            ->with($movementFactoryData)
+            ->willThrowException(new \Exception);
+
+        self::expectException(
+            RoverSquadExploreUseCaseException::class
+        );
+
+        $this->roverSquadExploreUseCase->execute(
+            $roverRequest
+        );        
     }
 
     private function givenMovementExploreRequests(): array

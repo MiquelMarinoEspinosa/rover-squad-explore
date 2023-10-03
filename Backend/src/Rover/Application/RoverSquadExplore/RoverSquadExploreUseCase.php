@@ -14,12 +14,14 @@ use Core\Rover\Application\RoverSquadExplore\Request\RoverSquadExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\Response\RoverSquadExploreResponse;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\RoverBuilderDataMapper;
 use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\RoverExploreResponseMapper;
+use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Movement\Cartesian\CartesianMovementFactoryDataMapper;
 
 final class RoverSquadExploreUseCase implements UseCase
 {
     public function __construct(
         private RoverBuilderDataMapper $roverBuilderDataMapper,
         private RoverBuilder $roverBuilder,
+        private CartesianMovementFactoryDataMapper $movementFactoryDataMapper,
         private MovementFactory $movementFactory,
         private RoverExploreResponseMapper $roverExploreResponseMapper
     ) {
@@ -40,6 +42,11 @@ final class RoverSquadExploreUseCase implements UseCase
     {
         if (empty($request->roverExploreRequests())) {
             return new RoverSquadExploreResponse([], []);
+        }
+
+        foreach ($request->movementExploreRequests() as $movementExploreRequest) {
+            $movementFactoryData = $this->movementFactoryDataMapper->map($movementExploreRequest);
+            $this->movementFactory->create($movementFactoryData);
         }
 
         $roverSquad = $this->buildRoverSquad(
