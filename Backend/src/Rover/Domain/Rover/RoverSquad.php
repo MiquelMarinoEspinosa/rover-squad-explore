@@ -29,7 +29,7 @@ final class RoverSquad implements Collection
     {
         $this->index = $this->index + 1;
 
-        return $this->size > $this->index;
+        return $this->size >= $this->index;
     }
 
     public function current(): Rover
