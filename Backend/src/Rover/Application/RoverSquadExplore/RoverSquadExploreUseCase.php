@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace Core\Rover\Application\RoverSquadExplore;
 
-use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\RoverBuilderDataMapper;
-use Core\Rover\Application\RoverSquadExplore\Request\Rover\RoverExploreRequest;
-use Core\Rover\Application\RoverSquadExplore\Request\RoverSquadExploreRequest;
-use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\RoverExploreResponseMapper;
-use Core\Rover\Application\RoverSquadExplore\Response\RoverSquadExploreResponse;
-use Core\Rover\Application\UseCase;
-use Core\Rover\Application\UseCaseRequest;
-use Core\Rover\Domain\Rover\RoverBuilder;
-use Core\Rover\Domain\Rover\RoverSquad;
 use Throwable;
+use Core\Rover\Application\UseCase;
+use Core\Rover\Domain\Rover\RoverSquad;
+use Core\Rover\Domain\Rover\RoverBuilder;
+use Core\Rover\Application\UseCaseRequest;
+use Core\Rover\Domain\Movement\MovementFactory;
+use Core\Rover\Application\RoverSquadExplore\Request\RoverSquadExploreRequest;
+use Core\Rover\Application\RoverSquadExplore\Response\RoverSquadExploreResponse;
+use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\RoverBuilderDataMapper;
+use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\RoverExploreResponseMapper;
 
 final class RoverSquadExploreUseCase implements UseCase
 {
     public function __construct(
         private RoverBuilderDataMapper $roverBuilderDataMapper,
         private RoverBuilder $roverBuilder,
+        private MovementFactory $movementFactory,
         private RoverExploreResponseMapper $roverExploreResponseMapper
     ) {
     }

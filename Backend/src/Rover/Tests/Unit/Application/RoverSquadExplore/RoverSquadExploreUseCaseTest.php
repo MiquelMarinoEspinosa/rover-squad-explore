@@ -20,6 +20,7 @@ use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Co
 use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponse;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderDataMapper;
 use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponseMapper;
+use Core\Rover\Domain\Movement\MovementFactory;
 
 final class RoverSquadExploreUseCaseTest extends TestCase
 {
@@ -31,15 +32,18 @@ final class RoverSquadExploreUseCaseTest extends TestCase
     private const POSITION_ORDINATE         = 1;
 
     private MockObject $roverBuilder;
+    private MockObject $movementFactory;
     private RoverSquadExploreUseCase $roverSquadExploreUseCase;
 
     protected function setUp(): void
     {
         $this->roverBuilder = self::createMock(RoverBuilder::class);
+        $this->movementFactory = self::createMock(MovementFactory::class);
 
         $this->roverSquadExploreUseCase = new RoverSquadExploreUseCase(
             new CartesianCardinalCoordinateRoverBuilderDataMapper,
             $this->roverBuilder,
+            $this->movementFactory,
             new CartesianCardinalCoordinateRoverExploreResponseMapper
         );
     }
@@ -48,7 +52,8 @@ final class RoverSquadExploreUseCaseTest extends TestCase
     {
         $roverSquadExploreUseCase = new RoverSquadExploreUseCase(
             new CartesianCardinalCoordinateRoverBuilderDataMapper,
-            self::createMock(RoverBuilder::class),
+            $this->roverBuilder,
+            $this->movementFactory,
             new CartesianCardinalCoordinateRoverExploreResponseMapper
         );
 
