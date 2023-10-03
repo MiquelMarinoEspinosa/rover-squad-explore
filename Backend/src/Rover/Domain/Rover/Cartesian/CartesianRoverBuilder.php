@@ -8,5 +8,4 @@ use Core\Rover\Domain\Rover\RoverBuilder;
 
 interface CartesianRoverBuilder extends RoverBuilder
 {
-    public static function getInstance(): self;
 }

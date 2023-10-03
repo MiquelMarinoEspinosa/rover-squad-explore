@@ -13,7 +13,7 @@ final class CartesianCardinalCoordinateRoverBuilderTest extends TestCase
 {
     public function testShouldInstantiateCartesianCardinalCoordinateRoverBuilder(): void
     {
-        $cartesianCardinalCoordinateRoverBuilder = CartesianCardinalCoordinateRoverBuilder::getInstance();
+        $cartesianCardinalCoordinateRoverBuilder = new CartesianCardinalCoordinateRoverBuilder;
 
         self::assertInstanceOf(
             CartesianCardinalCoordinateRoverBuilder::class,
@@ -28,14 +28,6 @@ final class CartesianCardinalCoordinateRoverBuilderTest extends TestCase
         self::assertInstanceOf(
             RoverBuilder::class,
             $cartesianCardinalCoordinateRoverBuilder
-        );
-    }
-
-    public function testShouldBeTheSameInstanceWhenInstantiateTwice(): void
-    {
-        self::assertSame(
-            CartesianCardinalCoordinateRoverBuilder::getInstance(),
-            CartesianCardinalCoordinateRoverBuilder::getInstance()
         );
     }
 }
