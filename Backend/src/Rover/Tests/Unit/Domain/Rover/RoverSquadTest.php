@@ -90,4 +90,19 @@ final class RoverSquadTest extends TestCase
             $this->roverSquad->next()
         );
     }
+
+    public function testShouldNotHaveNext(): void
+    {
+        $rover = self::createMock(Rover::class);
+
+        $this->roverSquad->add($rover);
+
+        self::assertTrue(
+            $this->roverSquad->next()
+        );
+
+        self::assertFalse(
+            $this->roverSquad->next()
+        );
+    }
 }
