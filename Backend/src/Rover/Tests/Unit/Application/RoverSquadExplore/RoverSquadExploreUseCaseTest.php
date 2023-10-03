@@ -154,6 +154,8 @@ final class RoverSquadExploreUseCaseTest extends TestCase
             self::MOVEMENT_VALUE
         );
 
+        $this->givenBuildRover();
+
         $this->movementFactory
             ->expects(self::once())
             ->method('create')
@@ -205,6 +207,62 @@ final class RoverSquadExploreUseCaseTest extends TestCase
 
         $this->roverSquadExploreUseCase->execute(
             $roverRequest
+        );
+    }
+
+    public function testShouldSuccessfulExplore(): void
+    {
+        $movementExploreCollectionRequests = $this->givenMovementExploreCollectionRequests();
+
+        $roverExploreRequests = $this->givenRoverExploreRequests();
+
+        $roverRequest = new RoverSquadExploreRequest(
+            $movementExploreCollectionRequests,
+            $roverExploreRequests
+        );
+
+        $movementFactoryData = new CartesianMovementFactoryData(
+            self::MOVEMENT_VALUE
+        );
+
+        $rover = $this->givenBuildRover();
+
+        $position = $this->givenRoverPosition();
+        
+        $rover->expects(self::once())
+            ->method('position')
+            ->willReturn($position);
+
+        $movement = $this->createMock(Movement::class);
+
+        $movement->expects(self::once())
+            ->method('apply')
+            ->with($rover)
+            ->willReturn($rover);
+
+        $this->movementFactory
+            ->expects(self::once())
+            ->method('create')
+            ->with($movementFactoryData)
+            ->willReturn($movement);
+
+        $response = $this->roverSquadExploreUseCase->execute(
+            $roverRequest
+        );
+
+        $expectedResponse = new RoverSquadExploreResponse(
+            [
+                new CartesianCardinalCoordinateRoverExploreResponse(
+                    self::POSITION_CARDINAL,
+                    self::POSITION_ABSCISSA,
+                    self::POSITION_ORDINATE
+                )
+            ]
+        );
+
+        self::assertEquals(
+            $expectedResponse,
+            $response
         );
     }
 

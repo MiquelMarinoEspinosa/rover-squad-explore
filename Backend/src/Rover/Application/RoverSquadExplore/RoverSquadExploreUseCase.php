@@ -47,6 +47,7 @@ final class RoverSquadExploreUseCase implements UseCase
 
         $movementExploreCollectionRequests = $request->movementExploreCollectionRequests();
         $roverExploreRequests = $request->roverExploreRequests();
+        $responses = [];
 
         foreach ($roverExploreRequests as $roverIndex => $roverExploreRequest) {
             $roverBuilderData = $this->roverBuilderDataMapper->map($roverExploreRequest);
@@ -54,11 +55,16 @@ final class RoverSquadExploreUseCase implements UseCase
             foreach ($movementExploreCollectionRequests[$roverIndex] as $movementExploreRequest) {
                 $movementFactoryData = $this->movementFactoryDataMapper->map($movementExploreRequest);
                 $movement = $this->movementFactory->create($movementFactoryData);
-                $movement->apply($rover);
+                $rover = $movement->apply($rover);
             }
+
+            
+            $responses[] = $this->roverExploreResponseMapper->map(
+                $rover->position()
+            );
         }
 
-        return new RoverSquadExploreResponse([]);
+        return new RoverSquadExploreResponse($responses);
     }
 
     private function validateRequest(RoverSquadExploreRequest $request): void
