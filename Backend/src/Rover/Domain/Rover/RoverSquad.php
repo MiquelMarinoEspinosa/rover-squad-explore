@@ -8,4 +8,8 @@ use Core\Rover\Domain\Collection;
 
 final readonly class RoverSquad implements Collection
 {
+    public function empty(): bool
+    {
+        return true;
+    }
 }

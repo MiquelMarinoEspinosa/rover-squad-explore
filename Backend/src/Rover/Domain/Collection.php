@@ -6,4 +6,5 @@ namespace Core\Rover\Domain;
 
 interface Collection
 {
+    public function empty(): bool;
 }

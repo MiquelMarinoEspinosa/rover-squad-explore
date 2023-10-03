@@ -24,4 +24,11 @@ final class RoverSquadTest extends TestCase
             $roverSquad
         );
     }
+
+    public function testShouldReturnTrueWhenEmptyMethodExecuted(): void
+    {
+        self::assertTrue(
+            (new RoverSquad)->empty()
+        );
+    }
 }
