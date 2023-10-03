@@ -9,29 +9,41 @@ use Core\Rover\Domain\Collection\CollectionItem;
 
 final class RoverSquad implements Collection
 {
-    private ?Rover $rover = null;
+    private array $rovers;
+    private int $index;
+    private int $size;
+
+    public function __construct()
+    {
+        $this->rovers = [];
+        $this->index  = 0;
+        $this->size   = 0;
+    }
 
     public function empty(): bool
     {
-        return true;
+        return 0 === $this->size;
     }
 
     public function next(): bool
     {
-        return false;
+        $this->index = $this->index + 1;
+
+        return $this->size > $this->index;
     }
 
     public function current(): Rover
     {
-        if ($this->rover) {
-            return $this->rover;
+        if (!isset($this->rovers[$this->index])) {
+            throw RoverSquadOutOfRange::create();
         }
 
-        throw RoverSquadOutOfRange::create();
+        return $this->rovers[$this->index];
     }
 
     public function add(CollectionItem $item): void
     {
-        $this->rover = $item;
+        $this->rovers[] = $item;
+        $this->size     = $this->size + 1;
     }
 }
