@@ -9,12 +9,12 @@ use Core\Rover\Application\UseCase;
 use Core\Rover\Domain\Rover\RoverBuilder;
 use Core\Rover\Application\RoverSquadExplore\RoverSquadExploreUseCase;
 use Core\Rover\Application\RoverSquadExplore\Request\RoverSquadExploreRequest;
+use Core\Rover\Application\RoverSquadExplore\RoverSquadExploreUseCaseException;
 use Core\Rover\Application\RoverSquadExplore\Response\RoverSquadExploreResponse;
 use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderData;
 use Core\Rover\Application\RoverSquadExplore\Request\Movement\Cartesian\CartesianMovementExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderDataMapper;
-use Core\Rover\Application\RoverSquadExplore\RoverSquadExploreUseCaseException;
 
 final class RoverSquadExploreUseCaseTest extends TestCase
 {
@@ -45,7 +45,13 @@ final class RoverSquadExploreUseCaseTest extends TestCase
 
     public function testGivenAnEmptyRequestWhenExecuteShouldReturnAnEmptyResponse(): void
     {
-        $emptyRequest = new RoverSquadExploreRequest([], []);
+        $emptyMovementExploreRequests = [];
+        $emptyRoverExploreRequests    = [];
+
+        $emptyRequest = new RoverSquadExploreRequest(
+            $emptyMovementExploreRequests,
+            $emptyRoverExploreRequests
+        );
 
         $emptyResponse = new RoverSquadExploreResponse;
 
@@ -64,11 +70,13 @@ final class RoverSquadExploreUseCaseTest extends TestCase
 
     public function testGivenAnEmptyRoverRequestWhenExecuteShouldReturnAnEmptyResponse(): void
     {
+        $emptyRoverExploreRequests = [];
+
+        $movementExploreRequests = $this->givenMovementExploreRequests();
+
         $emptyRoverRequest = new RoverSquadExploreRequest(
-            [new CartesianMovementExploreRequest(
-                self::MOVEMENT_VALUE
-            )],
-            []
+            $movementExploreRequests,
+            $emptyRoverExploreRequests
         );
 
         $emptyResponse = new RoverSquadExploreResponse;
@@ -88,26 +96,17 @@ final class RoverSquadExploreUseCaseTest extends TestCase
 
     public function testShouldThrowAnExceptionWhenRoverBuilderFails(): void
     {
+        $emptyMovementExploreRequests = [];
+
+        $roverExploreRequests = $this->givenRoverExploreRequests();
+
+
         $roverRequest = new RoverSquadExploreRequest(
-            [],
-            [
-                new CartesianCardinalCoordinateRoverExploreRequest(
-                    self::AREA_UPPER_RIGHT_ABSCISSA,
-                    self::AREA_UPPER_RIGHT_ORDINATE,
-                    self::POSITION_CARDINAL,
-                    self::POSITION_ABSCISSA,
-                    self::POSITION_ORDINATE
-                )
-            ]
+            $emptyMovementExploreRequests,
+            $roverExploreRequests
         );
 
-        $roverBuilderData = new CartesianCardinalCoordinateRoverBuilderData(
-            self::AREA_UPPER_RIGHT_ABSCISSA,
-            self::AREA_UPPER_RIGHT_ORDINATE,
-            self::POSITION_CARDINAL,
-            self::POSITION_ABSCISSA,
-            self::POSITION_ORDINATE
-        );
+        $roverBuilderData = $this->givenRoverBuilderData();
 
         $roverBuilder = self::createMock(RoverBuilder::class);
 
@@ -125,6 +124,39 @@ final class RoverSquadExploreUseCaseTest extends TestCase
 
         $roverSquadExploreUseCase->execute(
             $roverRequest
+        );
+    }
+
+    private function givenMovementExploreRequests(): array
+    {
+        return [
+            new CartesianMovementExploreRequest(
+                self::MOVEMENT_VALUE
+            )
+        ];
+    }
+
+    private function givenRoverExploreRequests(): array
+    {
+        return [
+            new CartesianCardinalCoordinateRoverExploreRequest(
+                self::AREA_UPPER_RIGHT_ABSCISSA,
+                self::AREA_UPPER_RIGHT_ORDINATE,
+                self::POSITION_CARDINAL,
+                self::POSITION_ABSCISSA,
+                self::POSITION_ORDINATE
+            )
+        ];
+    }
+
+    private function givenRoverBuilderData(): CartesianCardinalCoordinateRoverBuilderData
+    {
+        return new CartesianCardinalCoordinateRoverBuilderData(
+            self::AREA_UPPER_RIGHT_ABSCISSA,
+            self::AREA_UPPER_RIGHT_ORDINATE,
+            self::POSITION_CARDINAL,
+            self::POSITION_ABSCISSA,
+            self::POSITION_ORDINATE
         );
     }
 }
