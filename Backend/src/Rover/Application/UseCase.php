@@ -6,4 +6,5 @@ namespace Core\Rover\Application;
 
 interface UseCase
 {
+    public function execute(UseCaseRequest $request): UseCaseResponse;
 }
