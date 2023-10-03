@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Application\RoverSquadExplore;
 
+use Core\Rover\Application\RoverSquadExplore\Request\Movement\Cartesian\CartesianMovementExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\Request\RoverSquadExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\Response\RoverSquadExploreResponse;
 use Core\Rover\Application\RoverSquadExplore\RoverSquadExploreUseCase;
@@ -27,15 +28,33 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         );
     }
 
-    public function testGivenAnEmptyResponseWhenExecuteShouldReturnAnEmptyResponse(): void
+    public function testGivenAnEmptyRequestWhenExecuteShouldReturnAnEmptyResponse(): void
     {
-        $emptyRequest = new RoverSquadExploreRequest;
+        $emptyRequest = new RoverSquadExploreRequest([]);
 
         $emptyResponse = new RoverSquadExploreResponse;
 
         $roverSquadExploreUseCase = new RoverSquadExploreUseCase;
 
         $response = $roverSquadExploreUseCase->execute($emptyRequest);
+
+        self::assertEquals(
+            $emptyResponse,
+            $response
+        );
+    }
+
+    public function testGivenAnEmptyRoverRequestWhenExecuteShouldReturnAnEmptyResponse(): void
+    {
+        $emptyRoverRequest = new RoverSquadExploreRequest(
+            [new CartesianMovementExploreRequest('L')]
+        );
+
+        $emptyResponse = new RoverSquadExploreResponse;
+
+        $roverSquadExploreUseCase = new RoverSquadExploreUseCase;
+
+        $response = $roverSquadExploreUseCase->execute($emptyRoverRequest);
 
         self::assertEquals(
             $emptyResponse,
