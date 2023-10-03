@@ -6,5 +6,5 @@ namespace Core\Rover\Domain\Movement;
 
 interface MovementFactory
 {
-    public function create(string $value): Movement;
+    public function create(MovementFactoryData $data): Movement;
 }

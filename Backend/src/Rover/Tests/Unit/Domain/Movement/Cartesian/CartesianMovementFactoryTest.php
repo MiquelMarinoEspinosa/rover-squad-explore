@@ -11,6 +11,7 @@ use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactory;
 use Core\Rover\Domain\Movement\Cartesian\ForwardCartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\UnknownCartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovementAbstractFactory;
+use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactoryData;
 use Core\Rover\Domain\Movement\MovementFactory;
 
 final class CartesianMovementFactoryTest extends TestCase
@@ -55,7 +56,9 @@ final class CartesianMovementFactoryTest extends TestCase
         );
 
         CartesianMovementFactory::getInstance()->create(
-            self::UNKNOWN_MOVEMENT_VALUE
+            new CartesianMovementFactoryData(
+                self::UNKNOWN_MOVEMENT_VALUE
+            )
         );
     }
 
@@ -64,7 +67,9 @@ final class CartesianMovementFactoryTest extends TestCase
         self::assertInstanceOf(
             ForwardCartesianMovement::class,
             CartesianMovementFactory::getInstance()->create(
-                self::FORWARD_MOVEMENT_VALUE
+                new CartesianMovementFactoryData(
+                    self::FORWARD_MOVEMENT_VALUE
+                )
             )
         );
     }
@@ -74,7 +79,9 @@ final class CartesianMovementFactoryTest extends TestCase
         self::assertInstanceOf(
             LeftCartesianMovement::class,
             CartesianMovementFactory::getInstance()->create(
-                self::LEFT_MOVEMENT_VALUE
+                new CartesianMovementFactoryData(
+                    self::LEFT_MOVEMENT_VALUE
+                )
             )
         );
     }
@@ -84,7 +91,9 @@ final class CartesianMovementFactoryTest extends TestCase
         self::assertInstanceOf(
             RightCartesianMovement::class,
             CartesianMovementFactory::getInstance()->create(
-                self::RIGHT_MOVEMENT_VALUE
+                new CartesianMovementFactoryData(
+                    self::RIGHT_MOVEMENT_VALUE
+                )
             )
         );
     }

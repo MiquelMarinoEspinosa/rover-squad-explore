@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Rover\Domain\Movement\Cartesian;
 
+use Core\Rover\Domain\Movement\MovementFactoryData;
+
 final class CartesianMovementFactory implements CartesianMovementAbstractFactory
 {
     private const FORWARD_VALUE = 'M';
@@ -23,13 +25,15 @@ final class CartesianMovementFactory implements CartesianMovementAbstractFactory
         return self::$instance;
     }
 
-    public function create(string $value): CartesianMovement
+    public function create(MovementFactoryData $data): CartesianMovement
     {
-        return match ($value) {
+        return match ($data->movementValue()) {
             self::FORWARD_VALUE => new ForwardCartesianMovement,
             self::LEFT_VALUE    => new LeftCartesianMovement,
             self::RIGHT_VALUE   => new RightCartesianMovement,
-            default             => throw UnknownCartesianMovement::create($value)
+            default             => throw UnknownCartesianMovement::create(
+                $data->movementValue()
+            )
         };
     }
 }
