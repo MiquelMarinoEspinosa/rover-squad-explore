@@ -2,12 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Core\Rover\Domain\Rover\Cartesian;
+namespace Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate;
 
+use Core\Rover\Domain\Rover\Cartesian\CartesianRover;
 use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
-use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
-use Core\Rover\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
 use Core\Rover\Domain\Rover\Point\Cartesian\CartesianPoint;
+use Core\Rover\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
+use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverPosition;
+use Core\Rover\Domain\Rover\Cartesian\CartesianRoverPosition;
 
 final class CartesianCardinalCoordinateRover implements CartesianRover
 {

@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\Rover\Domain\Rover\Cartesian;
+namespace Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate;
+
+use Core\Rover\Domain\Rover\Cartesian\CartesianRoverPosition;
 
 final readonly class CartesianCardinalCoordinateRoverPosition implements CartesianRoverPosition
 {

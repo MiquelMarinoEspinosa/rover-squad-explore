@@ -10,13 +10,13 @@ use Core\Rover\Domain\Collection\CollectionItem;
 use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\LeftCartesianMovement;
-use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRover;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRover;
 
 final class LeftCartesianMovementTest extends TestCase
 {

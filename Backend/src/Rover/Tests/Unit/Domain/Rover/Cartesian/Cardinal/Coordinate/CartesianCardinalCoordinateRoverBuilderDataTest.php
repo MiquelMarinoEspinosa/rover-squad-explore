@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Core\Rover\Tests\Unit\Domain\Rover\Cartesian;
+namespace Core\Rover\Tests\Unit\Domain\Rover\Cartesian\Cardinal\Coordinate;
 
 use PHPUnit\Framework\TestCase;
-use Core\Rover\Domain\Rover\Cartesian\CartesianRoverBuilderData;
-use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRoverBuilderData;
 use Core\Rover\Domain\Rover\RoverBuilderData;
+use Core\Rover\Domain\Rover\Cartesian\CartesianRoverBuilderData;
+use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderData;
 
 final class CartesianCardinalCoordinateRoverBuilderDataTest extends TestCase
 {

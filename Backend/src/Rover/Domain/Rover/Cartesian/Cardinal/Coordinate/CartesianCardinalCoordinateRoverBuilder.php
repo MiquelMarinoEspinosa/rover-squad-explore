@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Core\Rover\Domain\Rover\Cartesian;
+namespace Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate;
 
 use Core\Rover\Domain\Rover\Rover;
 use Core\Rover\Domain\Rover\RoverBuilderData;
+use Core\Rover\Domain\Rover\Cartesian\CartesianRoverBuilder;
 use Core\Rover\Domain\Rover\Area\Cartesian\CartesianAreaBuilder;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
-use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaBuilderData;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
+use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaBuilderData;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirectionAbstractFactory;
 
 final class CartesianCardinalCoordinateRoverBuilder implements CartesianRoverBuilder

@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Core\Rover\Tests\Unit\Domain\Rover\Cartesian;
+namespace Core\Rover\Tests\Unit\Domain\Rover\Cardinal\Coordinate;
 
-use Core\Rover\Domain\Collection\CollectionItem;
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Rover;
 use Core\Rover\Domain\Rover\RoverPosition;
+use Core\Rover\Domain\Collection\CollectionItem;
 use Core\Rover\Domain\Rover\Cartesian\CartesianRover;
 use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
-use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRover;
-use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRoverPosition;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
-use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaOutOfArea;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaOutOfArea;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\NorthCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianDirection;
+use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRover;
+use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverPosition;
 
 final class CartesianCardinalCoordinateRoverTest extends TestCase
 {
