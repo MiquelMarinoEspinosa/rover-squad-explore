@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Application\Explore\Request\Movement\Cartesian;
 
-use Core\Rover\Application\Explore\Request\Movement\Cartesian\CartesianMovementDiscoverRequest;
-use Core\Rover\Application\Explore\Request\Movement\MovementDiscoverRequest;
 use PHPUnit\Framework\TestCase;
+use Core\Rover\Application\Explore\Request\Movement\MovementDiscoverRequest;
+use Core\Rover\Application\Explore\Request\Movement\Cartesian\CartesianMovementDiscoverRequest;
 
 final class CartesianMovementDiscoverRequestTest extends TestCase
 {
+    private const MOVEMENT_VALUE = 'L';
+
     public function testShouldCreateTheCartesianMovementDiscoverRequest(): void
     {
-        $cartesianMovementDiscoverRequest = new CartesianMovementDiscoverRequest;
+        $cartesianMovementDiscoverRequest = new CartesianMovementDiscoverRequest(
+            self::MOVEMENT_VALUE
+        );
 
         self::assertInstanceOf(
             CartesianMovementDiscoverRequest::class,
@@ -22,6 +26,18 @@ final class CartesianMovementDiscoverRequestTest extends TestCase
         self::assertInstanceOf(
             MovementDiscoverRequest::class,
             $cartesianMovementDiscoverRequest
+        );
+    }
+
+    public function testShouldReturnTheMovementValue(): void
+    {
+        $cartesianMovementDiscoverRequest = new CartesianMovementDiscoverRequest(
+            self::MOVEMENT_VALUE
+        );
+
+        self::assertSame(
+            self::MOVEMENT_VALUE,
+            $cartesianMovementDiscoverRequest->movementValue()
         );
     }
 }
