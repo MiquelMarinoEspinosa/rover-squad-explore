@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Core\Rover\Domain\Rover;
 
-use Core\Rover\Domain\CollectionOutOfRange;
 use Exception;
 use Throwable;
+use Core\Rover\Domain\Collection\CollectionOutOfRange;
 
 final class RoverSquadOutOfRange extends Exception implements CollectionOutOfRange
 {

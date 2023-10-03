@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Domain\Rover;
 
-use Core\Rover\Domain\CollectionOutOfRange;
-use Core\Rover\Domain\Rover\RoverSquadOutOfRange;
-use PHPUnit\Framework\TestCase;
 use Throwable;
+use PHPUnit\Framework\TestCase;
+use Core\Rover\Domain\Collection\CollectionOutOfRange;
+use Core\Rover\Domain\Rover\RoverSquadOutOfRange;
 
 final class RoverSquadOutOfRangeTest extends TestCase
 {

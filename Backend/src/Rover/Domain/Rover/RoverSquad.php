@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Rover\Domain\Rover;
 
-use Core\Rover\Domain\Collection;
-use Core\Rover\Domain\CollectionItem;
+use Core\Rover\Domain\Collection\Collection;
+use Core\Rover\Domain\Collection\CollectionItem;
 
 final class RoverSquad implements Collection
 {
