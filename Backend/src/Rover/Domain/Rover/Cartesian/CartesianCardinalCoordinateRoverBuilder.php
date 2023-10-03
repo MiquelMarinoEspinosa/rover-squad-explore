@@ -9,6 +9,7 @@ use Core\Rover\Domain\Rover\RoverBuilderData;
 use Core\Rover\Domain\Rover\Area\Cartesian\CartesianAreaBuilder;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaBuilderData;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirectionAbstractFactory;
 
 final class CartesianCardinalCoordinateRoverBuilder implements CartesianRoverBuilder
@@ -22,13 +23,9 @@ final class CartesianCardinalCoordinateRoverBuilder implements CartesianRoverBui
 
     public function build(RoverBuilderData $data): Rover
     {
-        $cardinal = $this->cartesianCardinalDirectionAbstractFactory->create(
-            $data->positionCardinal()
-        );
-
         return CartesianCardinalCoordinateRover::create(
             $this->buidlArea($data),
-            $cardinal,
+            $this->buildCardinal($data),
             $data->positionAbscissa(),
             $data->positionOrdinate()
         );
@@ -43,5 +40,14 @@ final class CartesianCardinalCoordinateRoverBuilder implements CartesianRoverBui
         );
         
         return $this->cartesianAreaBuilder->build($areaData);
+    }
+
+    private function buildCardinal(
+        RoverBuilderData $data
+    ): CartesianCardinalDirection {
+
+        return $this->cartesianCardinalDirectionAbstractFactory->create(
+            $data->positionCardinal()
+        );
     }
 }
