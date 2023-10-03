@@ -6,23 +6,19 @@ namespace Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\Cartesi
 
 use Core\Rover\Application\RoverSquadExplore\Response\Rover\RoverExploreResponse;
 use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\RoverExploreResponseMapper;
-use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverPosition;
 use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponse;
+use Core\Rover\Domain\Rover\RoverPosition;
 
 final class CartesianCardinalCoordinateRoverExploreResponseMapper implements RoverExploreResponseMapper
 {
-    public function __construct(
-        private CartesianCardinalCoordinateRoverPosition $roverPosition
-    ) {
-
-    }
-
-    public function map(): RoverExploreResponse
+    public function map(
+        RoverPosition $roverPosition
+    ): RoverExploreResponse
     {
         return new CartesianCardinalCoordinateRoverExploreResponse(
-            $this->roverPosition->cardinal(),
-            $this->roverPosition->abscissa(),
-            $this->roverPosition->ordinate()
+            $roverPosition->cardinal(),
+            $roverPosition->abscissa(),
+            $roverPosition->ordinate()
         );
     }
 }

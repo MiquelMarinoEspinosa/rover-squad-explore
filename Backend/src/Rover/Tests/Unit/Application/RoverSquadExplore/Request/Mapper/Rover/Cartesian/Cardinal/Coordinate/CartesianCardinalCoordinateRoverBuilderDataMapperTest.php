@@ -22,9 +22,7 @@ final class CartesianCardinalCoordinateRoverBuilderDataMapperTest extends TestCa
     {
         $request = $this->givenRequest();
 
-        $mapper = new CartesianCardinalCoordinateRoverBuilderDataMapper(
-            $request
-        );
+        $mapper = new CartesianCardinalCoordinateRoverBuilderDataMapper;
 
         self::assertInstanceOf(
             CartesianCardinalCoordinateRoverBuilderDataMapper::class,
@@ -43,13 +41,11 @@ final class CartesianCardinalCoordinateRoverBuilderDataMapperTest extends TestCa
 
         $expectedRoverBuilderData = $this->givenExpectedRoverBuilderData();
 
-        $roverBuilderDataMapper = new CartesianCardinalCoordinateRoverBuilderDataMapper(
-            $request
-        );
+        $roverBuilderDataMapper = new CartesianCardinalCoordinateRoverBuilderDataMapper;
 
         self::assertEquals(
             $expectedRoverBuilderData,
-            $roverBuilderDataMapper->map()
+            $roverBuilderDataMapper->map($request)
         );
     }
 

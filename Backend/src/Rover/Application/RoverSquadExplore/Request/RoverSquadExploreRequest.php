@@ -10,13 +10,18 @@ use Core\Rover\Application\UseCaseRequest;
 final readonly class RoverSquadExploreRequest implements UseCaseRequest
 {
     public function __construct(
-        private array $movementExploreRequests
+        private array $movementExploreRequests,
+        private array $roverExploreRequests
     ) {
-
     }
 
     public function movementExploreRequests(): array
     {
         return $this->movementExploreRequests;
+    }
+
+    public function roverExploreRequests(): array
+    {
+        return $this->roverExploreRequests;
     }
 }

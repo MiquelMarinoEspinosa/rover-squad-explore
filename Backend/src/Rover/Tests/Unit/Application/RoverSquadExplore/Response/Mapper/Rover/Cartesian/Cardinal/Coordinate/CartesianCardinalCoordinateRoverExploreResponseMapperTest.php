@@ -16,11 +16,7 @@ final class CartesianCardinalCoordinateRoverExploreResponseMapperTest extends Te
 
     public function testShouldCreateTheCartesianCardinalCoordinateRoverExploreResponseMapper(): void
     {
-        $roverPosition = $this->givenRoverPosition();
-
-        $mapper = new CartesianCardinalCoordinateRoverExploreResponseMapper(
-            $roverPosition
-        );
+        $mapper = new CartesianCardinalCoordinateRoverExploreResponseMapper;
 
         self::assertInstanceOf(
             CartesianCardinalCoordinateRoverExploreResponseMapper::class,
@@ -39,13 +35,11 @@ final class CartesianCardinalCoordinateRoverExploreResponseMapperTest extends Te
 
         $expectedResponse = $this->givenExpectedRoverExploreResponse();
 
-        $mapper = new CartesianCardinalCoordinateRoverExploreResponseMapper(
-            $roverPosition
-        );
+        $mapper = new CartesianCardinalCoordinateRoverExploreResponseMapper;
 
         self::assertEquals(
             $expectedResponse,
-            $mapper->map()
+            $mapper->map($roverPosition)
         );
     }
 

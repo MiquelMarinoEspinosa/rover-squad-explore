@@ -16,11 +16,7 @@ final class CartesianMovementFactoryDataMapperTest extends TestCase
 
     public function testShouldCreateCartesianMovementFactoryDataMapper(): void
     {
-        $request = $this->givenRequest();
-
-        $cartesianMovementFactoryDataMapper = new CartesianMovementFactoryDataMapper(
-            $request
-        );
+        $cartesianMovementFactoryDataMapper = new CartesianMovementFactoryDataMapper;
 
         self::assertInstanceOf(
             CartesianMovementFactoryDataMapper::class,
@@ -39,11 +35,11 @@ final class CartesianMovementFactoryDataMapperTest extends TestCase
 
         $expectedMovementFactoryData = $this->givenExpectedMovementFactoryData();
 
-        $mapper = new CartesianMovementFactoryDataMapper($request);
+        $mapper = new CartesianMovementFactoryDataMapper;
 
         self::assertEquals(
             $expectedMovementFactoryData,
-            $mapper->map()
+            $mapper->map($request)
         );
     }
 
