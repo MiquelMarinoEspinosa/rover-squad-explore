@@ -31,4 +31,11 @@ final class RoverSquadTest extends TestCase
             (new RoverSquad)->empty()
         );
     }
+
+    public function testShouldReturnFalseWhenNextMethodExecuted(): void
+    {
+        self::assertTrue(
+            (new RoverSquad)->next()
+        );
+    }
 }
