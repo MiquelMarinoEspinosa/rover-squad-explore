@@ -12,6 +12,7 @@ use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRover;
 use Core\Rover\Domain\Rover\Cartesian\CartesianCardinalCoordinateRoverPosition;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
+use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaOutOfArea;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\EastCardinalCartesianDirection;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\WestCardinalCartesianDirection;
@@ -170,6 +171,27 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         );
     }
 
+    public function testShouldThrowAnExceptionWhenMoveForwardOutOfArea(): void
+    {
+        $cartesianArea = $this->givenCartesianArea();
+
+        $abscissa = 0;
+        $ordinate = $abscissa;
+
+        $cartesianCardinalCoordinateRover = CartesianCardinalCoordinateRover::create(
+            $cartesianArea,
+            new WestCardinalCartesianDirection,
+            $abscissa,
+            $ordinate
+        );
+
+        self::expectException(
+            RectangularCartesianAreaOutOfArea::class
+        );
+
+        $cartesianCardinalCoordinateRover->moveForward();
+    }
+
     /**
      * @dataProvider cardinalDirectionMoveForwardProvider
      */
@@ -325,7 +347,7 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         CartesianCardinalCoordinateRover $cartesianCardinalCoordinateRover,
         CartesianCardinalDirection $expectedCardinalDirection,
         int $expectedPositionAbscissa,
-        int $expectedPositionOrdinate  
+        int $expectedPositionOrdinate
     ): void {
         $cartesianCardinalCoordinateRoverPosition = $cartesianCardinalCoordinateRover
             ->position();
