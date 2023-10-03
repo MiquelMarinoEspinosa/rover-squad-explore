@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\Rover\Application\Explore\Mapper\Rover\Cartesian\Cardinal\Coordinate;
+namespace Core\Rover\Application\Explore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate;
 
 use Core\Rover\Domain\Rover\RoverBuilderData;
-use Core\Rover\Application\Explore\Mapper\Rover\RoverBuilderDataMapper;
+use Core\Rover\Application\Explore\Request\Mapper\Rover\RoverBuilderDataMapper;
 use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderData;
 use Core\Rover\Application\Explore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverDiscoverRequest;
 

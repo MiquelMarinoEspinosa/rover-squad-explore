@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\Rover\Application\Explore\Mapper\Movement;
+namespace Core\Rover\Application\Explore\Request\Mapper\Movement;
 
 use Core\Rover\Domain\Movement\MovementFactoryData;
 

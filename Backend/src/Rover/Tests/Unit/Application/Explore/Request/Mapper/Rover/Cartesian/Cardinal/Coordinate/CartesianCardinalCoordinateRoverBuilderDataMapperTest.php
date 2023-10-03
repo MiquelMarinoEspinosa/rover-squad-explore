@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Core\Rover\Tests\Unit\Application\Explore\Mapper\Rover\Cartesian\Cardinal\Coordinate;
+namespace Core\Rover\Tests\Unit\Application\Explore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate;
 
 use PHPUnit\Framework\TestCase;
-use Core\Rover\Application\Explore\Mapper\Rover\RoverBuilderDataMapper;
-use Core\Rover\Application\Explore\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderDataMapper;
+use Core\Rover\Application\Explore\Request\Mapper\Rover\RoverBuilderDataMapper;
+use Core\Rover\Application\Explore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderDataMapper;
 use Core\Rover\Application\Explore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverDiscoverRequest;
 use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderData;
 

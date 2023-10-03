@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Core\Rover\Tests\Unit\Application\Explore\Mapper\Movement\Cartesian;
+namespace Core\Rover\Tests\Unit\Application\Explore\Request\Mapper\Movement\Cartesian;
 
 use PHPUnit\Framework\TestCase;
-use Core\Rover\Application\Explore\Mapper\Movement\MovementFactoryDataMapper;
-use Core\Rover\Application\Explore\Mapper\Movement\Cartesian\CartesianMovementFactoryDataMapper;
+use Core\Rover\Application\Explore\Request\Mapper\Movement\MovementFactoryDataMapper;
+use Core\Rover\Application\Explore\Request\Mapper\Movement\Cartesian\CartesianMovementFactoryDataMapper;
 use Core\Rover\Application\Explore\Request\Movement\Cartesian\CartesianMovementDiscoverRequest;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactoryData;
 
