@@ -10,9 +10,28 @@ use PHPUnit\Framework\TestCase;
 
 final class CartesianCardinalCoordinateRoverDiscoverResponseTest extends TestCase
 {
+    private const CARDINAL = 'N';
+    private const ABSCISSA = 1;
+    private const ORDINATE = 2;
+
+    private CartesianCardinalCoordinateRoverDiscoverResponse $response;
+
+    protected function setUp(): void
+    {
+        $this->response = new CartesianCardinalCoordinateRoverDiscoverResponse(
+            self::CARDINAL,
+            self::ABSCISSA,
+            self::ORDINATE
+        );
+    }
+
     public function testShouldCreateTheCartesianCardinalCoordinateRoverDiscoverResponse(): void
     {
-        $response = new CartesianCardinalCoordinateRoverDiscoverResponse;
+        $response = new CartesianCardinalCoordinateRoverDiscoverResponse(
+            self::CARDINAL,
+            self::ABSCISSA,
+            self::ORDINATE
+        );
 
         self::assertInstanceOf(
             CartesianCardinalCoordinateRoverDiscoverResponse::class,
@@ -22,6 +41,30 @@ final class CartesianCardinalCoordinateRoverDiscoverResponseTest extends TestCas
         self::assertInstanceOf(
             RoverDiscoverResponse::class,
             $response
+        );
+    }
+
+    public function testShouldReturnTheCardinal(): void
+    {
+        self::assertSame(
+            self::CARDINAL,
+            $this->response->cardinal()
+        );
+    }
+
+    public function testShouldReturnTheAbscissa(): void
+    {
+        self::assertSame(
+            self::ABSCISSA,
+            $this->response->abscissa()
+        );
+    }
+
+    public function testShouldReturnTheOrdinate(): void
+    {
+        self::assertSame(
+            self::ORDINATE,
+            $this->response->ordinate()
         );
     }
 }
