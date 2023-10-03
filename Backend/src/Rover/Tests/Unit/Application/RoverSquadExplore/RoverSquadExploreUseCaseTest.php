@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace Core\Rover\Tests\Unit\Application\RoverSquadExplore;
 
 use PHPUnit\Framework\TestCase;
+use Core\Rover\Domain\Rover\Rover;
 use Core\Rover\Application\UseCase;
 use Core\Rover\Domain\Rover\RoverBuilder;
+use PHPUnit\Framework\MockObject\MockObject;
 use Core\Rover\Application\RoverSquadExplore\RoverSquadExploreUseCase;
 use Core\Rover\Application\RoverSquadExplore\Request\RoverSquadExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\RoverSquadExploreUseCaseException;
 use Core\Rover\Application\RoverSquadExplore\Response\RoverSquadExploreResponse;
+use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverPosition;
 use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderData;
 use Core\Rover\Application\RoverSquadExplore\Request\Movement\Cartesian\CartesianMovementExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreRequest;
+use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponse;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderDataMapper;
 use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponseMapper;
-use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponse;
-use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverPosition;
-use Core\Rover\Domain\Rover\Rover;
-use PHPUnit\Framework\MockObject\MockObject;
 
 final class RoverSquadExploreUseCaseTest extends TestCase
 {
@@ -148,11 +148,7 @@ final class RoverSquadExploreUseCaseTest extends TestCase
 
         $roverBuilderData = $this->givenRoverBuilderData();
 
-        $roverPosition = new CartesianCardinalCoordinateRoverPosition(
-            self::POSITION_CARDINAL,
-            self::POSITION_ABSCISSA,
-            self::POSITION_ORDINATE
-        );
+        $roverPosition = $this->givenRoverPosition();
 
         $rover = self::createMock(Rover::class);
         $rover->expects(self::once())
@@ -211,6 +207,15 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         return new CartesianCardinalCoordinateRoverBuilderData(
             self::AREA_UPPER_RIGHT_ABSCISSA,
             self::AREA_UPPER_RIGHT_ORDINATE,
+            self::POSITION_CARDINAL,
+            self::POSITION_ABSCISSA,
+            self::POSITION_ORDINATE
+        );
+    }
+
+    private function givenRoverPosition(): CartesianCardinalCoordinateRoverPosition
+    {
+        return new CartesianCardinalCoordinateRoverPosition(
             self::POSITION_CARDINAL,
             self::POSITION_ABSCISSA,
             self::POSITION_ORDINATE
