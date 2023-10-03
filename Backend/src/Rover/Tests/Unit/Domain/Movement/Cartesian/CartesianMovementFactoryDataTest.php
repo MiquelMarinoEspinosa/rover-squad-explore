@@ -11,9 +11,13 @@ use Core\Rover\Domain\Movement\Cartesian\CartesianMovementAbstractFactoryData;
 
 final class CartesianMovementFactoryDataTest extends TestCase
 {
+    private const MOVEMENT_VALUE = 'L';
+
     public function testShouldCreateTheCartesianMovementFactoryData(): void
     {
-        $cartesianMovementFactoryData = new CartesianMovementFactoryData;
+        $cartesianMovementFactoryData = new CartesianMovementFactoryData(
+            self::MOVEMENT_VALUE
+        );
 
         self::assertInstanceOf(
             CartesianMovementFactoryData::class,
@@ -33,10 +37,12 @@ final class CartesianMovementFactoryDataTest extends TestCase
 
     public function testShouldReturnTheMovementValue(): void
     {
-        $cartesianMovementFactoryData = new CartesianMovementFactoryData('L');
+        $cartesianMovementFactoryData = new CartesianMovementFactoryData(
+            self::MOVEMENT_VALUE
+        );
 
         self::assertSame(
-            'L',
+            self::MOVEMENT_VALUE,
             $cartesianMovementFactoryData->movementValue()
         );
     }
