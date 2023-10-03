@@ -30,7 +30,9 @@ final class RoverSquadExploreUseCase implements UseCase
 
             return new RoverSquadExploreResponse;
         } catch (Throwable $exception) {
-            throw new RoverSquadExploreUseCaseException;
+            throw RoverSquadExploreUseCaseException::create(
+                $exception->getMessage()
+            );
         }
     }
 }
