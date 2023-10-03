@@ -11,6 +11,7 @@ use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactory;
 use Core\Rover\Domain\Movement\Cartesian\ForwardCartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\UnknownCartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovementAbstractFactory;
+use Core\Rover\Domain\Movement\MovementFactory;
 
 final class CartesianMovementFactoryTest extends TestCase
 {
@@ -30,6 +31,11 @@ final class CartesianMovementFactoryTest extends TestCase
 
         self::assertInstanceOf(
             CartesianMovementAbstractFactory::class,
+            $cartesianMovementFactory
+        );
+
+        self::assertInstanceOf(
+            MovementFactory::class,
             $cartesianMovementFactory
         );
     }

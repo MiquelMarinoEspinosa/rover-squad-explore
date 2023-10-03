@@ -2,7 +2,9 @@
 
 namespace Core\Rover\Domain\Movement\Cartesian;
 
-interface CartesianMovementAbstractFactory
+use Core\Rover\Domain\Movement\MovementFactory;
+
+interface CartesianMovementAbstractFactory extends MovementFactory
 {
     public static function getInstance(): self;
 
