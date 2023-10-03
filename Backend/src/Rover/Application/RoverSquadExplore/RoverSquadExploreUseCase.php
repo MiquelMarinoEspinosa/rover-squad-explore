@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Core\Rover\Application\RoverSquadExplore;
 
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\RoverBuilderDataMapper;
+use Core\Rover\Application\RoverSquadExplore\Request\RoverSquadExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\Response\RoverSquadExploreResponse;
 use Core\Rover\Application\UseCase;
 use Core\Rover\Application\UseCaseRequest;
@@ -22,17 +23,22 @@ final class RoverSquadExploreUseCase implements UseCase
     public function execute(UseCaseRequest $request): RoverSquadExploreResponse
     {
         try {
-            foreach ($request->roverExploreRequests() as $roverExploreRequest) {
-                $roverBuilderData = $this->roverBuilderDataMapper->map($roverExploreRequest);
-
-                $this->roverBuilder->build($roverBuilderData);
-            }
-
-            return new RoverSquadExploreResponse;
+            return $this->explore($request);
         } catch (Throwable $exception) {
             throw RoverSquadExploreUseCaseException::create(
                 $exception->getMessage()
             );
         }
+    }
+
+    private function explore(RoverSquadExploreRequest $request): RoverSquadExploreResponse
+    {
+        foreach ($request->roverExploreRequests() as $roverExploreRequest) {
+            $roverBuilderData = $this->roverBuilderDataMapper->map($roverExploreRequest);
+
+            $this->roverBuilder->build($roverBuilderData);
+        }
+
+        return new RoverSquadExploreResponse;
     }
 }
