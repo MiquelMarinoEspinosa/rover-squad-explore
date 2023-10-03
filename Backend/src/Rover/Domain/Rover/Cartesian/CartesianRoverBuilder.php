@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Core\Rover\Domain\Rover\Cartesian;
 
-interface CartesianRoverBuilder
+use Core\Rover\Domain\Rover\RoverBuilder;
+
+interface CartesianRoverBuilder extends RoverBuilder
 {
-    public static function getInstance(): self;    
+    public static function getInstance(): self;
 }
