@@ -9,6 +9,8 @@ use Core\Rover\Domain\Collection\CollectionItem;
 
 final class RoverSquad implements Collection
 {
+    private ?Rover $rover = null;
+
     public function empty(): bool
     {
         return true;
@@ -16,11 +18,20 @@ final class RoverSquad implements Collection
 
     public function next(): bool
     {
-        return true;
+        return false;
     }
 
-    public function current(): CollectionItem
+    public function current(): Rover
     {
+        if ($this->rover) {
+            return $this->rover;
+        }
+
         throw RoverSquadOutOfRange::create();
+    }
+
+    public function add(CollectionItem $item): void
+    {
+        $this->rover = $item;
     }
 }

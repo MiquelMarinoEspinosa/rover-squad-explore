@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Domain\Rover\Cartesian;
 
+use Core\Rover\Domain\Collection\CollectionItem;
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Rover;
 use Core\Rover\Domain\Rover\RoverPosition;
@@ -51,6 +52,11 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
 
         self::assertInstanceOf(
             Rover::class,
+            $cartesianCardinalCoordinateRover
+        );
+
+        self::assertInstanceOf(
+            CollectionItem::class,
             $cartesianCardinalCoordinateRover
         );
     }

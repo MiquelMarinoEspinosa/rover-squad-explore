@@ -6,6 +6,7 @@ namespace Core\Rover\Tests\Unit\Domain\Rover;
 
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Collection\Collection;
+use Core\Rover\Domain\Rover\Rover;
 use Core\Rover\Domain\Rover\RoverSquad;
 use Core\Rover\Domain\Rover\RoverSquadOutOfRange;
 
@@ -42,7 +43,7 @@ final class RoverSquadTest extends TestCase
 
     public function testShouldReturnFalseWhenNextMethodExecutedOnEmpty(): void
     {
-        self::assertTrue(
+        self::assertFalse(
             $this->roverSquad->next()
         );
     }
@@ -54,5 +55,17 @@ final class RoverSquadTest extends TestCase
         );
 
         $this->roverSquad->current();
+    }
+
+    public function testShouldAddTheRover(): void
+    {
+        $rover = self::createMock(Rover::class);
+
+        $this->roverSquad->add($rover);
+
+        self::assertSame(
+            $rover,
+            $this->roverSquad->current()
+        );
     }
 }

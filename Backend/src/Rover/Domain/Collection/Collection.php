@@ -11,4 +11,6 @@ interface Collection
     public function next(): bool;
 
     public function current(): CollectionItem;
+
+    public function add(CollectionItem $item): void;
 }
