@@ -37,20 +37,24 @@ final class RoverSquadExploreUseCase implements UseCase
 
     private function explore(RoverSquadExploreRequest $request): RoverSquadExploreResponse
     {
+        if (empty($request->roverExploreRequests())) {
+            return new RoverSquadExploreResponse([], []);
+        }
+
         $roverSquad = $this->buildRoverSquad(
             $request->roverExploreRequests()
         );
 
         $roverExploreResponses = [];
-        
+
         while (!$roverSquad->end()) {
-            
+
             $rover = $roverSquad->current();
-            
+
             $roverExploreResponse = $this->roverExploreResponseMapper->map(
                 $rover->position()
             );
-            
+
             $roverExploreResponses[] = $roverExploreResponse;
 
             $roverSquad->next();
