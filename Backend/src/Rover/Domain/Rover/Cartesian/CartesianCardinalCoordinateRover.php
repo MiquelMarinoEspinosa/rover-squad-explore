@@ -64,10 +64,14 @@ final class CartesianCardinalCoordinateRover implements CartesianRover
 
     public function moveForward(): self
     {
-        $this->cartesianPoint = $this->cartesianCardinalDirection
+        $movedCartesianPoint = $this->cartesianCardinalDirection
             ->moveForward(
                 $this->cartesianPoint
             );
+
+        $this->cartesianArea->validatePoint($movedCartesianPoint);
+
+        $this->cartesianPoint = $movedCartesianPoint;
 
         return $this;
     }

@@ -19,8 +19,8 @@ use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\SouthCardinalCartesianD
 
 final class ForwardCartesianMovementTest extends TestCase
 {
-    private const POSITION_ABSCISSA         = 0;
-    private const POSITION_ORDINATE         = 1;
+    private const POSITION_ABSCISSA         = 1;
+    private const POSITION_ORDINATE         = 2;
     private const AREA_UPPER_RIGHT_ABSCISSA = 5;
     private const AREA_UPPER_RIGHT_ORDINATE = self::AREA_UPPER_RIGHT_ABSCISSA;
 
