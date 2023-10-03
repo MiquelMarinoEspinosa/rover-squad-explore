@@ -7,7 +7,7 @@ namespace Core\Rover\Tests\Unit\Application\RoverSquadExplore\Request\Mapper\Mov
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Movement\MovementFactoryDataMapper;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Movement\Cartesian\CartesianMovementFactoryDataMapper;
-use Core\Rover\Application\RoverSquadExplore\Request\Movement\Cartesian\CartesianMovementDiscoverRequest;
+use Core\Rover\Application\RoverSquadExplore\Request\Movement\Cartesian\CartesianMovementExploreRequest;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactoryData;
 
 final class CartesianMovementFactoryDataMapperTest extends TestCase
@@ -47,9 +47,9 @@ final class CartesianMovementFactoryDataMapperTest extends TestCase
         );
     }
 
-    private function givenRequest(): CartesianMovementDiscoverRequest
+    private function givenRequest(): CartesianMovementExploreRequest
     {
-        return new CartesianMovementDiscoverRequest(
+        return new CartesianMovementExploreRequest(
             self::MOVEMENT_VALUE
         );
     }

@@ -4,42 +4,42 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate;
 
-use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverDiscoverResponse;
-use Core\Rover\Application\RoverSquadExplore\Response\Rover\RoverDiscoverResponse;
+use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponse;
+use Core\Rover\Application\RoverSquadExplore\Response\Rover\RoverExploreResponse;
 use PHPUnit\Framework\TestCase;
 
-final class CartesianCardinalCoordinateRoverDiscoverResponseTest extends TestCase
+final class CartesianCardinalCoordinateRoverExploreResponseTest extends TestCase
 {
     private const CARDINAL = 'N';
     private const ABSCISSA = 1;
     private const ORDINATE = 2;
 
-    private CartesianCardinalCoordinateRoverDiscoverResponse $response;
+    private CartesianCardinalCoordinateRoverExploreResponse $response;
 
     protected function setUp(): void
     {
-        $this->response = new CartesianCardinalCoordinateRoverDiscoverResponse(
+        $this->response = new CartesianCardinalCoordinateRoverExploreResponse(
             self::CARDINAL,
             self::ABSCISSA,
             self::ORDINATE
         );
     }
 
-    public function testShouldCreateTheCartesianCardinalCoordinateRoverDiscoverResponse(): void
+    public function testShouldCreateTheCartesianCardinalCoordinateRoverExploreResponse(): void
     {
-        $response = new CartesianCardinalCoordinateRoverDiscoverResponse(
+        $response = new CartesianCardinalCoordinateRoverExploreResponse(
             self::CARDINAL,
             self::ABSCISSA,
             self::ORDINATE
         );
 
         self::assertInstanceOf(
-            CartesianCardinalCoordinateRoverDiscoverResponse::class,
+            CartesianCardinalCoordinateRoverExploreResponse::class,
             $response
         );
 
         self::assertInstanceOf(
-            RoverDiscoverResponse::class,
+            RoverExploreResponse::class,
             $response
         );
     }

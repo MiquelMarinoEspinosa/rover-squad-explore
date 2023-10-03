@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate;
 
-use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverDiscoverRequest;
-use Core\Rover\Application\RoverSquadExplore\Request\Rover\RoverDiscoverRequest;
+use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreRequest;
+use Core\Rover\Application\RoverSquadExplore\Request\Rover\RoverExploreRequest;
 use PHPUnit\Framework\TestCase;
 
-final class CartesianCardinalCoordinateRoverDiscoverRequestTest extends TestCase
+final class CartesianCardinalCoordinateRoverExploreRequestTest extends TestCase
 {
     private const AREA_UPPER_RIGHT_ABSCISSA = 5;
     private const AREA_UPPER_RIGHT_ORDINATE = 6;
@@ -16,11 +16,11 @@ final class CartesianCardinalCoordinateRoverDiscoverRequestTest extends TestCase
     private const POSITION_ABSCISSA         = 0;
     private const POSITION_ORDINATE         = 1;
 
-    private CartesianCardinalCoordinateRoverDiscoverRequest $roverDiscoverRequest;
+    private CartesianCardinalCoordinateRoverExploreRequest $roverExploreRequest;
 
     protected function setUp(): void 
     {
-        $this->roverDiscoverRequest = new CartesianCardinalCoordinateRoverDiscoverRequest(
+        $this->roverExploreRequest = new CartesianCardinalCoordinateRoverExploreRequest(
             self::AREA_UPPER_RIGHT_ABSCISSA,
             self::AREA_UPPER_RIGHT_ORDINATE,
             self::POSITION_CARDINAL,
@@ -31,7 +31,7 @@ final class CartesianCardinalCoordinateRoverDiscoverRequestTest extends TestCase
 
     public function testShouldCreateTheRequest(): void
     {
-        $request = new CartesianCardinalCoordinateRoverDiscoverRequest(
+        $request = new CartesianCardinalCoordinateRoverExploreRequest(
             self::AREA_UPPER_RIGHT_ABSCISSA,
             self::AREA_UPPER_RIGHT_ORDINATE,
             self::POSITION_CARDINAL,
@@ -40,12 +40,12 @@ final class CartesianCardinalCoordinateRoverDiscoverRequestTest extends TestCase
         );
 
         self::assertInstanceOf(
-            CartesianCardinalCoordinateRoverDiscoverRequest::class,
+            CartesianCardinalCoordinateRoverExploreRequest::class,
             $request
         );
 
         self::assertInstanceOf(
-            RoverDiscoverRequest::class,
+            RoverExploreRequest::class,
             $request
         );
     }
@@ -54,7 +54,7 @@ final class CartesianCardinalCoordinateRoverDiscoverRequestTest extends TestCase
     {
         self::assertSame(
             self::AREA_UPPER_RIGHT_ABSCISSA,
-            $this->roverDiscoverRequest->areaUpperRightAbscissa()
+            $this->roverExploreRequest->areaUpperRightAbscissa()
         );
     }
 
@@ -62,7 +62,7 @@ final class CartesianCardinalCoordinateRoverDiscoverRequestTest extends TestCase
     {
         self::assertSame(
             self::AREA_UPPER_RIGHT_ORDINATE,
-            $this->roverDiscoverRequest->areaUpperRightOrdinate()
+            $this->roverExploreRequest->areaUpperRightOrdinate()
         );
     }
 
@@ -70,7 +70,7 @@ final class CartesianCardinalCoordinateRoverDiscoverRequestTest extends TestCase
     {
         self::assertSame(
             self::POSITION_CARDINAL,
-            $this->roverDiscoverRequest->positionCardinal()
+            $this->roverExploreRequest->positionCardinal()
         );
     }
 
@@ -78,7 +78,7 @@ final class CartesianCardinalCoordinateRoverDiscoverRequestTest extends TestCase
     {
         self::assertSame(
             self::POSITION_ABSCISSA,
-            $this->roverDiscoverRequest->positionAbscissa()
+            $this->roverExploreRequest->positionAbscissa()
         );
     }
 
@@ -86,7 +86,7 @@ final class CartesianCardinalCoordinateRoverDiscoverRequestTest extends TestCase
     {
         self::assertSame(
             self::POSITION_ORDINATE,
-            $this->roverDiscoverRequest->positionOrdinate()
+            $this->roverExploreRequest->positionOrdinate()
         );
     }
 }

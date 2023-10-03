@@ -7,12 +7,12 @@ namespace Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\Cartesia
 use Core\Rover\Domain\Rover\RoverBuilderData;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\RoverBuilderDataMapper;
 use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderData;
-use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverDiscoverRequest;
+use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreRequest;
 
 final class CartesianCardinalCoordinateRoverBuilderDataMapper implements RoverBuilderDataMapper
 {
     public function __construct(
-        private CartesianCardinalCoordinateRoverDiscoverRequest $request
+        private CartesianCardinalCoordinateRoverExploreRequest $request
     ) {
     }
 

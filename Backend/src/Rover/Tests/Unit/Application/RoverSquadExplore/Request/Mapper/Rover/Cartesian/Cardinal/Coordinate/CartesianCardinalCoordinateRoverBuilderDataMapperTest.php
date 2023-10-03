@@ -7,7 +7,7 @@ namespace Core\Rover\Tests\Unit\Application\RoverSquadExplore\Request\Mapper\Rov
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\RoverBuilderDataMapper;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderDataMapper;
-use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverDiscoverRequest;
+use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreRequest;
 use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderData;
 
 final class CartesianCardinalCoordinateRoverBuilderDataMapperTest extends TestCase
@@ -53,9 +53,9 @@ final class CartesianCardinalCoordinateRoverBuilderDataMapperTest extends TestCa
         );
     }
 
-    private function givenRequest(): CartesianCardinalCoordinateRoverDiscoverRequest
+    private function givenRequest(): CartesianCardinalCoordinateRoverExploreRequest
     {
-        return new CartesianCardinalCoordinateRoverDiscoverRequest(
+        return new CartesianCardinalCoordinateRoverExploreRequest(
             self::AREA_UPPER_RIGHT_ABSCISSA,
             self::AREA_UPPER_RIGHT_ORDINATE,
             self::POSITION_CARDINAL,

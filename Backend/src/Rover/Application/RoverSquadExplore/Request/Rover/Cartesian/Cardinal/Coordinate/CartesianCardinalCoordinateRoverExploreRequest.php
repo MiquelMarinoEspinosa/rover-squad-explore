@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate;
 
-use Core\Rover\Application\RoverSquadExplore\Request\Rover\RoverDiscoverRequest;
+use Core\Rover\Application\RoverSquadExplore\Request\Rover\RoverExploreRequest;
 
-final readonly class CartesianCardinalCoordinateRoverDiscoverRequest implements RoverDiscoverRequest
+final readonly class CartesianCardinalCoordinateRoverExploreRequest implements RoverExploreRequest
 {
     public function __construct(
         private int $areaUpperRightAbscissa,
