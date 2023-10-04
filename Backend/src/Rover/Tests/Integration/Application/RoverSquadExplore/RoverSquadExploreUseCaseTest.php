@@ -67,9 +67,27 @@ final class RoverSquadExploreUseCaseTest extends TestCase
                             ),
                             self::buildCartesianMovementExploreRequest(
                                 'L'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'M'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'L'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'M'
                             )
                         ],
                         [
+                            self::buildCartesianMovementExploreRequest(
+                                'M'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'M'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'R'
+                            ),
                             self::buildCartesianMovementExploreRequest(
                                 'M'
                             ),
@@ -85,14 +103,14 @@ final class RoverSquadExploreUseCaseTest extends TestCase
                 new RoverSquadExploreResponse(
                     [
                         self::buildCartesianCardinalCoordinateRoverExploreResponse(
-                            0,
-                            2,
-                            'S'
+                            1,
+                            1,
+                            'E'
                         ),
                         self::buildCartesianCardinalCoordinateRoverExploreResponse(
                             5,
-                            3,
-                            'S'
+                            1,
+                            'W'
                         )
                     ]
                 )
