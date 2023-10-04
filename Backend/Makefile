@@ -29,4 +29,4 @@ coverage:
 	$(EXEC_PHP) vendor/bin/phpunit --coverage-html coverage
 
 rover-squad-explore-sample:
-	$(EXEC_PHP) php src/Rover/UserInterface/RoverSquadExplore/Script/rover-squad-explore.php 1 2 3 4
+	$(EXEC_PHP) php src/Rover/UserInterface/RoverSquadExplore/Script/rover-squad-explore.php 5 5 1 2 N LMLMLMLMM 3 3 E MMRMMRMRRM

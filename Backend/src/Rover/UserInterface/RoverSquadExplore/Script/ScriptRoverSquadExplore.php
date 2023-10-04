@@ -7,8 +7,8 @@ use Core\Rover\Application\RoverSquadExplore\RoverSquadExploreUseCaseRegistry;
 
 function exploreCartesianCardinalArea($parameters)
 {
-    $abscissaUpperRightArea = $parameters[0];
-    $ordinateUpperRightArea = $parameters[1];
+    $abscissaUpperRightArea = (int) $parameters[0];
+    $ordinateUpperRightArea = (int) $parameters[1];
 
     $roverMovementParamIndex = 2;
     $roverExploreRequests               = [];
@@ -19,8 +19,8 @@ function exploreCartesianCardinalArea($parameters)
         $roverExploreRequests[] = new CartesianCardinalCoordinateRoverExploreRequest(
             $abscissaUpperRightArea,
             $ordinateUpperRightArea,
-            $parameters[$roverMovementParamIndex],
-            $parameters[$roverMovementParamIndex + 1],
+            (int) $parameters[$roverMovementParamIndex],
+            (int) $parameters[$roverMovementParamIndex + 1],
             $parameters[$roverMovementParamIndex + 2]
         );
 
@@ -45,9 +45,8 @@ function exploreCartesianCardinalArea($parameters)
 
     $responses = $response->roverExploreResponses();
     $responsesAsArray = [];
-    
-    foreach ($responses as $response)
-    {
+
+    foreach ($responses as $response) {
         $responsesAsArray[] = [
             'abscissa' => $response->abscissa(),
             'ordinate' => $response->ordinate(),
