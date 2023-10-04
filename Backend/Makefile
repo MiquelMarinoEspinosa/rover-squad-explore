@@ -1,6 +1,7 @@
 .PHONY: coverage
 
 EXEC_PHP=docker exec -i -t app.php.rover-discovery-squad
+SAMPLE_SCRIPT=src/Rover/UserInterface/RoverSquadExplore/Cartesian/Cardinal/Script/cartesian-cardinal-rover-squad-explore.php
 
 up:
 	docker buildx build -t php/php8 etc/devel/docker/php
@@ -29,4 +30,4 @@ coverage:
 	$(EXEC_PHP) vendor/bin/phpunit --coverage-html coverage
 
 sample:
-	$(EXEC_PHP) php src/Rover/UserInterface/RoverSquadExplore/Cartesian/Cardinal/Script/cartesian-cardinal-rover-squad-explore.php 5 5 1 2 N LMLMLMLMM 3 3 E MMRMMRMRRM
+	$(EXEC_PHP) php $(SAMPLE_SCRIPT) 5 5 1 2 N LMLMLMLMM 3 3 E MMRMMRMRRM
