@@ -10,27 +10,27 @@ use PHPUnit\Framework\TestCase;
 
 final class CartesianCardinalCoordinateRoverExploreResponseTest extends TestCase
 {
-    private const CARDINAL = 'N';
     private const ABSCISSA = 1;
     private const ORDINATE = 2;
+    private const CARDINAL = 'N';
 
     private CartesianCardinalCoordinateRoverExploreResponse $response;
 
     protected function setUp(): void
     {
         $this->response = new CartesianCardinalCoordinateRoverExploreResponse(
-            self::CARDINAL,
             self::ABSCISSA,
-            self::ORDINATE
+            self::ORDINATE,
+            self::CARDINAL
         );
     }
 
     public function testShouldCreateTheCartesianCardinalCoordinateRoverExploreResponse(): void
     {
         $response = new CartesianCardinalCoordinateRoverExploreResponse(
-            self::CARDINAL,
             self::ABSCISSA,
-            self::ORDINATE
+            self::ORDINATE,
+            self::CARDINAL
         );
 
         self::assertInstanceOf(

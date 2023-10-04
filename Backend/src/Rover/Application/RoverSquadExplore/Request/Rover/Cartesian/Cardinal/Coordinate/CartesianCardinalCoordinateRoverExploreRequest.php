@@ -11,9 +11,9 @@ final readonly class CartesianCardinalCoordinateRoverExploreRequest implements R
     public function __construct(
         private int $areaUpperRightAbscissa,
         private int $areaUpperRightOrdinate,
-        private string $positionCardinal,
         private int $positionAbscissa,
-        private int $positionOrdinate
+        private int $positionOrdinate,
+        private string $positionCardinal
     ) {
     }
 
@@ -27,11 +27,6 @@ final readonly class CartesianCardinalCoordinateRoverExploreRequest implements R
         return $this->areaUpperRightOrdinate;
     }
 
-    public function positionCardinal(): string
-    {
-        return $this->positionCardinal;
-    }
-
     public function positionAbscissa(): int
     {
         return $this->positionAbscissa;
@@ -40,5 +35,10 @@ final readonly class CartesianCardinalCoordinateRoverExploreRequest implements R
     public function positionOrdinate(): int
     {
         return $this->positionOrdinate;
-    }     
+    }
+    
+    public function positionCardinal(): string
+    {
+        return $this->positionCardinal;
+    }
 }

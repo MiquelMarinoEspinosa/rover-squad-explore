@@ -10,9 +10,9 @@ use PHPUnit\Framework\TestCase;
 
 final class CartesianCardinalCoordinateRoverExploreResponseMapperTest extends TestCase
 {
-    private const CARDINAL = 'N';
     private const ABSCISSA = 1;
     private const ORDINATE = 2;
+    private const CARDINAL = 'N';
 
     public function testShouldCreateTheCartesianCardinalCoordinateRoverExploreResponseMapper(): void
     {
@@ -55,9 +55,9 @@ final class CartesianCardinalCoordinateRoverExploreResponseMapperTest extends Te
     private function givenExpectedRoverExploreResponse(): CartesianCardinalCoordinateRoverExploreResponse
     {
         return new CartesianCardinalCoordinateRoverExploreResponse(
-            self::CARDINAL,
             self::ABSCISSA,
-            self::ORDINATE
+            self::ORDINATE,
+            self::CARDINAL
         );
     }
 }

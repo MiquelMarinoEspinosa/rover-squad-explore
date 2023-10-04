@@ -47,12 +47,12 @@ final class RoverSquadExploreUseCase implements UseCase
 
     private function explore(RoverSquadExploreRequest $request): RoverSquadExploreResponse
     {
-        $movementExploreCollectionRequests = $request->movementExploreCollectionRequests();
-        $roverExploreRequests = $request->roverExploreRequests();
-        
+        $movementExploreCollectionRequests  = $request->movementExploreCollectionRequests();
+        $roverExploreRequests               = $request->roverExploreRequests();
+
         $responses = $this->roverSquadExploration(
-            $movementExploreCollectionRequests,
-            $roverExploreRequests
+            $roverExploreRequests,
+            $movementExploreCollectionRequests
         );
 
         return new RoverSquadExploreResponse($responses);
@@ -68,8 +68,8 @@ final class RoverSquadExploreUseCase implements UseCase
     }
 
     private function roverSquadExploration(
-        array $movementExploreCollectionRequests,
-        array $roverExploreRequests
+        array $roverExploreRequests,
+        array $movementExploreCollectionRequests
     ): array {
         $responses = [];
 
@@ -88,7 +88,7 @@ final class RoverSquadExploreUseCase implements UseCase
         array $movementExploreRequests,
     ): RoverExploreResponse {
         $rover = $this->buildRover($roverExploreRequest);
-        
+
         $rover = $this->applyMovements(
             $rover,
             $movementExploreRequests
@@ -103,7 +103,7 @@ final class RoverSquadExploreUseCase implements UseCase
         RoverExploreRequest $roverExploreRequest
     ): Rover {
         $roverBuilderData = $this->roverBuilderDataMapper->map($roverExploreRequest);
-        
+
         return $this->roverBuilder->build($roverBuilderData);
     }
 
@@ -127,7 +127,7 @@ final class RoverSquadExploreUseCase implements UseCase
     ) {
         $movementFactoryData = $this->movementFactoryDataMapper->map($movementExploreRequest);
         $movement = $this->movementFactory->create($movementFactoryData);
-        
+
         return $movement->apply($rover);
     }
 }

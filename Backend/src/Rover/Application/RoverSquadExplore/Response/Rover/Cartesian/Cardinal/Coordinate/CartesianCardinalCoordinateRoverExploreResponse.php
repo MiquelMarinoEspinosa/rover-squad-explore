@@ -9,15 +9,10 @@ use Core\Rover\Application\RoverSquadExplore\Response\Rover\RoverExploreResponse
 final readonly class CartesianCardinalCoordinateRoverExploreResponse implements RoverExploreResponse
 {
     public function __construct(
-        private string $cardinal,
         private int $abscissa,
-        private int $ordinate
+        private int $ordinate,
+        private string $cardinal
     ) {
-    }
-
-    public function cardinal(): string
-    {
-        return $this->cardinal;
     }
 
     public function abscissa(): int
@@ -28,5 +23,10 @@ final readonly class CartesianCardinalCoordinateRoverExploreResponse implements 
     public function ordinate(): int
     {
         return $this->ordinate;
+    }
+
+    public function cardinal(): string
+    {
+        return $this->cardinal;
     }
 }

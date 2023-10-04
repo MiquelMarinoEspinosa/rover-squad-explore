@@ -16,9 +16,9 @@ final class CartesianCardinalCoordinateRoverExploreResponseMapper implements Rov
     ): RoverExploreResponse
     {
         return new CartesianCardinalCoordinateRoverExploreResponse(
-            $roverPosition->cardinal(),
             $roverPosition->abscissa(),
-            $roverPosition->ordinate()
+            $roverPosition->ordinate(),
+            $roverPosition->cardinal()
         );
     }
 }

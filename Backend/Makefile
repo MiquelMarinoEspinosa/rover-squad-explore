@@ -19,5 +19,8 @@ unit:
 integration:
 	$(EXEC_PHP) vendor/bin/phpunit --testsuite Integration
 
+tests:
+	$(EXEC_PHP) vendor/bin/phpunit
+
 coverage:
 	$(EXEC_PHP) vendor/bin/phpunit --coverage-html coverage

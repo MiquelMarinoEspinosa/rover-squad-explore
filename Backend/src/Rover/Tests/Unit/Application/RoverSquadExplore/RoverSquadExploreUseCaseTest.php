@@ -79,8 +79,8 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         $emptyRoverExploreRequests    = [];
 
         $emptyRequest = new RoverSquadExploreRequest(
-            $emptyMovementExploreCollectionRequests,
-            $emptyRoverExploreRequests
+            $emptyRoverExploreRequests,
+            $emptyMovementExploreCollectionRequests
         );
 
         $emptyResponse = new RoverSquadExploreResponse([]);
@@ -100,8 +100,8 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         $movementExploreCollectionRequests = $this->givenMovementExploreCollectionRequests();
 
         $emptyRoverRequest = new RoverSquadExploreRequest(
-            $movementExploreCollectionRequests,
-            $emptyRoverExploreRequests
+            $emptyRoverExploreRequests,
+            $movementExploreCollectionRequests
         );
 
         self::expectException(
@@ -118,8 +118,8 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         $roverExploreRequests = $this->givenRoverExploreRequests();
 
         $roverRequest = new RoverSquadExploreRequest(
-            $movementExploreCollectionRequests,
-            $roverExploreRequests
+            $roverExploreRequests,
+            $movementExploreCollectionRequests
         );
 
         $roverBuilderData = $this->givenRoverBuilderData();
@@ -146,8 +146,8 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         $roverExploreRequests = $this->givenRoverExploreRequests();
 
         $roverRequest = new RoverSquadExploreRequest(
-            $movementExploreCollectionRequests,
-            $roverExploreRequests
+            $roverExploreRequests,
+            $movementExploreCollectionRequests
         );
 
         $movementFactoryData = new CartesianMovementFactoryData(
@@ -178,8 +178,8 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         $roverExploreRequests = $this->givenRoverExploreRequests();
 
         $roverRequest = new RoverSquadExploreRequest(
-            $movementExploreCollectionRequests,
-            $roverExploreRequests
+            $roverExploreRequests,
+            $movementExploreCollectionRequests
         );
 
         $movementFactoryData = new CartesianMovementFactoryData(
@@ -217,8 +217,8 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         $roverExploreRequests = $this->givenRoverExploreRequests();
 
         $roverRequest = new RoverSquadExploreRequest(
-            $movementExploreCollectionRequests,
-            $roverExploreRequests
+            $roverExploreRequests,
+            $movementExploreCollectionRequests
         );
 
         $movementFactoryData = new CartesianMovementFactoryData(
@@ -253,9 +253,9 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         $expectedResponse = new RoverSquadExploreResponse(
             [
                 new CartesianCardinalCoordinateRoverExploreResponse(
-                    self::POSITION_CARDINAL,
                     self::POSITION_ABSCISSA,
-                    self::POSITION_ORDINATE
+                    self::POSITION_ORDINATE,
+                    self::POSITION_CARDINAL
                 )
             ]
         );
@@ -283,9 +283,9 @@ final class RoverSquadExploreUseCaseTest extends TestCase
             new CartesianCardinalCoordinateRoverExploreRequest(
                 self::AREA_UPPER_RIGHT_ABSCISSA,
                 self::AREA_UPPER_RIGHT_ORDINATE,
-                self::POSITION_CARDINAL,
                 self::POSITION_ABSCISSA,
-                self::POSITION_ORDINATE
+                self::POSITION_ORDINATE,
+                self::POSITION_CARDINAL
             )
         ];
     }

@@ -54,9 +54,9 @@ final class CartesianCardinalCoordinateRoverBuilderDataMapperTest extends TestCa
         return new CartesianCardinalCoordinateRoverExploreRequest(
             self::AREA_UPPER_RIGHT_ABSCISSA,
             self::AREA_UPPER_RIGHT_ORDINATE,
-            self::POSITION_CARDINAL,
             self::POSITION_ABSCISSA,
-            self::POSITION_ORDINATE
+            self::POSITION_ORDINATE,
+            self::POSITION_CARDINAL
         );
     }
 
