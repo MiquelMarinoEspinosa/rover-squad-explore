@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Core\Rover\Tests\Acceptance\UserInterface\RoverSquadExplore\Script;
 
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
-require '/app/src/Rover/UserInterface/RoverSquadExplore/Script/ScriptRoverSquadExplore.php';
+require '/app/src/Rover/UserInterface/RoverSquadExplore/Cartesian/Cardinal/Script/ScriptCartesianCardinalRoverSquadExplore.php';
 
 final class ScriptRoverSquadExploreTest extends TestCase
 {

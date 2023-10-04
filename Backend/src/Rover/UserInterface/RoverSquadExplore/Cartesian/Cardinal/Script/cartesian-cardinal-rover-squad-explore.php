@@ -1,7 +1,7 @@
 <?php
 
 require_once('/app/vendor/autoload.php');
-require '/app/src/Rover/UserInterface/RoverSquadExplore/Script/ScriptRoverSquadExplore.php';
+require '/app/src/Rover/UserInterface/RoverSquadExplore/Cartesian/Cardinal/Script/ScriptCartesianCardinalRoverSquadExplore.php';
 
 $responses = exploreCartesianCardinalArea(array_slice($argv, 1));
 
