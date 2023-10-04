@@ -18,4 +18,12 @@ final class RoverSquadExploreUseCaseRegistryTest extends TestCase
             $roverSquadExploreUseCaseRegistry
         );
     }
+
+    public function testShouldReturnTheSameInstanceWhenGetInstanceTwice(): void
+    {
+        self::assertSame(
+            RoverSquadExploreUseCaseRegistry::getInstance(),
+            RoverSquadExploreUseCaseRegistry::getInstance()
+        );
+    }
 }
