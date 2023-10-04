@@ -29,7 +29,7 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         RoverSquadExploreResponse $expectedResponse
     ): void {
         $roverExploreUseCase = $this->givenCartesianCoordinateRoverSquadUseCase();
-        
+
         self::assertEquals(
             $expectedResponse,
             $roverExploreUseCase->execute($request)
@@ -42,14 +42,14 @@ final class RoverSquadExploreUseCaseTest extends TestCase
             'Initial position 12N, move L, final position 12W' => [
                 new RoverSquadExploreRequest(
                     [
-                        new CartesianCardinalCoordinateRoverExploreRequest(
+                        self::buildCartesianCardinalCoordinateRoverExploreRequest(
                             5,
                             5,
                             1,
                             2,
                             'N',
                         ),
-                        new CartesianCardinalCoordinateRoverExploreRequest(
+                        self::buildCartesianCardinalCoordinateRoverExploreRequest(
                             5,
                             5,
                             3,
@@ -59,34 +59,40 @@ final class RoverSquadExploreUseCaseTest extends TestCase
                     ],
                     [
                         [
-                            new CartesianMovementExploreRequest(
+                            self::buildCartesianMovementExploreRequest(
                                 'L'
                             ),
-                            new CartesianMovementExploreRequest(
+                            self::buildCartesianMovementExploreRequest(
                                 'M'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'L'
                             )
                         ],
                         [
-                            new CartesianMovementExploreRequest(
+                            self::buildCartesianMovementExploreRequest(
                                 'M'
                             ),
-                            new CartesianMovementExploreRequest(
+                            self::buildCartesianMovementExploreRequest(
                                 'M'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'R'
                             )
                         ]
                     ]
                 ),
                 new RoverSquadExploreResponse(
                     [
-                        new CartesianCardinalCoordinateRoverExploreResponse(
+                        self::buildCartesianCardinalCoordinateRoverExploreResponse(
                             0,
                             2,
-                            'W'
+                            'S'
                         ),
-                        new CartesianCardinalCoordinateRoverExploreResponse(
+                        self::buildCartesianCardinalCoordinateRoverExploreResponse(
                             5,
                             3,
-                            'E'
+                            'S'
                         )
                     ]
                 )
@@ -94,7 +100,7 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         ];
     }
 
-    private function givenCartesianCoordinateRoverSquadUseCase(): RoverSquadExploreUseCase
+    private static function givenCartesianCoordinateRoverSquadUseCase(): RoverSquadExploreUseCase
     {
         return new RoverSquadExploreUseCase(
             new CartesianCardinalCoordinateRoverBuilderDataMapper,
@@ -105,6 +111,45 @@ final class RoverSquadExploreUseCaseTest extends TestCase
             new CartesianMovementFactoryDataMapper,
             CartesianMovementFactory::getInstance(),
             new CartesianCardinalCoordinateRoverExploreResponseMapper
+        );
+    }
+
+    private static function buildCartesianCardinalCoordinateRoverExploreRequest(
+        int $upperRightAbscissa,
+        int $upperRightOrdinate,
+        int $abscissa,
+        int $ordinate,
+        string $cardinal
+    ): CartesianCardinalCoordinateRoverExploreRequest {
+
+        return new CartesianCardinalCoordinateRoverExploreRequest(
+            $upperRightAbscissa,
+            $upperRightOrdinate,
+            $abscissa,
+            $ordinate,
+            $cardinal,
+        );
+    }
+
+    private static function buildCartesianMovementExploreRequest(
+        string $movementValue
+    ): CartesianMovementExploreRequest {
+
+        return new CartesianMovementExploreRequest(
+            $movementValue
+        );
+    }
+
+    private static function buildCartesianCardinalCoordinateRoverExploreResponse(
+        int $abscissa,
+        int $ordinate,
+        string $cardinal
+    ): CartesianCardinalCoordinateRoverExploreResponse {
+
+        return new CartesianCardinalCoordinateRoverExploreResponse(
+            $abscissa,
+            $ordinate,
+            $cardinal
         );
     }
 }
