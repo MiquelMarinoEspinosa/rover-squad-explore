@@ -17,7 +17,7 @@ use Core\Rover\Application\RoverSquadExplore\Response\Rover\RoverExploreResponse
 use Core\Rover\Application\RoverSquadExplore\Request\Movement\MovementExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\RoverBuilderDataMapper;
 use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\RoverExploreResponseMapper;
-use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Movement\Cartesian\CartesianMovementFactoryDataMapper;
+use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Movement\MovementFactoryDataMapper;
 
 final class RoverSquadExploreUseCase implements UseCase
 {
@@ -26,7 +26,7 @@ final class RoverSquadExploreUseCase implements UseCase
     public function __construct(
         private RoverBuilderDataMapper $roverBuilderDataMapper,
         private RoverBuilder $roverBuilder,
-        private CartesianMovementFactoryDataMapper $movementFactoryDataMapper,
+        private MovementFactoryDataMapper $movementFactoryDataMapper,
         private MovementFactory $movementFactory,
         private RoverExploreResponseMapper $roverExploreResponseMapper
     ) {

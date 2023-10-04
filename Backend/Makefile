@@ -14,7 +14,10 @@ bash:
 	$(EXEC_PHP) bash
 
 unit:
-	$(EXEC_PHP) vendor/bin/phpunit
+	$(EXEC_PHP) vendor/bin/phpunit --testsuite Unit
+
+integration:
+	$(EXEC_PHP) vendor/bin/phpunit --testsuite Integration
 
 coverage:
 	$(EXEC_PHP) vendor/bin/phpunit --coverage-html coverage
