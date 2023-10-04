@@ -58,23 +58,33 @@ final class RoverSquadExploreUseCaseTest extends TestCase
                         )
                     ],
                     [
-                        [new CartesianMovementExploreRequest(
-                            'L'
-                        )],
-                        [new CartesianMovementExploreRequest(
-                            'M'
-                        )]
+                        [
+                            new CartesianMovementExploreRequest(
+                                'L'
+                            ),
+                            new CartesianMovementExploreRequest(
+                                'M'
+                            )
+                        ],
+                        [
+                            new CartesianMovementExploreRequest(
+                                'M'
+                            ),
+                            new CartesianMovementExploreRequest(
+                                'M'
+                            )
+                        ]
                     ]
                 ),
                 new RoverSquadExploreResponse(
                     [
                         new CartesianCardinalCoordinateRoverExploreResponse(
-                            1,
+                            0,
                             2,
                             'W'
                         ),
                         new CartesianCardinalCoordinateRoverExploreResponse(
-                            4,
+                            5,
                             3,
                             'E'
                         )
