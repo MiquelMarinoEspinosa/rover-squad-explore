@@ -39,7 +39,12 @@ final class RoverSquadExploreUseCaseRegistry
     public function get(
         string $roverSquadExploreUseCaseName
     ): RoverSquadExploreUseCase {
-        
+        if (!isset(self::$roverSquadExploreUseCases[
+            $roverSquadExploreUseCaseName
+        ])) {
+            throw new RoverSquadExploreUseCaseUnknown;
+        }
+
         return self::$roverSquadExploreUseCases[
             $roverSquadExploreUseCaseName
         ];
