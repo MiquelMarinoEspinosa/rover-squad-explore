@@ -19,8 +19,14 @@ unit:
 integration:
 	$(EXEC_PHP) vendor/bin/phpunit --testsuite Integration
 
+acceptance:
+	$(EXEC_PHP) vendor/bin/phpunit --testsuite Acceptance
+
 tests:
 	$(EXEC_PHP) vendor/bin/phpunit
 
 coverage:
 	$(EXEC_PHP) vendor/bin/phpunit --coverage-html coverage
+
+rover-squad-explore-sample:
+	$(EXEC_PHP) php src/Rover/UserInterface/RoverSquadExplore/Script/ScriptRoverSquadExplore.php 1 2 3 4
