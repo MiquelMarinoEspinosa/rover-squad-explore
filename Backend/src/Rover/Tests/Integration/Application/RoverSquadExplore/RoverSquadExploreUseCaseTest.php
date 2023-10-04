@@ -26,12 +26,12 @@ final class RoverSquadExploreUseCaseTest extends TestCase
      */
     public function testShouldCartesianCoordinateRoverSquadExplore(
         RoverSquadExploreRequest $request,
-        RoverSquadExploreResponse $response
+        RoverSquadExploreResponse $expectedResponse
     ): void {
         $roverExploreUseCase = $this->givenCartesianCoordinateRoverSquadUseCase();
-
+        
         self::assertEquals(
-            $response,
+            $expectedResponse,
             $roverExploreUseCase->execute($request)
         );
     }
@@ -48,11 +48,21 @@ final class RoverSquadExploreUseCaseTest extends TestCase
                             1,
                             2,
                             'N',
+                        ),
+                        new CartesianCardinalCoordinateRoverExploreRequest(
+                            5,
+                            5,
+                            3,
+                            3,
+                            'E',
                         )
                     ],
                     [
                         [new CartesianMovementExploreRequest(
                             'L'
+                        )],
+                        [new CartesianMovementExploreRequest(
+                            'M'
                         )]
                     ]
                 ),
@@ -62,10 +72,15 @@ final class RoverSquadExploreUseCaseTest extends TestCase
                             1,
                             2,
                             'W'
+                        ),
+                        new CartesianCardinalCoordinateRoverExploreResponse(
+                            4,
+                            3,
+                            'E'
                         )
                     ]
                 )
-            ]
+            ],
         ];
     }
 
