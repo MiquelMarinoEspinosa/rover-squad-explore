@@ -21,10 +21,22 @@ final class ScriptRoverSquadExploreTest extends TestCase
             'MMRMMRMRRM'
         ];
 
-        $response = explore($params);
+        $response = exploreCartesianCardinalArea($params);
 
+        $expectedResponse = [
+            [
+                'abscissa' => 1,
+                'ordinate' => 3,
+                'cardinal' => 'N'
+            ],
+            [
+                'abscissa' => 5,
+                'ordinate' => 1,
+                'cardinal' => 'E'
+            ]
+        ];
         self::assertEquals(
-            new stdClass,
+            $expectedResponse,
             $response
         );
     }

@@ -5,22 +5,16 @@ use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Co
 use Core\Rover\Application\RoverSquadExplore\Request\RoverSquadExploreRequest;
 use Core\Rover\Application\RoverSquadExplore\RoverSquadExploreUseCaseRegistry;
 
-function explore($parameters)
+function exploreCartesianCardinalArea($parameters)
 {
     $abscissaUpperRightArea = $parameters[0];
     $ordinateUpperRightArea = $parameters[1];
-
-    $roverMovementsParametersLenght = 0;
-
-    foreach ($parameters as $parameter) {
-        $roverMovementsParametersLenght++;
-    }
 
     $roverMovementParamIndex = 2;
     $roverExploreRequests               = [];
     $movementExploreCollectionRequests  = [];
 
-    while ($roverMovementParamIndex < $roverMovementsParametersLenght) {
+    while ($roverMovementParamIndex < count($parameters)) {
         $movementExploreRequests = [];
         $roverExploreRequests[] = new CartesianCardinalCoordinateRoverExploreRequest(
             $abscissaUpperRightArea,
@@ -49,7 +43,17 @@ function explore($parameters)
 
     $response = $roverSquadExploreUseCase->execute($request);
 
-    return new stdClass;
-}
+    $responses = $response->roverExploreResponses();
+    $responsesAsArray = [];
+    
+    foreach ($responses as $response)
+    {
+        $responsesAsArray[] = [
+            'abscissa' => $response->abscissa(),
+            'ordinate' => $response->ordinate(),
+            'cardinal' => $response->cardinal(),
+        ];
+    }
 
-explore($argv);
+    return $responsesAsArray;
+}
