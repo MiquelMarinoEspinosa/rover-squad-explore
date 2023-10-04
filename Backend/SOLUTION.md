@@ -1,5 +1,111 @@
+## Solution proposal
+---
+
 This file explains and gives some insights regarding the solution implemented to solve the technical exercise.
 
-### Setup & local environment
+### Setup and local environment
 - To be able to check the solution, please clone this repository
-    - $>git clone git@bitbucket.org:miguel_marino/software-engineer-coding-callenge.git
+    - $>**git clone git@bitbucket.org:miguel_marino/software-engineer-coding-callenge.git**
+- Move to the **software-engineer-coding-callenge/Backend** folder   
+- To setup the docker local enrivonment, execute the up make entry
+    - $> **make up**
+- Once the previous commnad has finised, to check that the local environment is up and running, execute the tests make entry
+    - $> **make tests**
+- To check a real sample execution of the aplication with the sample README.md values hardcoded, execute the sample makefile entry
+    - $> **make sample**
+
+### Application requirements and dependencies
+- The application requires of the following requirements, all of them included at the local environment
+    - **PHP 8.2**
+    - **composer**
+    - **xdebug**
+- Composer libraries
+    - **phpunit**
+- Its word noticing that **the application is frameworkless**. No framework has been used to implement the solution
+
+### Tests
+- All the tests have been implemented using the **phpunit** library
+- The kind of tests implemented are
+- All tests are located at **src/Rover/Tests**
+    - Unit
+        - The ones that check the class as a piece of unit
+        - Some tests have been implemented using a class collaboration approach avoiding mocking the dependencies and allowing small classes interact among them
+        - Currently there are **179** tests with **303** assertions
+        - Execute the following command to execute the unit tests
+            - $> **make unit**
+    - Integration
+        - Test the use case with the README.md example without mocking any dependency
+        - Currently there is just 1 integration test
+        - Execute the following command to execute the integration tests
+            - $> **make integration**
+    - Acceptance
+        - Test the script with the README.md example without mocking any dependency
+        - Currently there is just 1 acceptance test
+        - Execute the following command to execute the acceptance tests
+            - $> **make acceptance**
+- Coverage
+    - The code has been organised to enhance its testability
+    - There is **100%** of the coverage for all the project folders except for **UserInterface** which currently has **86.44%** because of the **8 lines of cartesian-cardinal-rover-squad-explore.php**
+        - The lines uncovered are the ones that get the script parameters a pass the parameters to another user interface class which is 100% covered
+        - It has been tried to move as much logic as it could to the other class to covered with test
+        - Future work: try to reach the 100% :)
+    - To check the application tests coverage in **html format** execute the following commands
+        - $> **make coverage**
+        - $> **open coverage/index.html**
+- Is has been applied along the implementation the **TDD** approach to make always baby and secure steps throughout the implementation
+- This **TDD** adopted mindset has been key to reach the final solution. Otherwise it would have been very unlikely to reach the solution because all the changes and refactors have been down during the implementation
+### Architecture general view and main insights
+- The application has been build aiming to have a very extensible and highly configurable application
+- The application follows a **DDD** approach with the following folders
+    - **UserInterface**
+        - Receives the data from standard input from the script
+        - Executes the rover squad explore use case
+        - Returns the response to the standard output
+    - **Application**
+        - Executes the domain business logic once has received the data from the user interface folder
+        - It is basically a domain orchestrator aggregate orchestrator
+    - **Domain**
+        - Where the business logic is encapsulated
+        - The first class cityzens are the **Rover** and the **Movement** aggregates
+- The **Infrastructure** folder has been left out since there are no databases or external services implemented on this project
+- **Domain**
+    - The **Movement** moves and orchestrate the **Rover**
+        - The **Movement** knows where the **Rover** should move
+        - The **Movement** is implemented using a kind of **visitor pattern** that executes the appropiate functionality which is exposed by the **Rover**
+        - This way has been reduced the number of `if` statements in case that the **Rover** would decide according to the **Movement** reducing the **Rover** responsability
+        - It exposes just an **apply** method that receives the **Rover** as parameter
+        - It can easily add and remove **Movement** enhancing the code flexibility
+    - The **Rover**
+        - The **Rover** exposes the methods and funcionalities that the **Movement** would use
+        - It is an aggregate that has the following value objects
+            - **Area**
+                - The area where the rover explore
+                - It has been implemented an extra checks to validate the correctness of its construction and of every movement, check by the **Rover**
+                - The **Rover** accepts different kind of areas since its decoupled from the current implementations 
+            - **Direction**
+                - The rover current direction and orientation
+                - It has been implemented the **state pattern** to update the direction
+                - Everytime that the **Rover** rotates either to the right or to the left, delegates the function on the **Direction** which will be the one to return the next new orientation as value object
+                - This way has been reduced the amount of `if` conditions at **Rover** reducing its responsability
+                - Easily it can be added and removed a **Direction** due to its lose coupling
+                - In case of moving **forward** delegates the movement on the **Point**
+            - **Point**
+                - Indicates the current rover's point position
+                - It is updated just in **moveForward** operations
+                - Everytime that moves forward, a new point instance is created with the updated coordinate and return it to the rover acting as an immutable **value object**
+- **Cartesian Cardinal concept**
+    - The code has been implemented to be losely coupled
+    - Therefore, there are **cartesian** folders at all the projects levels
+    - The application should be ready to be able to create another scenarios where the rovers squad might explore for instance
+        - three dimensional
+        - four dimensional
+        - sphere dimension with angular movements
+        - ...
+    - The best example is **RoverSquadExploreUseCase** which is agnostic about the kind of requests and responses that it has to deal with
+        - Thanks to the **mappers** injected to the use case it is not coupled to the response and to the requests
+        - Delegates the **Rover** creation to a **builder** and the **Movement** creation to a factory with the data that **request mappers** has mapped
+        - Finally the reponse its also mapped with a **mapper** wich transforms the **Rover** entity data to a response
+        - The decision of using the **cartesian** implementation is make in outer layers such as **UserInterface** that injects the apropiates **mapper**, **builder** and **factory**
+        - The injection from the **UserInterface** is provided by a **registry** the **RoverSquadExploreUseCaseRegistry** to avoid the **UserInterface** knowing about **rover builder** and **movement factory** which are implemented at the domain layer. This way the layers responsabilities are provided
+    - Changes on the current **cartesian** implementation, such as adding a **Movement**, **Direction**, **Area** or a **Point**, should be easy for being the application losely coopled
+    - **Singleton** has been another pattern implemented specially on **factory** and **registry** such as **CartesianMovementFactory**
