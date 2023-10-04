@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Integration\Application\RoverSquadExplore;
 
-use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Movement\Cartesian\CartesianMovementFactoryDataMapper;
-use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderDataMapper;
-use Core\Rover\Application\RoverSquadExplore\Request\Movement\Cartesian\CartesianMovementExploreRequest;
-use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreRequest;
-use Core\Rover\Application\RoverSquadExplore\Request\RoverSquadExploreRequest;
-use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponseMapper;
-use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponse;
-use Core\Rover\Application\RoverSquadExplore\Response\RoverSquadExploreResponse;
-use Core\Rover\Application\RoverSquadExplore\RoverSquadExploreUseCase;
-use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactory;
-use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaBuilder;
-use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilder;
-use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirectionFactory;
 use PHPUnit\Framework\TestCase;
+use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactory;
+use Core\Rover\Application\RoverSquadExplore\RoverSquadExploreUseCase;
+use Core\Rover\Application\RoverSquadExplore\Request\RoverSquadExploreRequest;
+use Core\Rover\Application\RoverSquadExplore\Response\RoverSquadExploreResponse;
+use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaBuilder;
+use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirectionFactory;
+use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilder;
+use Core\Rover\Application\RoverSquadExplore\Request\Movement\Cartesian\CartesianMovementExploreRequest;
+use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Movement\Cartesian\CartesianMovementFactoryDataMapper;
+use Core\Rover\Application\RoverSquadExplore\Request\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreRequest;
+use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponse;
+use Core\Rover\Application\RoverSquadExplore\Request\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverBuilderDataMapper;
+use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponseMapper;
 
 final class RoverSquadExploreUseCaseTest extends TestCase
 {
@@ -39,7 +39,7 @@ final class RoverSquadExploreUseCaseTest extends TestCase
     public static function cartesianCoordinateRoverSquadExploreDataProvider(): array
     {
         return [
-            'Initial position 12N, move L, final position 12W' => [
+            'Initial positions [12N, 33E], move [LMLMLMLMM, MMRMMRMRRM], final position [13N, 15E]' => [
                 new RoverSquadExploreRequest(
                     [
                         self::buildCartesianCardinalCoordinateRoverExploreRequest(
@@ -76,6 +76,15 @@ final class RoverSquadExploreUseCaseTest extends TestCase
                             ),
                             self::buildCartesianMovementExploreRequest(
                                 'M'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'L'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'M'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'M'
                             )
                         ],
                         [
@@ -96,6 +105,18 @@ final class RoverSquadExploreUseCaseTest extends TestCase
                             ),
                             self::buildCartesianMovementExploreRequest(
                                 'R'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'M'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'R'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'R'
+                            ),
+                            self::buildCartesianMovementExploreRequest(
+                                'M'
                             )
                         ]
                     ]
@@ -104,13 +125,13 @@ final class RoverSquadExploreUseCaseTest extends TestCase
                     [
                         self::buildCartesianCardinalCoordinateRoverExploreResponse(
                             1,
-                            1,
-                            'E'
+                            3,
+                            'N'
                         ),
                         self::buildCartesianCardinalCoordinateRoverExploreResponse(
                             5,
                             1,
-                            'W'
+                            'E'
                         )
                     ]
                 )
