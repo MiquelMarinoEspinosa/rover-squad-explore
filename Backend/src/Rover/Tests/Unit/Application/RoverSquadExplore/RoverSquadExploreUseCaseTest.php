@@ -261,8 +261,8 @@ final class RoverSquadExploreUseCaseTest extends TestCase
         );
 
         self::assertEquals(
-            $expectedResponse,
-            $response
+            $expectedResponse->roverExploreResponses(),
+            $response->roverExploreResponses()
         );
     }
 
