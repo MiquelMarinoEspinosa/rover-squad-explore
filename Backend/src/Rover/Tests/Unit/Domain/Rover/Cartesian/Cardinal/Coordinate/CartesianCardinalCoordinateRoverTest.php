@@ -7,7 +7,6 @@ namespace Core\Rover\Tests\Unit\Domain\Rover\Cardinal\Coordinate;
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Rover;
 use Core\Rover\Domain\Rover\RoverPosition;
-use Core\Rover\Domain\Collection\CollectionItem;
 use Core\Rover\Domain\Rover\Cartesian\CartesianRover;
 use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;

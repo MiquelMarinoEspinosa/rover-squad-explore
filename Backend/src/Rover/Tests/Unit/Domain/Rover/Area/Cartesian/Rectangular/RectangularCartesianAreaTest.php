@@ -9,8 +9,8 @@ use Core\Rover\Domain\Rover\Area\Area;
 use Core\Rover\Domain\Rover\Area\Cartesian\CartesianArea;
 use Core\Rover\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianArea;
-use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaOutOfArea;
 use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianInvalidArea;
+use Core\Rover\Domain\Rover\Area\Cartesian\Rectangular\RectangularCartesianAreaOutOfArea;
 
 final class RectangularCartesianAreaTest extends TestCase
 {

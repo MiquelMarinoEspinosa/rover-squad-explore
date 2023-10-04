@@ -14,12 +14,14 @@ use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\Cartesian\Car
 
 final class RoverSquadExploreUseCaseRegistry
 {
+    private const CARTESIAN_COORDINATE_ID = 'cartesian.coordinate.rover_squad_explore_use_case';
+
     private static ?self $instance = null;
     private static $roverSquadExploreUseCases = [];
 
     private function __construct()
     {
-        self::$roverSquadExploreUseCases['cartesian.coordinate.rover_squad_explore_use_case'] = $this->buildCartesianCoordinateRoverSquadUseCase();
+        self::$roverSquadExploreUseCases[self::CARTESIAN_COORDINATE_ID] = $this->buildCartesianCoordinateRoverSquadUseCase();
     }
 
     public static function getInstance(): self

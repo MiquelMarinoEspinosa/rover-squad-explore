@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate;
 
-use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponse;
-use Core\Rover\Application\RoverSquadExplore\Response\Rover\RoverExploreResponse;
 use PHPUnit\Framework\TestCase;
+use Core\Rover\Application\RoverSquadExplore\Response\Rover\RoverExploreResponse;
+use Core\Rover\Application\RoverSquadExplore\Response\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverExploreResponse;
 
 final class CartesianCardinalCoordinateRoverExploreResponseTest extends TestCase
 {

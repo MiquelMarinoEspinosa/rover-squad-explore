@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Core\Rover\Tests\Unit\Domain\Movement\Cartesian;
 
 use PHPUnit\Framework\TestCase;
+use Core\Rover\Domain\Movement\MovementFactory;
 use Core\Rover\Domain\Movement\Cartesian\LeftCartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\RightCartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactory;
 use Core\Rover\Domain\Movement\Cartesian\ForwardCartesianMovement;
 use Core\Rover\Domain\Movement\Cartesian\UnknownCartesianMovement;
-use Core\Rover\Domain\Movement\Cartesian\CartesianMovementAbstractFactory;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactoryData;
-use Core\Rover\Domain\Movement\MovementFactory;
+use Core\Rover\Domain\Movement\Cartesian\CartesianMovementAbstractFactory;
 
 final class CartesianMovementFactoryTest extends TestCase
 {

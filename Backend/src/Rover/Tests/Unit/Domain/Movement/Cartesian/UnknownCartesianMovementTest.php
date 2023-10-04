@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Domain\Movement\Cartesian;
 
-use Core\Rover\Domain\Movement\Cartesian\UnknownCartesianMovement;
-use Core\Rover\Domain\Movement\UnknownMovement;
-use PHPUnit\Framework\TestCase;
 use Throwable;
+use PHPUnit\Framework\TestCase;
+use Core\Rover\Domain\Movement\UnknownMovement;
+use Core\Rover\Domain\Movement\Cartesian\UnknownCartesianMovement;
 
 final class UnknownCartesianMovementTest extends TestCase
 {

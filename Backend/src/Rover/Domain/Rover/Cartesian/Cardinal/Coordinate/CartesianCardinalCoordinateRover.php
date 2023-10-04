@@ -10,7 +10,6 @@ use Core\Rover\Domain\Rover\Point\Cartesian\CartesianPoint;
 use Core\Rover\Domain\Rover\Point\Cartesian\CartesianCoordinatePoint;
 use Core\Rover\Domain\Rover\Direction\Cartesian\Cardinal\CartesianCardinalDirection;
 use Core\Rover\Domain\Rover\Cartesian\Cardinal\Coordinate\CartesianCardinalCoordinateRoverPosition;
-use Core\Rover\Domain\Rover\Cartesian\CartesianRoverPosition;
 
 final class CartesianCardinalCoordinateRover implements CartesianRover
 {

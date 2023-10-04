@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Rover\Domain\Rover\Point\Coordinate\Cartesian;
 
-use Core\Rover\Domain\Rover\Point\Coordinate\CoordinateNotAllowedMovement;
 use Throwable;
+use Core\Rover\Domain\Rover\Point\Coordinate\CoordinateNotAllowedMovement;
 
 final class CartesianCoordinateNotAllowedMovement extends \Exception implements CoordinateNotAllowedMovement 
 {
