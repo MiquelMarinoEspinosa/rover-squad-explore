@@ -11,9 +11,17 @@ require '/app/src/Rover/UserInterface/RoverSquadExplore/Script/ScriptRoverSquadE
 
 final class ScriptRoverSquadExploreTest extends TestCase
 {
-    public function testScript(): void
-    {        
-        $response = explore(1, 2);
+    public function testShouldRoverSquadExplore(): void
+    {
+        $params = [
+            5, 5,
+            1, 2, 'N',
+            'LMLMLMLMM',
+            3, 3, 'E',
+            'MMRMMRMRRM'
+        ];
+
+        $response = explore($params);
 
         self::assertEquals(
             new stdClass,
