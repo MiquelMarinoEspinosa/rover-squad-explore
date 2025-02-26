@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Unit\Domain\Rover\Cardinal\Coordinate;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Rover\Rover;
 use Core\Rover\Domain\Rover\RoverPosition;
@@ -76,9 +77,7 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider cardinalDirectionProvider
-     */
+    #[DataProvider('cardinalDirectionProvider')]
     public function testShouldReturnTheCardinalDirection(
         CartesianCardinalDirection $cartesianCardinalDirection
     ): void {
@@ -125,9 +124,7 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider cardinalDirectionRotateLeftProvider
-     */
+    #[DataProvider('cardinalDirectionRotateLeftProvider')]
     public function testShouldRotateLeft(
         CartesianCardinalDirection $cartesianCardinalDirection,
         CartesianCardinalDirection $expectedCardinalDirection,
@@ -148,9 +145,7 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider cardinalDirectionRotateRightProvider
-     */
+    #[DataProvider('cardinalDirectionRotateRightProvider')]
     public function testShouldRotateRight(
         CartesianCardinalDirection $cartesianCardinalDirection,
         CartesianCardinalDirection $expectedCardinalDirection,
@@ -192,9 +187,7 @@ final class CartesianCardinalCoordinateRoverTest extends TestCase
         $cartesianCardinalCoordinateRover->moveForward();
     }
 
-    /**
-     * @dataProvider cardinalDirectionMoveForwardProvider
-     */
+    #[DataProvider('cardinalDirectionMoveForwardProvider')]
     public function testShouldMoveForward(
         CartesianCardinalDirection $cartesianCardinalDirection,
         int $expectedPositionAbscissa,

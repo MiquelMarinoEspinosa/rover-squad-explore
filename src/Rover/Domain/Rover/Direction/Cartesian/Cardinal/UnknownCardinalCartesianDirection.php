@@ -12,7 +12,7 @@ final class UnknownCardinalCartesianDirection extends Exception implements Unkno
 {
     private const ERROR_MESSAGE = 'Unknown direction: %s';
 
-    private function __construct(string $message = "", int $code = 0, Throwable $previous = null)
+    private function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Rover\Tests\Integration\Application\RoverSquadExplore;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Core\Rover\Domain\Movement\Cartesian\CartesianMovementFactory;
 use Core\Rover\Application\RoverSquadExplore\RoverSquadExploreUseCase;
@@ -21,9 +22,7 @@ use Core\Rover\Application\RoverSquadExplore\Response\Mapper\Rover\Cartesian\Car
 
 final class RoverSquadExploreUseCaseTest extends TestCase
 {
-    /**
-     * @dataProvider cartesianCoordinateRoverSquadExploreDataProvider
-     */
+    #[DataProvider('cartesianCoordinateRoverSquadExploreDataProvider')]
     public function testShouldCartesianCoordinateRoverSquadExplore(
         RoverSquadExploreRequest $request,
         RoverSquadExploreResponse $expectedResponse

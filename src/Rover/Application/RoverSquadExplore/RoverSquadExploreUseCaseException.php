@@ -12,7 +12,7 @@ final class RoverSquadExploreUseCaseException extends Exception implements UseCa
 {
     private const MESSAGE = 'RoverSquadExploreUseCaseException: %s';
 
-    private function __construct(string $message = "", int $code = 0, Throwable $previous = null)
+    private function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

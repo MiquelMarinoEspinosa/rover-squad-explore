@@ -12,7 +12,7 @@ final class UnknownCartesianMovement extends Exception implements UnknownMovemen
 {
     private const ERROR_MESSAGE = 'Unknown movement: %s';
 
-    private function __construct(string $message = "", int $code = 0, Throwable $previous = null)
+    private function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
