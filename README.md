@@ -16,7 +16,7 @@ This file explains and gives some insights regarding the solution implemented to
 
 ### Application requirements and dependencies
 - The application requires of the following requirements, all of them included at the local environment
-    - **PHP 8.2**
+    - **PHP 8.4**
     - **composer**
     - **xdebug**
 - Composer libraries
